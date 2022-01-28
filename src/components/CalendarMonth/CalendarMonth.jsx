@@ -9,7 +9,7 @@ import googleCalendarPlugin from '@fullcalendar/google-calendar';
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is
 
-function InfoPage() {
+function CalendarMonth() {
 
   const myApiKey = process.env.API_KEY;
 const calendarId = 1
@@ -17,7 +17,7 @@ const calendarId = 1
   return (
     <div className="container">
       <p>Info Page</p>
-        <FullCalendar 
+        <FullCalendar
           plugins={[timeGridPlugin, googleCalendarPlugin]}
           googleCalendarApiKey={myApiKey}
           weekends={true}
@@ -29,4 +29,4 @@ const calendarId = 1
   );
 }
 
-export default InfoPage;
+export default CalendarMonth;
