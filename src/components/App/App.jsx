@@ -19,6 +19,7 @@ import CalendarMonth from '../CalendarMonth/CalendarMonth';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import ChooseProvider from '../ChooseProvider/ChooseProvider';
 
 import './App.css';
 
@@ -66,6 +67,15 @@ function App() {
             path="/calendarmonth"
           >
             <CalendarMonth />
+          </ProtectedRoute>
+
+
+          <ProtectedRoute
+            // logged in shows ChooseProvider else shows LoginPage
+            exact
+            path="/chooseprovider"
+          >
+            <ChooseProvider />
           </ProtectedRoute>
 
           <Route
