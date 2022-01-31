@@ -5,16 +5,16 @@
 -- Otherwise you will have errors!
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
-    "email" VARCHAR (80) UNIQUE NOT NULL,
+    "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL,
-    "role" VARCHAR (200) NOT NULL,
-    "first_name" VARCHAR (1000) NOT NULL,
-    "last_name" VARCHAR (1000) NOT NULL,
-    "phone" INTEGER NOT NULL,
-    "address" VARCHAR (1000) NOT NULL,
-    "city" VARCHAR (1000) NOT NULL,
-    "state" VARCHAR (4) NOT NULL,
-    "zip_code" INTEGER NOT NULL
+    "role" VARCHAR (200),
+    "first_name" VARCHAR (1000),
+    "last_name" VARCHAR (1000),
+    "phone" INTEGER,
+    "address" VARCHAR (1000),
+    "city" VARCHAR (1000),
+    "state" VARCHAR (4),
+    "zip_code" INTEGER 
 );
 
 -------------------------------------------------------------
