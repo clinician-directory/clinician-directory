@@ -10,7 +10,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is
 
-function InfoPage() {
+function CalendarMonth() {
 
   let gapi = window.gapi;
   let CLIENT_ID = '1096656813980-v8ibiouk9dg649om7og02kr5kuied9fq.apps.googleusercontent.com';
@@ -91,9 +91,15 @@ function InfoPage() {
   return (
     <div className="container">
       <p>Info Page</p>
+<<<<<<< HEAD:src/components/InfoPage/InfoPage.jsx
       <button onClick={handleGoogleClick}>New Google Calendar Event</button>
         <FullCalendar 
           plugins={[dayGridPlugin, interactionPlugin]}
+=======
+        <FullCalendar
+          plugins={[timeGridPlugin, googleCalendarPlugin]}
+          googleCalendarApiKey={myApiKey}
+>>>>>>> 1d511205c8c9e63fede78420063ce9e492b1003e:src/components/CalendarMonth/CalendarMonth.jsx
           weekends={true}
           slotMinTime={'08:00:00'}
           slotMaxTime={'22:00:00'}
@@ -104,4 +110,8 @@ function InfoPage() {
   );
 }
 
+<<<<<<< HEAD:src/components/InfoPage/InfoPage.jsx
 export default InfoPage;
+=======
+export default CalendarMonth;
+>>>>>>> 1d511205c8c9e63fede78420063ce9e492b1003e:src/components/CalendarMonth/CalendarMonth.jsx

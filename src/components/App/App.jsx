@@ -15,10 +15,11 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
+import CalendarMonth from '../CalendarMonth/CalendarMonth';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import ChooseProvider from '../ChooseProvider/ChooseProvider';
 
 import './App.css';
 
@@ -63,9 +64,18 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/info"
+            path="/calendarmonth"
           >
-            <InfoPage />
+            <CalendarMonth />
+          </ProtectedRoute>
+
+
+          <ProtectedRoute
+            // logged in shows ChooseProvider else shows LoginPage
+            exact
+            path="/chooseprovider"
+          >
+            <ChooseProvider />
           </ProtectedRoute>
 
           <Route
@@ -73,7 +83,7 @@ function App() {
             path="/login"
           >
             {user.id ?
-              // If the user is already logged in, 
+              // If the user is already logged in,
               // redirect to the /user page
               <Redirect to="/user" />
               :
@@ -87,7 +97,7 @@ function App() {
             path="/registration"
           >
             {user.id ?
-              // If the user is already logged in, 
+              // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/user" />
               :
@@ -101,7 +111,7 @@ function App() {
             path="/home"
           >
             {user.id ?
-              // If the user is already logged in, 
+              // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/user" />
               :
