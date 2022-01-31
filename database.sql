@@ -19,17 +19,6 @@ CREATE TABLE "user" (
 
 -------------------------------------------------------------
 
-CREATE TABLE "appointments" (
-    "id" SERIAL PRIMARY KEY,
-    "user_id"  INT REFERENCES "user" (id) ON DELETE CASCADE NOT NULL,
-    "start_time" TIMESTAMP,
-    "end_time" TIMESTAMP,
-    "provider_id"  INT REFERENCES "providers" (id) ON DELETE CASCADE NOT NULL,
-    "description" VARCHAR (1000) NOT NULL
-    
-);
--------------------------------------------------------------
-
 CREATE TABLE "providers" (
     "id" SERIAL PRIMARY KEY,
     "first_name" VARCHAR (1000) NOT NULL,
@@ -41,7 +30,17 @@ CREATE TABLE "providers" (
     "address" VARCHAR (1000) NOT NULL,
     "state" VARCHAR (4) NOT NULL,
     "zip_code" VARCHAR (1000) NOT NULL
+);
 
+-------------------------------------------------------------
+
+CREATE TABLE "appointments" (
+    "id" SERIAL PRIMARY KEY,
+    "user_id"  INT REFERENCES "user" (id) ON DELETE CASCADE NOT NULL,
+    "start_time" TIMESTAMP,
+    "end_time" TIMESTAMP,
+    "provider_id"  INT REFERENCES "providers" (id) ON DELETE CASCADE NOT NULL,
+    "description" VARCHAR (1000) NOT NULL
 );
 
 -------------------------------------------------------------
