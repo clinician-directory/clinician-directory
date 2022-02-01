@@ -6,7 +6,7 @@ import axios from 'axios';
 function* fetchAllProviders() {
   try {
     const providers = yield axios.get('/api/providers');
-    yield put({ type: 'LOAD_PROVIDERS', payload: providers.data });
+    yield put({ type: 'SET_PROVIDERS', payload: providers.data });
   } catch (error) {
     console.log('Error in fetchAllProviders saga', error);
   }

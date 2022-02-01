@@ -1,5 +1,5 @@
 // Used to store ONE Provider from the server
-const OneProvider = (state = {}, action) => {
+const oneProviderReducer = (state = {}, action) => {
     switch (action.type) {
       case 'SET_ONE_PROVIDER':
         return action.payload;
@@ -9,4 +9,4 @@ const OneProvider = (state = {}, action) => {
   }
 
   
-  export default OneProvider;
+  export default oneProviderReducer;

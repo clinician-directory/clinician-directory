@@ -2,7 +2,8 @@ import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
 import appointmentsReducer from './appointments.reducer';
-import providersReducer from './providers.reducer';
+import allProvidersReducer from './allProviders.reducer';
+import oneProviderReducer from './oneProvider.reducer';
 import availabilitiesReducer from './availabilities.reducer';
 
 // rootReducer is the primary reducer for our entire project
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
   appointmentsReducer, // for appointments
-  providersReducer, // for providers
+  allProvidersReducer, // for providers
+  oneProviderReducer, // for one provider
   availabilitiesReducer, // for provider availabilities
 });
 
