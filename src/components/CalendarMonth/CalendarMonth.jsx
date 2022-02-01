@@ -1,7 +1,5 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -137,7 +135,7 @@ function CalendarMonth() {
     {userAppointments.map(appointment => {
         return <li key={appointment.id}>start: {appointment.start_time} & end: {appointment.end_time}</li>
       })}
-    </ul>  
+    </ul>
     </div>
 
   );
