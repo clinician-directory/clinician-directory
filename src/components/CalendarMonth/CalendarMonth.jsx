@@ -112,10 +112,10 @@ function CalendarMonth() {
           slotMaxTime={'22:00:00'}
           events={[
               { title: 'Available!', date: '2022-02-01' },
-              { title: 'Available!', date: '2022-02-09' },
-              { title: 'Available!', date: '2022-02-14' },
+              { title: 'Nothing Available', date: '2022-02-09', color: 'red' },
+              { title: 'Your Appointment!', date: '2022-02-14', color: 'green' },
               { title: 'Available!', date: '2022-02-17' },
-              { title: 'Available!', date: '2022-02-21' },
+              { title: 'Nothing Available', date: '2022-02-21', color: 'red' },
               { title: 'Available!', date: '2022-02-24' },
             ]}
           eventColor='blue'
