@@ -21,6 +21,8 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ChooseProvider from '../ChooseProvider/ChooseProvider';
 
+import LoginView from '../LoginView/LoginView';
+
 import './App.css';
 
 function App() {
@@ -35,7 +37,7 @@ function App() {
   return (
     <Router>
       <div>
-        <Nav />
+        {/* <Nav /> */}
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -88,7 +90,7 @@ function App() {
               <Redirect to="/user" />
               :
               // Otherwise, show the login page
-              <LoginPage />
+              <LoginView />
             }
           </Route>
 
@@ -125,7 +127,7 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
   );
