@@ -9,6 +9,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 // It doesn't have local state
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is
+// Testing to make sure Git is updated
 
 function CalendarMonth() {
 
@@ -92,7 +93,7 @@ function CalendarMonth() {
     <div className="container">
       <p>Info Page</p>
       <button onClick={handleGoogleClick}>New Google Calendar Event</button>
-        <FullCalendar 
+        <FullCalendar
           plugins={[dayGridPlugin, interactionPlugin]}
           weekends={true}
           slotMinTime={'08:00:00'}
