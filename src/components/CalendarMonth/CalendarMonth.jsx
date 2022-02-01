@@ -1,13 +1,27 @@
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
-
 import interactionPlugin from '@fullcalendar/interaction';
 
 
 function CalendarMonth() {
+
+
+  // Define dispatch in order to use it
+  // const dispatch = useDispatch();
+
+  // useEffect allows us to dispatch a call with type and send the payload data for a particular submission
+  // we want to use the GET route to our fetchResult saga in result.saga.js
+//   useEffect(() => {
+//     dispatch({ type: 'FETCH_AVAILABILITIES'})
+// }, []);
+
+  // Grab reducer from the redux store via useSelector
+  // const availabilities = useSelector(store => store.availabilitiesReducer);
+  // console.log(availabilities)
 
   const dispatch = useDispatch();
   // to access reducers in this component
@@ -100,14 +114,22 @@ function CalendarMonth() {
     <div className="container">
       <p>Info Page</p>
       <button onClick={handleGoogleClick}>New Google Calendar Event</button>
-      <FullCalendar
-        plugins={[dayGridPlugin, interactionPlugin]}
-        weekends={true}
-        slotMinTime={'08:00:00'}
-        slotMaxTime={'22:00:00'}
-        events={calendarId}
-        dateClick={handleDateClick}
-      />
+
+        <FullCalendar
+          plugins={[dayGridPlugin, interactionPlugin]}
+          weekends={true}
+          slotMinTime={'08:00:00'}
+          slotMaxTime={'22:00:00'}
+          events={[
+              { title: 'Available!', date: '2022-02-01' },
+              { title: 'Nothing Available', date: '2022-02-09', color: 'red' },
+              { title: 'Your Appointment!', date: '2022-02-14', color: 'green' },
+              { title: 'Available!', date: '2022-02-17' },
+              { title: 'Nothing Available', date: '2022-02-21', color: 'red' },
+              { title: 'Available!', date: '2022-02-24' },
+            ]}
+          dateClick={handleDateClick}
+        />
 
     {/* list of user appointments */}
     <ul>
