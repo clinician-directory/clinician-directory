@@ -1,5 +1,4 @@
-#login-card {
-    width: 200px;
-    height: 200px;
-    background-color: blue;
+#grid-container-background {
+    height: 100vh;
+    /* background-color: blue; */
 }
