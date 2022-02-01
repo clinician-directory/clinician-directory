@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 import './LoginView.css';
 
@@ -47,6 +48,9 @@ function LoginView() {
 
             <Grid container id='grid-container-background' direction='column' justifyContent='flex-start' alignItems='center' spacing={2}>
 
+                <Grid item> 
+                    <Typography variant='h6'>Welcome to Clinician Directory!</Typography>
+                </Grid>
                 <Grid item id='grid-item-inputs'>
                     <Grid container direction='column' spacing={2}>
                         <Grid item>
@@ -64,7 +68,7 @@ function LoginView() {
                             <Button variant='outlined' onClick={handleRegisterButton}>Register</Button>
                         </Grid>
                         <Grid item>
-                            <Button variant='contained'>Log In</Button>
+                            <Button variant='contained' onClick={handleLoginButton}>Log In</Button>
                         </Grid>
                     </Grid>
                 </Grid>
