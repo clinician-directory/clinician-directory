@@ -1,27 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 
 import interactionPlugin from '@fullcalendar/interaction';
 
-// This is one of our simplest components
-// It doesn't have local state
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is
-// Testing to make sure Git is updated
 
 function CalendarMonth() {
+
+const dispatch = useDispatch();
+// testing GET appointments route response from DB
+// on page load fetch appointments
+useEffect(() => {
+  dispatch({type: 'FETCH_ALL_APPOINTMENTS'});
+}, []);
 
   let gapi = window.gapi;
   let CLIENT_ID = '1096656813980-v8ibiouk9dg649om7og02kr5kuied9fq.apps.googleusercontent.com';
   let API_KEY = process.env.API_KEY;
 
-    // Array of API discovery doc URLs for APIs used by the quickstart
+  // Array of API discovery doc URLs for APIs used by the quickstart
   let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
 
-    // Authorization scopes required by the API; multiple scopes can be
-    // included, separated by spaces.
+  // Authorization scopes required by the API; multiple scopes can be
+  // included, separated by spaces.
   let SCOPES = "https://www.googleapis.com/auth/calendar";
 
   const calendarId = 1
@@ -43,10 +46,10 @@ function CalendarMonth() {
       'timeZone': 'US/Central'
     },
     'attendees': [
-      {'email': 'justin.lewis.cummings@gmail.com'},
-      {'email': 'yasir.uddin@icloud.com'},
-      {'email': 'selamtalem@gmail.com'},
-      {'email': 'kbrown55347@gmail.com'}
+      { 'email': 'justin.lewis.cummings@gmail.com' },
+      { 'email': 'yasir.uddin@icloud.com' },
+      { 'email': 'selamtalem@gmail.com' },
+      { 'email': 'kbrown55347@gmail.com' }
     ],
     'reminders': {
       'useDefault': true
@@ -65,10 +68,10 @@ function CalendarMonth() {
         scope: SCOPES
       })
 
-      gapi.client.load('calendar', 'v3', ()=> console.log('YAAAAAAAZZZZ'))
+      gapi.client.load('calendar', 'v3', () => console.log('YAAAAAAAZZZZ'))
 
       gapi.auth2.getAuthInstance().signIn()
-        .then(()=>{
+        .then(() => {
 
           console.log('Success!');
 
@@ -82,25 +85,26 @@ function CalendarMonth() {
           })
 
         })
-        .catch((error)=>{
+        .catch((error) => {
           console.log(error);
         })
 
     })
-  }
+  };
+
 
   return (
     <div className="container">
       <p>Info Page</p>
       <button onClick={handleGoogleClick}>New Google Calendar Event</button>
-        <FullCalendar
-          plugins={[dayGridPlugin, interactionPlugin]}
-          weekends={true}
-          slotMinTime={'08:00:00'}
-          slotMaxTime={'22:00:00'}
-          events={calendarId}
-          dateClick={handleDateClick}
-        />
+      <FullCalendar
+        plugins={[dayGridPlugin, interactionPlugin]}
+        weekends={true}
+        slotMinTime={'08:00:00'}
+        slotMaxTime={'22:00:00'}
+        events={calendarId}
+        dateClick={handleDateClick}
+      />
     </div>
   );
 }
