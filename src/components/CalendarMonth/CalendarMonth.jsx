@@ -1,16 +1,29 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
+// This is one of our simplest components
+// It doesn't have local state
+// It doesn't dispatch any redux actions or display any part of redux state
+// or even care what the redux state is
+// Testing to make sure Git is updated
 
 function CalendarMonth() {
 
-  const onEventAdded = (event) => {
-    const api = calendarRef.current.getApi();
-    api.addEvent(event);
-  };
+  // Define dispatch in order to use it
+  // const dispatch = useDispatch();
 
+  // useEffect allows us to dispatch a call with type and send the payload data for a particular submission
+  // we want to use the GET route to our fetchResult saga in result.saga.js
+//   useEffect(() => {
+//     dispatch({ type: 'FETCH_AVAILABILITIES'})
+// }, []);
+
+  // Grab reducer from the redux store via useSelector
+  // const availabilities = useSelector(store => store.availabilitiesReducer);
+  // console.log(availabilities)
 
   let gapi = window.gapi;
   let CLIENT_ID = '1096656813980-v8ibiouk9dg649om7og02kr5kuied9fq.apps.googleusercontent.com';
@@ -97,7 +110,15 @@ function CalendarMonth() {
           weekends={true}
           slotMinTime={'08:00:00'}
           slotMaxTime={'22:00:00'}
-          events={calendarId}
+          events={[
+              { title: 'Available!', date: '2022-02-01' },
+              { title: 'Available!', date: '2022-02-09' },
+              { title: 'Available!', date: '2022-02-14' },
+              { title: 'Available!', date: '2022-02-17' },
+              { title: 'Available!', date: '2022-02-21' },
+              { title: 'Available!', date: '2022-02-24' },
+            ]}
+          eventColor='blue'
           dateClick={handleDateClick}
         />
     </div>

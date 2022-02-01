@@ -7,9 +7,9 @@ function* fetchAvailabilities() {
     // which goes to the get router in the availablites.router.js file
     // if successful, this will update the availabilites Reducer with the type and payload indicated below
     try {
-        const result = yield axios.get('/api/availabilities');
-        console.log('get all:', result.data);
-        yield put({ type: 'LOAD_AVAILABILITIES', payload: result.data });
+        const availabilities = yield axios.get('/api/availabilities');
+        console.log('get all:', availabilities.data);
+        yield put({ type: 'LOAD_AVAILABILITIES', payload: availabilities.data });
     } catch {
         console.log('get all error');
     }
