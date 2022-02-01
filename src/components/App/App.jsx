@@ -15,6 +15,7 @@ import CalendarMonth from '../CalendarMonth/CalendarMonth';
 import ChooseProvider from '../ChooseProvider/ChooseProvider';
 
 import LoginView from '../LoginView/LoginView';
+import RegisterView from '../RegisterView/RegisterView';
 import TopAppBar from '../TopAppBar/TopAppBar';
 
 import './App.css';
@@ -81,6 +82,11 @@ function App() {
             {/* LOGIN VIEW */}
           <Route exact path='/login'>
             <LoginView />
+          </Route>
+
+          {/* REGISTER VIEW */}
+          <Route exact path='/register'>
+            <RegisterView />
           </Route>
 
           {/* <Route
