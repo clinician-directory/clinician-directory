@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -10,6 +10,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 function CalendarMonth() {
 
 const dispatch = useDispatch();
+
 // testing GET appointments route response from DB
 // on page load fetch appointments
 useEffect(() => {

@@ -9,7 +9,11 @@ function* fetchAllAppointments() {
       url: '/api/appointments'
     })
     console.log('in fetchAllAppointments GET, response:', response.data);
-  // populate appointments reducer w/ results from DB
+  // populate appointments reducer w/ response from DB
+  yield put({
+    type: 'LOAD_APPOINTMENTS',
+    payload: response.data
+  });
 
   } catch(err) {
     console.error('fetchAllAppointments error', err);
