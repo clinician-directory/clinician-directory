@@ -23,6 +23,8 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
+// created a new route for availabilities. Check out 'availablities.router.js' for more details.
+app.use('/api/availabilities', availabilitiesRouter);
 
 // Serve static files
 app.use(express.static('build'));

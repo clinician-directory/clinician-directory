@@ -1,17 +1,16 @@
 import React from 'react';
-
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
-
 import interactionPlugin from '@fullcalendar/interaction';
 
-// This is one of our simplest components
-// It doesn't have local state
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is
-// Testing to make sure Git is updated
 
 function CalendarMonth() {
+
+  const onEventAdded = (event) => {
+    const api = calendarRef.current.getApi();
+    api.addEvent(event);
+  };
+
 
   let gapi = window.gapi;
   let CLIENT_ID = '1096656813980-v8ibiouk9dg649om7og02kr5kuied9fq.apps.googleusercontent.com';
