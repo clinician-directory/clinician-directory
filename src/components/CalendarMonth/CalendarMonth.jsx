@@ -118,7 +118,6 @@ function CalendarMonth() {
               { title: 'Nothing Available', date: '2022-02-21', color: 'red' },
               { title: 'Available!', date: '2022-02-24' },
             ]}
-          eventColor='blue'
           dateClick={handleDateClick}
         />
     </div>
