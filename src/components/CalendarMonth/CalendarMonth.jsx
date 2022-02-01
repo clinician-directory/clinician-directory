@@ -9,13 +9,15 @@ import interactionPlugin from '@fullcalendar/interaction';
 
 function CalendarMonth() {
 
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  // to access reducers in this component
+  const userAppointments = useSelector((store) => store.appointmentsReducer);
 
-// testing GET appointments route response from DB
-// on page load fetch appointments
-useEffect(() => {
-  dispatch({type: 'FETCH_USER_APPOINTMENTS'});
-}, []);
+  // testing GET appointments route response from DB
+  // on page load fetch appointments
+  useEffect(() => {
+    dispatch({ type: 'FETCH_USER_APPOINTMENTS' });
+  }, []);
 
   let gapi = window.gapi;
   let CLIENT_ID = '1096656813980-v8ibiouk9dg649om7og02kr5kuied9fq.apps.googleusercontent.com';
@@ -106,7 +108,16 @@ useEffect(() => {
         events={calendarId}
         dateClick={handleDateClick}
       />
+
+    {/* list of user appointments */}
+    <ul>
+    {/* map through appointmentsReducer and append each appointment to DOM */}
+    {userAppointments.map(appointment => {
+        return <li key={appointment.id}>start: {appointment.start_time} & end: {appointment.end_time}</li>
+      })}
+    </ul>  
     </div>
+
   );
 }
 

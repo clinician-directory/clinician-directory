@@ -8,14 +8,14 @@ function* fetchUserAppointments() {
       method: 'GET',
       url: '/api/appointments'
     })
-    console.log('in fetchUserAppointments GET, response:', response.data);
-  // populate appointments reducer w/ response from DB
-  // yield put({
-  //   type: 'LOAD_APPOINTMENTS',
-  //   payload: response.data
-  // });
+    // console.log('in fetchUserAppointments GET, response:', response.data);
+    // populate appointments reducer w/ response from DB
+    yield put({
+      type: 'LOAD_APPOINTMENTS',
+      payload: response.data
+    });
 
-  } catch(err) {
+  } catch (err) {
     console.error('fetchUserAppointments error', err);
   }
 };
