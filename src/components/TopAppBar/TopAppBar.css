@@ -1,0 +1,13 @@
+#app-bar {
+    height: 80px;
+    background-color: #36119f;
+}
+
+#grid-container-app-bar {
+    margin-top: 6px;
+}
+
+#log-out-button {
+    color: #ffc032;
+    border-color: #ffc032;
+}
