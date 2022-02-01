@@ -11,8 +11,17 @@ import './RegisterView.css';
 
 function RegisterView() {
 
+    function handleRegisterButton () {
+        console.log('CLICK');
+    }
+
   return (
     <div>
+        <form onSubmit={handleRegisterButton}>
+
+
+
+        </form>
     </div>
   );
 }
