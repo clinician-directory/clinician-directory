@@ -1,6 +1,6 @@
-const providersReducer = (state = [], action) => {
+const allProvidersReducer = (state = [], action) => {
   switch (action.type) {
-    case 'LOAD_PROVIDERS':
+    case 'SET_PROVIDERS':
       return action.payload;
     case 'CLEAR_PROVIDERS':
       return [];
@@ -9,4 +9,6 @@ const providersReducer = (state = [], action) => {
   }
 };
 
-export default providersReducer;
+
+
+export default allProvidersReducer;

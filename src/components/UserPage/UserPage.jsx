@@ -11,6 +11,10 @@ function UserPage() {
     history.push('/calendarmonth')
   }
 
+  const handleProviders = () => {
+    history.push('/chooseprovider')
+  }
+
 
   return (
     <div className="container">
@@ -20,6 +24,7 @@ function UserPage() {
       <p>Last Name:<input type="text" /></p>
       <p>Address:<input type="text" /> </p>
       <button onClick={handleSchedule}>Schedule an Appointment!</button>
+      <button onClick={handleProviders}>See Providers!</button>
     </div>
   );
 }
