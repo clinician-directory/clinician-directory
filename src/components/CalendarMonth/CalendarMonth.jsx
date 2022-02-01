@@ -14,7 +14,7 @@ const dispatch = useDispatch();
 // testing GET appointments route response from DB
 // on page load fetch appointments
 useEffect(() => {
-  dispatch({type: 'FETCH_ALL_APPOINTMENTS'});
+  dispatch({type: 'FETCH_USER_APPOINTMENTS'});
 }, []);
 
   let gapi = window.gapi;

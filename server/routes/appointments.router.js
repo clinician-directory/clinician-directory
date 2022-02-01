@@ -4,11 +4,28 @@ const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 
-// GET route to return all appointments
+// GET route to return all users appointments
 // only accessible for logged in users
-router.get('/', rejectUnauthenticated, (req, res) =>{
-// send back accepted status for now
-res.sendStatus(202);
+router.get('/', rejectUnauthenticated, (req, res) => {
+
+  let queryText;
+  let queryValues;
+
+  // get appts from DB but only for logged in user
+  queryText = `
+    SELECT * FROM "appointments"
+      WHERE "user_id"=$1;
+  `;
+  queryValues = [req.user.id]
+
+  pool.query(queryText, queryValues)
+  .then((dbRes) => {
+    res.send(dbRes.rows);
+  })
+  .catch((dbErr) => {
+    console.log(dbErr);
+    res.sendStatus(500);
+  });
 });
 
 
