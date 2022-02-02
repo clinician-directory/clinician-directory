@@ -1,7 +1,5 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -10,38 +8,34 @@ import interactionPlugin from '@fullcalendar/interaction';
 function CalendarMonth() {
 
 
-  // Define dispatch in order to use it
-  // const dispatch = useDispatch();
-
-  // useEffect allows us to dispatch a call with type and send the payload data for a particular submission
-  // we want to use the GET route to our fetchResult saga in result.saga.js
-//   useEffect(() => {
-//     dispatch({ type: 'FETCH_AVAILABILITIES'})
-// }, []);
-
-  // Grab reducer from the redux store via useSelector
-  // const availabilities = useSelector(store => store.availabilitiesReducer);
-  // console.log(availabilities)
-
+   // Define dispatch in order to use it
   const dispatch = useDispatch();
-  // to access reducers in this component
+   // to access reducers in this component
+   // Grab reducer from the redux store via useSelector
   const userAppointments = useSelector((store) => store.appointmentsReducer);
+  const availabilities = useSelector(store => store.availabilitiesReducer);
 
-  // testing GET appointments route response from DB
-  // on page load fetch appointments
+    // useEffect allows us to dispatch a call with type and send the payload data for a particular submission
+   // we want to use the GET route to our fetchResult saga in result.saga.js
   useEffect(() => {
-    dispatch({ type: 'FETCH_USER_APPOINTMENTS' });
-  }, []);
+    dispatch({ type: 'FETCH_AVAILABILITIES'})
+}, []);
+
+   // testing GET appointments route response from DB
+   // on page load fetch appointments
+   // useEffect(() => {
+   //   dispatch({ type: 'FETCH_USER_APPOINTMENTS' });
+   // }, []);
 
   let gapi = window.gapi;
   let CLIENT_ID = '1096656813980-v8ibiouk9dg649om7og02kr5kuied9fq.apps.googleusercontent.com';
   let API_KEY = process.env.API_KEY;
 
-  // Array of API discovery doc URLs for APIs used by the quickstart
+   // Array of API discovery doc URLs for APIs used by the quickstart
   let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
 
-  // Authorization scopes required by the API; multiple scopes can be
-  // included, separated by spaces.
+   // Authorization scopes required by the API; multiple scopes can be
+   // included, separated by spaces.
   let SCOPES = "https://www.googleapis.com/auth/calendar";
 
   const calendarId = 1
@@ -113,6 +107,16 @@ function CalendarMonth() {
   return (
     <div className="container">
       <p>Info Page</p>
+      <p>{availabilities.map((availability) => {
+        return (
+          <p>
+            {availability.start_time}
+            {availability.end_time}
+            {availability.day}
+          </p>
+        )
+      })}
+      </p>
       <button onClick={handleGoogleClick}>New Google Calendar Event</button>
 
         <FullCalendar
@@ -137,7 +141,7 @@ function CalendarMonth() {
     {userAppointments.map(appointment => {
         return <li key={appointment.id}>start: {appointment.start_time} & end: {appointment.end_time}</li>
       })}
-    </ul>  
+    </ul>
     </div>
 
   );

@@ -20,7 +20,7 @@ export default function* rootSaga() {
     loginSaga(), // login saga is now registered
     registrationSaga(),
     userSaga(),
-    availabilitiesSaga()
+    availabilitiesSaga(),
     AllProvidersSaga(),
     oneProviderSaga(),
     appointmentsSaga(),
