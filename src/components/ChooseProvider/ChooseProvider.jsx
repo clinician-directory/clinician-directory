@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import './ChooseProvider.css';
 
-
+import Navigation from '../Navigation/Navigation';
 
 function ChooseProvider() {
 
@@ -58,6 +58,7 @@ function ChooseProvider() {
    
       
       <button onClick={handleSchedule}>Schedule Appointment!</button>
+      <Navigation/>
     </div>
   );
 }

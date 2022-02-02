@@ -4,6 +4,7 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
+import Navigation from '../Navigation/Navigation';
 
 function CalendarMonth() {
 
@@ -141,6 +142,7 @@ function CalendarMonth() {
         return <li key={appointment.id}>start: {appointment.start_time} & end: {appointment.end_time}</li>
       })}
     </ul>
+    <Navigation/>
     </div>
 
   );
