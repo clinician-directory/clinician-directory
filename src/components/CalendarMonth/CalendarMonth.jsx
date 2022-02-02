@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import {useHistory} from 'react-router-dom';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -7,20 +8,21 @@ import Navigation from '../Navigation/Navigation';
 
 function CalendarMonth() {
 
-  // Define dispatch in order to use it
+  // Define dispatch
   const dispatch = useDispatch();
+  // Define history in order to route to page
+  const history = useHistory();
   // to access reducers in this component
-  // Grab reducer from the redux store via useSelector
+  // Grab reducers from the redux store via useSelector
   const userAppointments = useSelector((store) => store.appointmentsReducer);
   const availabilities = useSelector(store => store.availabilitiesReducer);
 
-
   // testing GET appointments route response from DB
-  // on page load fetch appointments
+  // on page load fetch provider availabilities and user appointments
   // useEffect allows us to dispatch a call with type and send the payload data for a particular submission
-  // we want to use the GET route to our fetchResult saga in result.saga.js
+  // we want to use the GET route via our fetchAvailabilities and fetchUserAppointments sagas in availabilities.saga.js and appointments.saga.js
   useEffect(() => {
-    // dispatch({ type: 'FETCH_AVAILABILITIES'})
+    dispatch({ type: 'FETCH_AVAILABILITIES'})
     dispatch({ type: 'FETCH_USER_APPOINTMENTS' });
 }, []);
 
@@ -37,22 +39,48 @@ function CalendarMonth() {
   // variable to hold array of events on calendar
   const apptsAndAvailabilities = [];
 
-  // function to add user appointments to array for Calendar
-  function addApptsToCalendar() {
+  // KELSEY'S ORIGINAL CODE FOR ADDING APPOINTMENTS ONLY
+  // // function to add user appointments to array for Calendar
+  // function addApptsToCalendar() {
+  //   // map through userAppointments
+  //   userAppointments.map(appointment => {
+  //     // push object to array
+  //     apptsAndAvailabilities.push({title: 'Your Appt', start: appointment.start_time, color: 'yellow'});
+  //   });
+  //   console.log(apptsAndAvailabilities);
+  //   // return array
+  //   return apptsAndAvailabilities;
+  // };
+  //   // call addApptsToCalendar to populate user appointments on table
+  //   addApptsToCalendar();
+
+  // function to add user appointments and provider availabilities to array for Calendar
+  function addApptsAndAvailabilitiesToCalendar() {
     // map through userAppointments
     userAppointments.map(appointment => {
       // push object to array
       apptsAndAvailabilities.push({title: 'Your Appt', start: appointment.start_time, color: 'yellow'});
     });
+    // map through availabilities
+    availabilities.map(availability => {
+      // push object to array
+      apptsAndAvailabilities.push({title: 'Providers Available', start: availability.start_time, color: 'green'});
+    });
     console.log(apptsAndAvailabilities);
     // return array
     return apptsAndAvailabilities;
   };
-  // call addApptsToCalendar to populate user appointments on table
-  addApptsToCalendar();
+  // call addApptsToCalendar to populate user appointments and provider availablities on table
+    addApptsAndAvailabilitiesToCalendar();
+
 
   function handleDateClick(value) {
     console.log('CLICK!', value.dateStr);
+  }
+
+  // route to provider page when provider availability or user appointment is clicked on the calendar
+  function handleApptsAndAvailabilities() {
+    history.push(`/provider`);
   }
 
   let event = {
@@ -114,20 +142,9 @@ function CalendarMonth() {
     })
   };
 
-
   return (
     <div className="container">
       <p>Info Page</p>
-      <p>{availabilities.map((availability) => {
-        return (
-          <p>
-            {availability.start_time}
-            {availability.end_time}
-            {availability.day}
-          </p>
-        )
-      })}
-      </p>
       <button onClick={handleGoogleClick}>New Google Calendar Event</button>
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin]}
@@ -136,6 +153,8 @@ function CalendarMonth() {
         slotMaxTime={'22:00:00'}
         events={apptsAndAvailabilities}
         dateClick={handleDateClick}
+        // source https://fullcalendar.io/docs/eventClick
+        eventClick={handleApptsAndAvailabilities}
       />
 
       <Navigation/>

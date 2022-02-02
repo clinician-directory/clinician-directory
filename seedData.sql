@@ -18,6 +18,11 @@ INSERT INTO "providers"
 INSERT INTO "appointments"
   ("user_id", "start_time", "end_time", "provider_id", "description")
   VALUES
-  ('1', '2022-04-10 12:30:00', '2022-04-10 13:00:00', '2', 'ankle pain'); 
+  ('1', '2022-04-10 12:30:00', '2022-04-10 13:00:00', '2', 'ankle pain');
 
 -------------------------------------------------------------
+
+INSERT INTO "availabilities"
+("start_time", "provider_id", "end_time", "day")
+VALUES
+('2022-02-10 12:30:00', '1', '2022-02-10 13:00:00', '1');
