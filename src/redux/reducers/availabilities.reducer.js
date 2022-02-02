@@ -10,3 +10,4 @@ const availabilitiesReducer = (state = [], action) => {
 };
 
 export default availabilitiesReducer;
+// Testing branch

@@ -23,7 +23,7 @@ import Select from '@mui/material/Select';
 import Box from '@mui/material/Box';
 import './ChooseProvider.css';
 
-
+import Navigation from '../Navigation/Navigation';
 
 function ChooseProvider() {
 
@@ -175,9 +175,16 @@ function ChooseProvider() {
   //     </div>
    
       
+<<<<<<< HEAD
   //     <button onClick={handleSchedule}>Schedule Appointment!</button>
   //   </div>
   // );
+=======
+      <button onClick={handleSchedule}>Schedule Appointment!</button>
+      <Navigation/>
+    </div>
+  );
+>>>>>>> 16d999b93b2b529c60a564a1e2ece853fc7334ac
 }
 
 export default ChooseProvider;

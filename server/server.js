@@ -9,6 +9,9 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
+
+const availabilitiesRouter = require('./routes/availabilities.router');
+
 // require in appointments router
 const appointmentsRouter = require ('./routes/appointments.router');
 const providersRouter = require('./routes/providers.router');
@@ -27,9 +30,13 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
+
+// created a new route for availabilities. Check out 'availablities.router.js' for more details.
+app.use('/api/availabilities', availabilitiesRouter);
 // appointments route
 app.use('/api/appointments', appointmentsRouter);
 app.use('/api/providers', providersRouter);
+
 
 // Serve static files
 app.use(express.static('build'));
