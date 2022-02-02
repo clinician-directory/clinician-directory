@@ -7,29 +7,24 @@ import interactionPlugin from '@fullcalendar/interaction';
 
 function CalendarMonth() {
 
-
   // Define dispatch in order to use it
-  // const dispatch = useDispatch();
-
-  // useEffect allows us to dispatch a call with type and send the payload data for a particular submission
-  // we want to use the GET route to our fetchResult saga in result.saga.js
-//   useEffect(() => {
-//     dispatch({ type: 'FETCH_AVAILABILITIES'})
-// }, []);
-
-  // Grab reducer from the redux store via useSelector
-  // const availabilities = useSelector(store => store.availabilitiesReducer);
-  // console.log(availabilities)
-
   const dispatch = useDispatch();
   // to access reducers in this component
+  // Grab reducer from the redux store via useSelector
   const userAppointments = useSelector((store) => store.appointmentsReducer);
+  const availabilities = useSelector(store => store.availabilitiesReducer);
+
+   // useEffect allows us to dispatch a call with type and send the payload data for a particular submission
+  // we want to use the GET route to our fetchResult saga in result.saga.js
+  useEffect(() => {
+    dispatch({ type: 'FETCH_AVAILABILITIES'})
+}, []);
 
   // testing GET appointments route response from DB
   // on page load fetch appointments
-  useEffect(() => {
-    dispatch({ type: 'FETCH_USER_APPOINTMENTS' });
-  }, []);
+  // useEffect(() => {
+  //   dispatch({ type: 'FETCH_USER_APPOINTMENTS' });
+  // }, []);
 
   let gapi = window.gapi;
   let CLIENT_ID = '1096656813980-v8ibiouk9dg649om7og02kr5kuied9fq.apps.googleusercontent.com';
@@ -111,6 +106,16 @@ function CalendarMonth() {
   return (
     <div className="container">
       <p>Info Page</p>
+      <p>{availabilities.map((availability) => {
+        return (
+          <p>
+            {availability.start_time}
+            {availability.end_time}
+            {availability.day}
+          </p>
+        )
+      })}
+      </p>
       <button onClick={handleGoogleClick}>New Google Calendar Event</button>
 
         <FullCalendar
