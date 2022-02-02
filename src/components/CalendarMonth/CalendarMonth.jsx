@@ -14,13 +14,13 @@ function CalendarMonth() {
   const userAppointments = useSelector((store) => store.appointmentsReducer);
   const availabilities = useSelector(store => store.availabilitiesReducer);
 
-  
+
   // testing GET appointments route response from DB
   // on page load fetch appointments
   // useEffect allows us to dispatch a call with type and send the payload data for a particular submission
   // we want to use the GET route to our fetchResult saga in result.saga.js
   useEffect(() => {
-    dispatch({ type: 'FETCH_AVAILABILITIES'})
+    // dispatch({ type: 'FETCH_AVAILABILITIES'})
     dispatch({ type: 'FETCH_USER_APPOINTMENTS' });
 }, []);
 
@@ -129,29 +129,6 @@ function CalendarMonth() {
       })}
       </p>
       <button onClick={handleGoogleClick}>New Google Calendar Event</button>
-//         <FullCalendar
-//           plugins={[dayGridPlugin, interactionPlugin]}
-//           weekends={true}
-//           slotMinTime={'08:00:00'}
-//           slotMaxTime={'22:00:00'}
-//           events={[
-//               { title: 'Available!', date: '2022-02-01' },
-//               { title: 'Nothing Available', date: '2022-02-09', color: 'red' },
-//               { title: 'Available!', date: '2022-02-17' },
-//               { title: 'Nothing Available', date: '2022-02-21', color: 'red' },
-//               { title: 'Available!', date: '2022-02-24' },
-//             ]}
-//           dateClick={handleDateClick}
-//         />
-
-//     {/* list of user appointments */}
-//     <ul>
-//     {/* map through appointmentsReducer and append each appointment to DOM */}
-//     {userAppointments.map(appointment => {
-//         return <li key={appointment.id}>start: {appointment.start_time} & end: {appointment.end_time}</li>
-//       })}
-//     </ul>
-
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin]}
         weekends={true}
