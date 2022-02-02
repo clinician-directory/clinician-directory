@@ -1,24 +1,20 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'
 import {useHistory} from 'react-router-dom'
 
 import Navigation from '../Navigation/Navigation';
 
-import '../Navigation/Navigation.css';
-
 function UserPage() {
-  const user = useSelector((store) => store.user);
 
   const history = useHistory();
+  const dispatch = useDispatch();
 
-  const handleSchedule = () => {
+  const user = useSelector((store) => store.user);
+
+  const handleSchedule = (value) => {
+    dispatch({ type: 'SET_TAB', payload: value })
     history.push('/calendar')
   }
-
-  const handleProviders = () => {
-    history.push('/provider')
-  }
-
 
   return (
     <div className="container">
@@ -27,8 +23,7 @@ function UserPage() {
       <p>First Name: <input type="text" /></p>
       <p>Last Name:<input type="text" /></p>
       <p>Address:<input type="text" /> </p>
-      <button onClick={handleSchedule}>Schedule an Appointment!</button>
-      <button onClick={handleProviders}>See Providers!</button>
+      <button onClick={()=>handleSchedule(1)}>Schedule an Appointment!</button>
       <Navigation/>
     </div>
   );
