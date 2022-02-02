@@ -25,6 +25,8 @@ import './ChooseProvider.css';
 
 import Navigation from '../Navigation/Navigation';
 
+
+
 function ChooseProvider() {
 
 
@@ -91,7 +93,7 @@ function ChooseProvider() {
     
     
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 120, fontSize: 10, backgroundColor:'##bd9dcc', marginBottom: 10 }} aria-label="simple table">
+        <Table sx={{ minWidth: 650, fontSize: 10, backgroundColor:'##bd9dcc', marginBottom: 10 }} aria-label="simple table">
           <TableHead>
     
             <TableRow>
@@ -141,11 +143,11 @@ function ChooseProvider() {
           </Table>
         </TableContainer>
      
+        
     
-    
+        <Navigation/>
     
     </div>
-        
     
     
       )//end return
@@ -175,16 +177,9 @@ function ChooseProvider() {
   //     </div>
    
       
-<<<<<<< HEAD
   //     <button onClick={handleSchedule}>Schedule Appointment!</button>
   //   </div>
   // );
-=======
-      <button onClick={handleSchedule}>Schedule Appointment!</button>
-      <Navigation/>
-    </div>
-  );
->>>>>>> 16d999b93b2b529c60a564a1e2ece853fc7334ac
 }
 
 export default ChooseProvider;
