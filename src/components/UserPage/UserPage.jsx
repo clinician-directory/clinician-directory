@@ -4,6 +4,8 @@ import {useHistory} from 'react-router-dom'
 
 import Navigation from '../Navigation/Navigation';
 
+import '../Navigation/Navigation.css';
+
 function UserPage() {
   const user = useSelector((store) => store.user);
 
@@ -27,7 +29,7 @@ function UserPage() {
       <p>Address:<input type="text" /> </p>
       <button onClick={handleSchedule}>Schedule an Appointment!</button>
       <button onClick={handleProviders}>See Providers!</button>
-      <Navigation/>
+      <Navigation id='navigation'/>
     </div>
   );
 }

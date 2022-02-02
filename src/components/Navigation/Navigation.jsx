@@ -7,6 +7,7 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import PersonIcon from '@mui/icons-material/Person';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
+import Paper from '@mui/material/Paper';
 
 function Navigation() {
 
@@ -36,11 +37,13 @@ function Navigation() {
 
     return (
         <div>
-            <BottomNavigation showLabels value={currentTab} onChange={(event, value) => { handleTabClick(value)}}>
-                <BottomNavigationAction label='Profile' icon={<PersonIcon />} />
-                <BottomNavigationAction label='Calendar' icon={<DateRangeIcon />} />
-                <BottomNavigationAction label='Providers' icon={<LocalHospitalIcon />} />
-            </BottomNavigation>
+            <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+                <BottomNavigation showLabels value={currentTab} onChange={(event, value) => { handleTabClick(value)}}>
+                    <BottomNavigationAction label='Profile' icon={<PersonIcon />} />
+                    <BottomNavigationAction label='Calendar' icon={<DateRangeIcon />} />
+                    <BottomNavigationAction label='Providers' icon={<LocalHospitalIcon />} />
+                </BottomNavigation>
+            </Paper>
         </div>
     );
 
