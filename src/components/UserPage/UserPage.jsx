@@ -12,11 +12,11 @@ function UserPage() {
   const history = useHistory();
 
   const handleSchedule = () => {
-    history.push('/calendarmonth')
+    history.push('/calendar')
   }
 
   const handleProviders = () => {
-    history.push('/chooseprovider')
+    history.push('/provider')
   }
 
 
@@ -29,7 +29,7 @@ function UserPage() {
       <p>Address:<input type="text" /> </p>
       <button onClick={handleSchedule}>Schedule an Appointment!</button>
       <button onClick={handleProviders}>See Providers!</button>
-      <Navigation id='navigation'/>
+      <Navigation/>
     </div>
   );
 }
