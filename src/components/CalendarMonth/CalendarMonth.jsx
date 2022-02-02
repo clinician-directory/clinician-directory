@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -8,7 +8,6 @@ import Navigation from '../Navigation/Navigation';
 
 function CalendarMonth() {
 
-  // Define dispatch in order to use it
   const dispatch = useDispatch();
   // to access reducers in this component
   // Grab reducer from the redux store via useSelector
@@ -38,7 +37,29 @@ function CalendarMonth() {
   // included, separated by spaces.
   let SCOPES = "https://www.googleapis.com/auth/calendar";
 
-  const calendarId = 1
+  // variable to hold array of events on calendar
+  const apptsAndAvailabilities = [
+    // { title: 'Available!', date: '2022-02-01' },
+    // { title: 'Nothing Available', date: '2022-02-09', color: 'red' },
+    // { title: 'Your Appointment!', date: '2022-02-14', color: 'green' },
+    // { title: 'Available!', date: '2022-02-17' },
+    // { title: 'Nothing Available', date: '2022-02-21', color: 'red' },
+    // { title: 'Available!', date: '2022-02-24' },
+  ];
+
+  // function to add user appointments to array for Calendar
+  function addApptsToCalendar() {
+    // map through userAppointments
+    userAppointments.map(appointment => {
+      // push object to array
+      apptsAndAvailabilities.push({title: 'Your Appt', start: appointment.start_time, color: 'yellow'});
+    });
+    console.log(apptsAndAvailabilities);
+    // return array
+    return apptsAndAvailabilities;
+  };
+  // call addApptsToCalendar to populate user appointments on table
+  addApptsToCalendar();
 
   function handleDateClick(value) {
     console.log('CLICK!', value.dateStr);
@@ -119,30 +140,23 @@ function CalendarMonth() {
       </p>
       <button onClick={handleGoogleClick}>New Google Calendar Event</button>
 
-        <FullCalendar
-          plugins={[dayGridPlugin, interactionPlugin]}
-          weekends={true}
-          slotMinTime={'08:00:00'}
-          slotMaxTime={'22:00:00'}
-          events={[
-              { title: 'Available!', date: '2022-02-01' },
-              { title: 'Nothing Available', date: '2022-02-09', color: 'red' },
-              { title: 'Your Appointment!', date: '2022-02-14', color: 'green' },
-              { title: 'Available!', date: '2022-02-17' },
-              { title: 'Nothing Available', date: '2022-02-21', color: 'red' },
-              { title: 'Available!', date: '2022-02-24' },
-            ]}
-          dateClick={handleDateClick}
-        />
+      <FullCalendar
+        plugins={[dayGridPlugin, interactionPlugin]}
+        weekends={true}
+        slotMinTime={'08:00:00'}
+        slotMaxTime={'22:00:00'}
+        events={apptsAndAvailabilities}
+        dateClick={handleDateClick}
+      />
 
-    {/* list of user appointments */}
-    <ul>
-    {/* map through appointmentsReducer and append each appointment to DOM */}
-    {userAppointments.map(appointment => {
-        return <li key={appointment.id}>start: {appointment.start_time} & end: {appointment.end_time}</li>
-      })}
-    </ul>
-    <Navigation/>
+      {/* list of user appointments */}
+      <ul>
+        {/* map through appointmentsReducer and append each appointment to DOM */}
+        {userAppointments.map(appointment => {
+          return <li key={appointment.id}>start: {appointment.start_time} & end: {appointment.end_time}</li>
+        })}
+      </ul>
+
     </div>
 
   );
