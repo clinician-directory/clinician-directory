@@ -18,13 +18,8 @@ function CalendarMonth() {
   // we want to use the GET route to our fetchResult saga in result.saga.js
   useEffect(() => {
     dispatch({ type: 'FETCH_AVAILABILITIES'})
+    dispatch({ type: 'FETCH_USER_APPOINTMENTS' });
 }, []);
-
-  // testing GET appointments route response from DB
-  // on page load fetch appointments
-  // useEffect(() => {
-  //   dispatch({ type: 'FETCH_USER_APPOINTMENTS' });
-  // }, []);
 
   let gapi = window.gapi;
   let CLIENT_ID = '1096656813980-v8ibiouk9dg649om7og02kr5kuied9fq.apps.googleusercontent.com';
@@ -38,14 +33,7 @@ function CalendarMonth() {
   let SCOPES = "https://www.googleapis.com/auth/calendar";
 
   // variable to hold array of events on calendar
-  const apptsAndAvailabilities = [
-    // { title: 'Available!', date: '2022-02-01' },
-    // { title: 'Nothing Available', date: '2022-02-09', color: 'red' },
-    // { title: 'Your Appointment!', date: '2022-02-14', color: 'green' },
-    // { title: 'Available!', date: '2022-02-17' },
-    // { title: 'Nothing Available', date: '2022-02-21', color: 'red' },
-    // { title: 'Available!', date: '2022-02-24' },
-  ];
+  const apptsAndAvailabilities = [];
 
   // function to add user appointments to array for Calendar
   function addApptsToCalendar() {
@@ -148,14 +136,6 @@ function CalendarMonth() {
         events={apptsAndAvailabilities}
         dateClick={handleDateClick}
       />
-
-      {/* list of user appointments */}
-      <ul>
-        {/* map through appointmentsReducer and append each appointment to DOM */}
-        {userAppointments.map(appointment => {
-          return <li key={appointment.id}>start: {appointment.start_time} & end: {appointment.end_time}</li>
-        })}
-      </ul>
 
       <Navigation/>
 
