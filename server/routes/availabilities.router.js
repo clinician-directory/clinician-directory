@@ -9,7 +9,8 @@ const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 // This uses a sql query and values to get the data from db on postico
 router.get('/', rejectUnauthenticated, (req, res) => {
     const query = `
-    // BLANK FOR NOW
+    SELECT "id", "start_time", "end_time", "day" FROM "secondTest"
+    WHERE "user_id"=$1;
     `;
     const queryValues = [req.user.id]
     pool.query(query, queryValues)

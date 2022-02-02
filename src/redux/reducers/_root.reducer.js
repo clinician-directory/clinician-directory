@@ -5,6 +5,7 @@ import appointmentsReducer from './appointments.reducer';
 import allProvidersReducer from './allProviders.reducer';
 import oneProviderReducer from './oneProvider.reducer';
 import availabilitiesReducer from './availabilities.reducer';
+import currentTabReducer from './currentTab.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   allProvidersReducer, // for providers
   oneProviderReducer, // for one provider
   availabilitiesReducer, // for provider availabilities
+  currentTabReducer,
 });
 
 export default rootReducer;

@@ -50,7 +50,7 @@ function App() {
           </ProtectedRoute>
 
             {/* CALENDAR VIEW - MONTH */}
-          <ProtectedRoute exact path='/calendarmonth'>
+          <ProtectedRoute exact path='/calendar'>
             {user.id ?
               <CalendarMonth />
               :
@@ -59,7 +59,7 @@ function App() {
           </ProtectedRoute>
 
             {/* PROVIDER VIEW */}
-          <ProtectedRoute exact path='/chooseprovider'>
+          <ProtectedRoute exact path='/provider'>
             {user.id ?
               <ChooseProvider />
               :
