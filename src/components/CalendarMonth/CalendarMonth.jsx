@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -22,9 +22,9 @@ function CalendarMonth() {
   // useEffect allows us to dispatch a call with type and send the payload data for a particular submission
   // we want to use the GET route via our fetchAvailabilities and fetchUserAppointments sagas in availabilities.saga.js and appointments.saga.js
   useEffect(() => {
-    dispatch({ type: 'FETCH_AVAILABILITIES'})
+    dispatch({ type: 'FETCH_AVAILABILITIES' })
     dispatch({ type: 'FETCH_USER_APPOINTMENTS' });
-}, []);
+  }, []);
 
   let gapi = window.gapi;
   let CLIENT_ID = '1096656813980-v8ibiouk9dg649om7og02kr5kuied9fq.apps.googleusercontent.com';
@@ -36,42 +36,34 @@ function CalendarMonth() {
   // included, separated by spaces.
   let SCOPES = "https://www.googleapis.com/auth/calendar";
 
-  // variable to hold array of events on calendar
-  const apptsAndAvailabilities = [];
+  // variable to hold appts as events on calendar
+  const userApptsForCalendar = [];
+  // variable to hold availabilities as events on calendar
+  const availabilitiesForCalendar = [];
 
-  // KELSEY'S ORIGINAL CODE FOR ADDING APPOINTMENTS ONLY
-  // // function to add user appointments to array for Calendar
-  // function addApptsToCalendar() {
-  //   // map through userAppointments
-  //   userAppointments.map(appointment => {
-  //     // push object to array
-  //     apptsAndAvailabilities.push({title: 'Your Appt', start: appointment.start_time, color: 'yellow'});
-  //   });
-  //   console.log(apptsAndAvailabilities);
-  //   // return array
-  //   return apptsAndAvailabilities;
-  // };
-  //   // call addApptsToCalendar to populate user appointments on table
-  //   addApptsToCalendar();
-
-  // function to add user appointments and provider availabilities to array for Calendar
-  function addApptsAndAvailabilitiesToCalendar() {
-    // map through userAppointments
+  // function to add user appointments to array for Calendar
+  function addApptsToCalendar() {
     userAppointments.map(appointment => {
-      // push object to array
-      apptsAndAvailabilities.push({title: 'Your Appt', start: appointment.start_time, color: 'yellow'});
+      userApptsForCalendar.push({ title: 'Your Appt', start: appointment.start_time, color: 'yellow' });
     });
-    // map through availabilities
-    availabilities.map(availability => {
-      // push object to array
-      apptsAndAvailabilities.push({title: 'Providers Available', start: availability.start_time, color: 'green'});
-    });
-    console.log(apptsAndAvailabilities);
+    console.log(userApptsForCalendar);
     // return array
-    return apptsAndAvailabilities;
+    return userApptsForCalendar;
   };
-  // call addApptsToCalendar to populate user appointments and provider availablities on table
-    addApptsAndAvailabilitiesToCalendar();
+
+  // function to add provider availabilities to array for Calendar
+  function addAvailabilitiesToCalendar() {
+    availabilities.map(availability => {
+      availabilitiesForCalendar.push({ title: 'Providers Available', start: availability.start_time, color: 'green' });
+    });
+    console.log(availabilitiesForCalendar);
+    // return array
+    return availabilitiesForCalendar;
+  };
+
+  // call addApptsToCalendar to populate user appointments and provider availabilities on table
+  addApptsToCalendar();
+  addAvailabilitiesToCalendar();
 
 
   function handleDateClick(value) {
@@ -151,13 +143,13 @@ function CalendarMonth() {
         weekends={true}
         slotMinTime={'08:00:00'}
         slotMaxTime={'22:00:00'}
-        events={apptsAndAvailabilities}
+        events={userApptsForCalendar, availabilitiesForCalendar}
         dateClick={handleDateClick}
         // source https://fullcalendar.io/docs/eventClick
         eventClick={handleApptsAndAvailabilities}
       />
 
-      <Navigation/>
+      <Navigation />
 
     </div>
 
