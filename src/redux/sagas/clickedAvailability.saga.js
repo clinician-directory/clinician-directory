@@ -4,8 +4,10 @@ import axios from 'axios';
 
 // Get a selected availability
 function* fetchThisOneAvailability(action) {
+  console.log('');
+  
   try {
-      const clickedTime = yield axios.get(`/api/availabilities/${action.payload}`);
+      const clickedTime = yield axios(`/api/availabilities/${action.payload}`);
       console.log('Inside fetch one availability saga:', action.payload);
       yield put({ 
         type: 'SET_ONE_AVAILABILITY', 

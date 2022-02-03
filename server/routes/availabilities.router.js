@@ -32,7 +32,7 @@ router.get('/:id', (req, res) => {
     const sqlValues = [selectedAvailability]
     pool.query(sqlText,sqlValues)
     .then( result => {
-      res.send(result.rows);
+      res.send(result.rows[0]);
     })
   .catch(err => {
       console.log('ERROR: in GET route by ID - Getting clicked availability', err);

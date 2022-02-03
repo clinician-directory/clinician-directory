@@ -98,10 +98,11 @@ function CalendarMonth() {
 
   //Selam testing functions
   const handleApptsAndAvailabilities = (availabilities) => {
-    console.log('clicked on time:', availabilities.id);
+
+    console.log('clicked on time:', availabilities.start_time);
     dispatch({
       type: 'SET_ONE_AVAILABILITY',
-      payload: availabilities.id
+      payload: availabilities.start_time
     })
     history.push('/day');
   }

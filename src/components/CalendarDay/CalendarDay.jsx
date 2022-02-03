@@ -29,6 +29,11 @@ function CalendarDay() {
   const user = useSelector((store) => store.user);
   //const userAppointments = useSelector((store) => store.appointmentsReducer);
   const availabilities = useSelector((store) => store.availabilitiesReducer);
+  const availableProvider = useSelector((store) => store.oneProviderReducer);
+
+  
+
+  
 
   const handleButton = () => {
     //takes user to select providers
@@ -37,7 +42,9 @@ function CalendarDay() {
 
     // TO RUN ON PAGE LOAD
     useEffect(() => {
-        dispatch({ type: 'FETCH_THIS_ONE_AVAILABILITY'})
+        dispatch({ 
+          type: 'FETCH_THIS_ONE_AVAILABILITY'
+        })
       }, [])  
 
 
