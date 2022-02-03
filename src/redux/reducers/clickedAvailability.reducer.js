@@ -8,5 +8,17 @@ const clickedAvailability = (state = {}, action) => {
     }
   }
 
+
+  function generate(state={} ,action) {
+    switch (action.type) {
+      case randomNumber:
+        return {
+          ...state,
+          random: action.payload
+        }   
+      default: // need this for default case
+        return state 
+     }
+  }
   
   export default clickedAvailability;

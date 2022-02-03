@@ -25,6 +25,7 @@ function CalendarMonth() {
     dispatch({ type: "FETCH_USER_APPOINTMENTS" });
   }, []);
 
+  
   let gapi = window.gapi;
   let CLIENT_ID =
     "1096656813980-v8ibiouk9dg649om7og02kr5kuied9fq.apps.googleusercontent.com";
@@ -57,6 +58,8 @@ function CalendarMonth() {
   //   addApptsToCalendar();
 
   // function to add user appointments and provider availabilities to array for Calendar
+  
+  
   function addApptsAndAvailabilitiesToCalendar() {
     // map through userAppointments
     userAppointments.map((appointment) => {
@@ -85,12 +88,24 @@ function CalendarMonth() {
 
   function handleDateClick(value) {
     console.log("CLICK!", value.dateStr);
+
   }
 
   // route to provider page when provider availability or user appointment is clicked on the calendar
-  function handleApptsAndAvailabilities() {
-    history.push(`/day`);
+  // function handleApptsAndAvailabilities() {
+  //   history.push('/day');
+  // }
+
+  //Selam testing functions
+  const handleApptsAndAvailabilities = (availabilities) => {
+    console.log('clicked on time:', availabilities.id);
+    dispatch({
+      type: 'SET_ONE_AVAILABILITY',
+      payload: availabilities.id
+    })
+    history.push('/day');
   }
+
 
   let event = {
     summary: "Clinician Directory Meet&Greet!",
@@ -153,7 +168,7 @@ function CalendarMonth() {
     <div className="container">
       <p>Info Page</p>
       <button onClick={handleGoogleClick}>New Google Calendar Event</button>
-      <FullCalendar
+      <FullCalendar  key={availabilities.id}//Selam testing - adding key value to test on grabbing availability by click
         plugins={[dayGridPlugin, interactionPlugin]}
         weekends={true}
         slotMinTime={"08:00:00"}
@@ -161,7 +176,8 @@ function CalendarMonth() {
         events={apptsAndAvailabilities}
         dateClick={handleDateClick}
         // source https://fullcalendar.io/docs/eventClick
-        eventClick={handleApptsAndAvailabilities}
+        eventClick={e => handleApptsAndAvailabilities(availabilities)} //Selam testing grabbing availability by click 
+        //eventClick={handleApptsAndAvailabilities} // -- original call for click
       />
 
       <Navigation />

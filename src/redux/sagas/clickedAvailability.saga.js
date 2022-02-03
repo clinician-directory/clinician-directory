@@ -2,7 +2,7 @@ import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 
-// Get a specified provider
+// Get a selected availability
 function* fetchThisOneAvailability(action) {
   try {
       const response = yield axios.get(`/api/availabilities/${action.payload}`);
@@ -11,7 +11,7 @@ function* fetchThisOneAvailability(action) {
         type: 'SET_ONE_AVAILABILITY', 
         payload: response.data
       }); 
-    } catch(error) { console.log('fetch This one provider saga error', error)}  
+    } catch(error) { console.log('ERROR in fetching one availability saga', error)}  
 
 }
 

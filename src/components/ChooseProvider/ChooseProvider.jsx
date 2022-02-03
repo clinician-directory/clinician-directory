@@ -59,17 +59,21 @@ function ChooseProvider() {
       <h3 className="providers">List of providers</h3>
     
     {/* <Box sx={{ minWidth: 115 }} className="specialtyBox" >
-      <FormControl sx={{ minWidth: 155,  marginLeft: 60, marginBottom: -4, backgroundColor: "#fce4ec", marginTop: -7}}  >
+      <FormControl sx={{ minWidth: 155,  marginLeft: 60, marginBottom: -4, backgroundColor: "white", marginTop: -7}}  >
         <InputLabel sx={{ marginLeft: 2, marginTop: -0}} id="demo-simple-select-label" >Specialty </InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             sx={{height: 55}}
-            value={specialty}
+            value={providers.specialty}
             label="Specialty"
             onChange={(event) => setSpecialty(event.target.value)}>
               <MenuItem value="PM&R">PM&R</MenuItem>
               <MenuItem value="Orthopedics">Orthopedics</MenuItem>
+              <MenuItem value="Psychology">Psychology</MenuItem>
+              <MenuItem value="Family Medicine">Family Medicine</MenuItem>
+              <MenuItem value="Physical Therapy">Physical Therapy</MenuItem>
+
           </Select>
       </FormControl>
     </Box> */}
