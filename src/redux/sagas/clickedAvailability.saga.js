@@ -1,15 +1,15 @@
-import { put, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery,takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 
 // Get a selected availability
 function* fetchThisOneAvailability(action) {
   try {
-      const response = yield axios.get(`/api/availabilities/${action.payload}`);
+      const clickedTime = yield axios.get(`/api/availabilities/${action.payload}`);
       console.log('Inside fetch one availability saga:', action.payload);
       yield put({ 
         type: 'SET_ONE_AVAILABILITY', 
-        payload: response.data
+        payload: clickedTime.data
       }); 
     } catch(error) { console.log('ERROR in fetching one availability saga', error)}  
 

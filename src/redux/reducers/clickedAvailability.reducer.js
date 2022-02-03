@@ -2,23 +2,13 @@
 const clickedAvailability = (state = {}, action) => {
     switch (action.type) {
       case 'SET_ONE_AVAILABILITY':
-        return action.payload;
+        //return action.payload //returning undefined and not going to next page
+        return {...state, selectedTime : action.payload}; //this proceeds to next page but shows undefined
       default:
         return state;
     }
   }
 
 
-  function generate(state={} ,action) {
-    switch (action.type) {
-      case randomNumber:
-        return {
-          ...state,
-          random: action.payload
-        }   
-      default: // need this for default case
-        return state 
-     }
-  }
-  
+  //return {...state, selectedGlobalTriviaTab : action.payload};
   export default clickedAvailability;
