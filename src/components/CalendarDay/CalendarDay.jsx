@@ -22,9 +22,9 @@ function CalendarDay() {
 
     // TO RUN ON PAGE LOAD
     useEffect(() => {
-        dispatch({ type: 'FETCH_AVAILABILITIES' })
+        dispatch({ type: 'FETCH_THIS_ONE_AVAILABILITY' })
       }, [])  
-      
+
 
 
 

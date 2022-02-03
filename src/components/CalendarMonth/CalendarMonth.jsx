@@ -89,7 +89,7 @@ function CalendarMonth() {
 
   // route to provider page when provider availability or user appointment is clicked on the calendar
   function handleApptsAndAvailabilities() {
-    history.push(`/provider`);
+    history.push(`/day`);
   }
 
   let event = {
