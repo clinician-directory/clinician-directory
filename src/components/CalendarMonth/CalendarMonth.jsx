@@ -32,7 +32,7 @@ function CalendarMonth() {
   // function to add user appointments to array
   function addApptsToCalendar() {
     userAppointments.map(appointment => {
-      userApptsForCalendar.push({ title: 'Your Appt', start: appointment.start_time, color: 'yellow' });
+      userApptsForCalendar.push({ id: appointment.id, title: 'Your Appt', start: appointment.start_time, color: 'yellow' });
     });
     return userApptsForCalendar;
   };
@@ -55,6 +55,7 @@ function CalendarMonth() {
 
   // function to handle click of event on calendar
   function handleApptsAndAvailabilities(event) {
+    console.log('in handleApptsAndAvailabilities', event);
     // send user to provider page if availability on calendar is clicked (color green)
     if (event.el.fcSeg.eventRange.ui.backgroundColor === 'green') {
       history.push(`/provider`);
