@@ -95,7 +95,6 @@ function ChooseProvider() {
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650, fontSize: 10, backgroundColor:'##bd9dcc', marginBottom: 10 }} aria-label="simple table">
           <TableHead>
-    
             <TableRow>
               <TableCell align="left"> <Typography variant="h6" > FIRST NAME </Typography></TableCell>
               <TableCell align="right"> <Typography variant="h6"> LAST NAME </Typography> </TableCell>
@@ -107,7 +106,6 @@ function ChooseProvider() {
               <TableCell align="right"> <Typography variant="h6"> STATE </Typography></TableCell> 
               <TableCell align="right"> <Typography variant="h6"> ZIP CODE </Typography></TableCell> 
             </TableRow>
-    
           </TableHead>
             <TableBody>
               {providers.map((allProviders) => {
@@ -123,31 +121,13 @@ function ChooseProvider() {
                                 <TableCell align="center">{allProviders.address}</TableCell>
                                 <TableCell align="center">{allProviders.state}</TableCell>
                                 <TableCell align="center">{allProviders.zip_code}</TableCell>
-    
-                                {/* <TableCell>
-                                    <Stack direction="column"alignItems="flex-end" key={allProviders.id}>
-                                        <Chip
-                                          onDelete={() => { deleteProvider(allProviders.id) }}
-                                          deleteIcon={<DeleteIcon style={{ color: "#ba000d", marginRight: 30 }}  />}
-                                        />
-                                  </Stack>
-                              </TableCell> */}
-    
-                              {/* <TableCell>
-                              <EditIcon onClick={() => onEdit(tasks) } style={{  marginLeft: 100 }}/>
-                              </TableCell> */}
-    
                           </TableRow>
                       )})}
                   </TableBody>
           </Table>
         </TableContainer>
-     
-        
-    
         <Navigation/>
-    
-    </div>
+    </div> //end div
     
     
       )//end return

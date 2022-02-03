@@ -22,4 +22,23 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 
+
+//Getting an availability by id:
+router.get('/:id', (req, res) => {
+    const selectedAvailability = req.params.id;
+    const sqlText = `
+    SELECT * FROM "availabilities"
+          WHERE "id"=$1;`;
+    const sqlValues = [selectedAvailability]
+    pool.query(sqlText,sqlValues)
+    .then( result => {
+      res.send(result.rows);
+    })
+  .catch(err => {
+      console.log('ERROR: in GET route by ID - Getting clicked availability', err);
+      res.sendStatus(500)
+    })
+  });
+
+
 module.exports = router;
