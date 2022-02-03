@@ -24,30 +24,28 @@ function CalendarMonth() {
     dispatch({ type: 'FETCH_USER_APPOINTMENTS' });
   }, []);
 
-  // variable to hold appts as events on calendar
+  // variable to hold user appts in array
   const userApptsForCalendar = [];
-  // variable to hold availabilities as events on calendar
+  // variable to hold availabilities in array
   const availabilitiesForCalendar = [];
 
-  // function to add user appointments to array for Calendar
+  // function to add user appointments to array
   function addApptsToCalendar() {
     userAppointments.map(appointment => {
       userApptsForCalendar.push({ title: 'Your Appt', start: appointment.start_time, color: 'yellow' });
     });
-    // return array
     return userApptsForCalendar;
   };
 
-  // function to add provider availabilities to array for Calendar
+  // function to add provider availabilities to array
   function addAvailabilitiesToCalendar() {
     availabilities.map(availability => {
       availabilitiesForCalendar.push({ title: 'Providers Available', start: availability.start_time, color: 'green' });
     });
-    // return array
     return availabilitiesForCalendar;
   };
 
-  // call addApptsToCalendar to populate user appointments and provider availabilities on calendar
+  // call functions to populate user appointments and provider availabilities arrays
   addApptsToCalendar();
   addAvailabilitiesToCalendar();
 
@@ -55,10 +53,12 @@ function CalendarMonth() {
     console.log('CLICK!', value.dateStr);
   };
 
-  // route to provider page when provider availability or user appointment is clicked on the calendar
+  // function to handle click of event on calendar
   function handleApptsAndAvailabilities(event) {
-    console.log('in handleApptsAndAvailabilities', event);
-    history.push(`/provider`);
+    // send user to provider page if availability on calendar is clicked (color green)
+    if (event.el.fcSeg.eventRange.ui.backgroundColor === 'green') {
+      history.push(`/provider`);
+    }
   };
 
   // *Warren's google calendar click feature
