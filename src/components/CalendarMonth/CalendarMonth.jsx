@@ -15,6 +15,9 @@ function CalendarMonth() {
   // Grab reducers from the redux store via useSelector
   const userAppointments = useSelector((store) => store.appointmentsReducer);
   const availabilities = useSelector((store) => store.availabilitiesReducer);
+  const clickedAvailability = useSelector((store) => store.clickedAvailability);
+
+  
 
   // testing GET appointments route response from DB
   // on page load fetch provider availabilities and user appointments
@@ -98,11 +101,10 @@ function CalendarMonth() {
 
   //Selam testing functions
   const handleApptsAndAvailabilities = (availabilities) => {
-
-    console.log('clicked on time:', availabilities.start_time);
+    console.log('Clicked availability:', availabilities);
     dispatch({
-      type: 'SET_ONE_AVAILABILITY',
-      payload: availabilities.start_time
+      type: 'LOAD_AVAILABILITIES',
+      payload: availabilities
     })
     history.push('/day');
   }
@@ -177,7 +179,7 @@ function CalendarMonth() {
         events={apptsAndAvailabilities}
         dateClick={handleDateClick}
         // source https://fullcalendar.io/docs/eventClick
-        eventClick={e => handleApptsAndAvailabilities(availabilities)} //Selam testing grabbing availability by click 
+        eventClick={(e) => handleApptsAndAvailabilities(availabilities)} //Selam testing grabbing availability by click 
         //eventClick={handleApptsAndAvailabilities} // -- original call for click
       />
 

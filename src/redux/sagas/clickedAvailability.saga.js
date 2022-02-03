@@ -7,11 +7,11 @@ function* fetchThisOneAvailability(action) {
   console.log('');
   
   try {
-      const clickedTime = yield axios(`/api/availabilities/${action.payload}`);
+      const clickedAvailability = yield axios(`/api/availabilities/${action.payload}`);
       console.log('Inside fetch one availability saga:', action.payload);
       yield put({ 
         type: 'SET_ONE_AVAILABILITY', 
-        payload: clickedTime.data
+        payload: clickedAvailability.data
       }); 
     } catch(error) { console.log('ERROR in fetching one availability saga', error)}  
 

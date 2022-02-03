@@ -30,6 +30,7 @@ function CalendarDay() {
   //const userAppointments = useSelector((store) => store.appointmentsReducer);
   const availabilities = useSelector((store) => store.availabilitiesReducer);
   const availableProvider = useSelector((store) => store.oneProviderReducer);
+  const clickedAvailability = useSelector((store) => store.clickedAvailability);
 
   
 
@@ -40,12 +41,12 @@ function CalendarDay() {
     history.push("/provider");
   };
 
-    // TO RUN ON PAGE LOAD
-    useEffect(() => {
-        dispatch({ 
-          type: 'FETCH_THIS_ONE_AVAILABILITY'
-        })
-      }, [])  
+    // // TO RUN ON PAGE LOAD
+    // useEffect(() => {
+    //     dispatch({ 
+    //       type: 'FETCH_THIS_ONE_AVAILABILITY'
+    //     })
+    //   }, [])  
 
 
 
@@ -64,8 +65,11 @@ function CalendarDay() {
               {showAvailabilities.provider_id}
             </ul>
             )})}
-
-      <button onClick={handleButton}> Select Provider</button>
+               
+      <h4>
+        Next, select a provider:
+        <button className="button" onClick={handleButton}> Select Provider</button>
+      </h4>
       <Navigation />
     </div>
   ); //end return
