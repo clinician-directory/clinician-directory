@@ -143,7 +143,8 @@ function CalendarMonth() {
         weekends={true}
         slotMinTime={'08:00:00'}
         slotMaxTime={'22:00:00'}
-        events={userApptsForCalendar, availabilitiesForCalendar}
+        // combine appt and availability arrays
+        events={[...userApptsForCalendar, ...availabilitiesForCalendar]}
         dateClick={handleDateClick}
         // source https://fullcalendar.io/docs/eventClick
         eventClick={handleApptsAndAvailabilities}
