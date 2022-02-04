@@ -20,8 +20,6 @@ function CalendarMonth() {
   const availabilities = useSelector((store) => store.availabilitiesReducer);
   const clickedAvailability = useSelector((store) => store.clickedAvailability);
 
-  
-
   // on page load fetch provider availabilities and user appointments
   // useEffect allows us to dispatch a call with type and send the payload data for a particular submission
   // we want to use the GET route via our fetchAvailabilities and fetchUserAppointments sagas in availabilities.saga.js and appointments.saga.js
@@ -39,7 +37,7 @@ function CalendarMonth() {
   // function to add user appointments to array
   function addApptsToCalendar() {
     userAppointments.map(appointment => {
-      userApptsForCalendar.push({ id: appointment.id, title: 'Your Appt', start: appointment.start_time, color: 'blue' });
+      userApptsForCalendar.push({ id: appointment.id, title: 'Your Appointment', start: appointment.start_time, color: 'blue' });
     });
     return userApptsForCalendar;
   };
@@ -47,7 +45,7 @@ function CalendarMonth() {
   // function to add provider availabilities to array
   function addAvailabilitiesToCalendar() {
     availabilities.map(availability => {
-      availabilitiesForCalendar.push({ title: 'Providers Available', start: availability.start_time, color: 'green' });
+      availabilitiesForCalendar.push({ title: 'Available Appointment', start: availability.start_time, color: 'green' });
     });
     return availabilitiesForCalendar;
   };
@@ -91,8 +89,8 @@ function CalendarMonth() {
       <div className="calendar-key">
         <p className="key">Key</p>
         <ul className="dot1">
-          <li id="blue-dot">Your Appointments</li>
-          <li id="green-dot">Available Appointments</li>
+          <li id="blue-dot">Your Appointment</li>
+          <li id="green-dot">Available Appointment</li>
         </ul>
       </div>
 
