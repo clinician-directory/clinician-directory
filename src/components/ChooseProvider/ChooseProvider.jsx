@@ -59,17 +59,21 @@ function ChooseProvider() {
       <h3 className="providers">List of providers</h3>
     
     {/* <Box sx={{ minWidth: 115 }} className="specialtyBox" >
-      <FormControl sx={{ minWidth: 155,  marginLeft: 60, marginBottom: -4, backgroundColor: "#fce4ec", marginTop: -7}}  >
+      <FormControl sx={{ minWidth: 155,  marginLeft: 60, marginBottom: -4, backgroundColor: "white", marginTop: -7}}  >
         <InputLabel sx={{ marginLeft: 2, marginTop: -0}} id="demo-simple-select-label" >Specialty </InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             sx={{height: 55}}
-            value={specialty}
+            value={providers.specialty}
             label="Specialty"
             onChange={(event) => setSpecialty(event.target.value)}>
               <MenuItem value="PM&R">PM&R</MenuItem>
               <MenuItem value="Orthopedics">Orthopedics</MenuItem>
+              <MenuItem value="Psychology">Psychology</MenuItem>
+              <MenuItem value="Family Medicine">Family Medicine</MenuItem>
+              <MenuItem value="Physical Therapy">Physical Therapy</MenuItem>
+
           </Select>
       </FormControl>
     </Box> */}
@@ -95,7 +99,6 @@ function ChooseProvider() {
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650, fontSize: 10, backgroundColor:'##bd9dcc', marginBottom: 10 }} aria-label="simple table">
           <TableHead>
-    
             <TableRow>
               <TableCell align="left"> <Typography variant="h6" > FIRST NAME </Typography></TableCell>
               <TableCell align="right"> <Typography variant="h6"> LAST NAME </Typography> </TableCell>
@@ -107,7 +110,6 @@ function ChooseProvider() {
               <TableCell align="right"> <Typography variant="h6"> STATE </Typography></TableCell> 
               <TableCell align="right"> <Typography variant="h6"> ZIP CODE </Typography></TableCell> 
             </TableRow>
-    
           </TableHead>
             <TableBody>
               {providers.map((allProviders) => {
@@ -123,31 +125,13 @@ function ChooseProvider() {
                                 <TableCell align="center">{allProviders.address}</TableCell>
                                 <TableCell align="center">{allProviders.state}</TableCell>
                                 <TableCell align="center">{allProviders.zip_code}</TableCell>
-    
-                                {/* <TableCell>
-                                    <Stack direction="column"alignItems="flex-end" key={allProviders.id}>
-                                        <Chip
-                                          onDelete={() => { deleteProvider(allProviders.id) }}
-                                          deleteIcon={<DeleteIcon style={{ color: "#ba000d", marginRight: 30 }}  />}
-                                        />
-                                  </Stack>
-                              </TableCell> */}
-    
-                              {/* <TableCell>
-                              <EditIcon onClick={() => onEdit(tasks) } style={{  marginLeft: 100 }}/>
-                              </TableCell> */}
-    
                           </TableRow>
                       )})}
                   </TableBody>
           </Table>
         </TableContainer>
-     
-        
-    
         <Navigation/>
-    
-    </div>
+    </div> //end div
     
     
       )//end return
