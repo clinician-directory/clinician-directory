@@ -5,6 +5,8 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import Navigation from '../Navigation/Navigation';
+// import css file
+import './CalendarMonth.css';
 
 function CalendarMonth() {
 
@@ -32,7 +34,7 @@ function CalendarMonth() {
   // function to add user appointments to array
   function addApptsToCalendar() {
     userAppointments.map(appointment => {
-      userApptsForCalendar.push({ id: appointment.id, title: 'Your Appt', start: appointment.start_time, color: 'yellow' });
+      userApptsForCalendar.push({ id: appointment.id, title: 'Your Appt', start: appointment.start_time, color: 'purple' });
     });
     return userApptsForCalendar;
   };
@@ -147,6 +149,15 @@ function CalendarMonth() {
         // source https://fullcalendar.io/docs/eventClick
         eventClick={handleApptsAndAvailabilities}
       />
+
+      {/* Calendar Key */}
+      <div className="calendar-key">
+        <p>Key</p>
+        <ul>
+          <li id="purple-dot">Your Appointments</li>
+          <li id="green-dot">Available Appointments</li>
+        </ul>
+      </div>
 
       <Navigation />
 
