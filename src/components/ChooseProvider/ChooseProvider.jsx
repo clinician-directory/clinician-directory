@@ -48,8 +48,8 @@ function ChooseProvider() {
 
   const handleSchedule = (e) => {
     swal({
-      title: "Good job!",
-      text: "You clicked the button!",
+      title: "Your appointment is scheduled!",
+      text: "See your gmail and calendar for more information",
       icon: "success",
     });
   }
