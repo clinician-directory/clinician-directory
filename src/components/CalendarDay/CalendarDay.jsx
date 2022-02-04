@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-import dayGridPlugin from '@fullcalendar/timegrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
 import FullCalendar from '@fullcalendar/react';
 
 import './CalendarDay.css';
@@ -20,7 +20,7 @@ function CalendarDay() {
         <Grid container>
             <Grid item id='calendar-day'>
                 <FullCalendar
-                    plugins={[ dayGridPlugin ]}
+                    plugins={[ timeGridPlugin ]}
                     weekends={true}
                     // initialView='dayGridWeek'
                     events={[
