@@ -15,6 +15,7 @@ function* fetchAvailabilities() {
     }
 }
 
+
 function* resultSaga() {
     yield takeLatest('FETCH_AVAILABILITIES', fetchAvailabilities);
 }

@@ -6,6 +6,7 @@ import availabilitiesSaga from './availabilities.saga'
 import AllProvidersSaga from './allProviders.saga'
 import oneProviderSaga from './oneProvider.saga'
 import appointmentsSaga from './appointments.saga';
+import clickedAvailabilitySaga from './clickedAvailability.saga'
 
 
 // rootSaga is the primary saga.
@@ -24,5 +25,6 @@ export default function* rootSaga() {
     AllProvidersSaga(),
     oneProviderSaga(),
     appointmentsSaga(),
+    clickedAvailabilitySaga(),
   ]);
 }

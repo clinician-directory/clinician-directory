@@ -13,6 +13,8 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import UserPage from '../UserPage/UserPage';
 import CalendarMonth from '../CalendarMonth/CalendarMonth';
 import ChooseProvider from '../ChooseProvider/ChooseProvider';
+import CalendarDay from '../CalendarDay/CalendarDay';
+
 
 import LoginView from '../LoginView/LoginView';
 import RegisterView from '../RegisterView/RegisterView';
@@ -62,6 +64,16 @@ function App() {
           <ProtectedRoute exact path='/provider'>
             {user.id ?
               <ChooseProvider />
+              :
+              <Redirect to='/login' />
+            }
+          </ProtectedRoute>
+
+
+               {/* CALENDAR DAY VIEW */}
+               <ProtectedRoute exact path='/day'>
+            {user.id ?
+              <CalendarDay />
               :
               <Redirect to='/login' />
             }
