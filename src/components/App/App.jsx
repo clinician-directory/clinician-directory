@@ -14,7 +14,6 @@ import UserPage from '../UserPage/UserPage';
 import CalendarMonth from '../CalendarMonth/CalendarMonth';
 import CalendarDay from '../CalendarDay/CalendarDay';
 import ChooseProvider from '../ChooseProvider/ChooseProvider';
-import CalendarDay from '../CalendarDay/CalendarDay';
 
 
 import LoginView from '../LoginView/LoginView';
