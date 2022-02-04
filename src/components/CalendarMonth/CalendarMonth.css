@@ -1,0 +1,25 @@
+ul {
+  list-style: none;
+}
+
+#green-dot::before {
+  content: "•";
+  color: green;
+  font-weight: bold;
+  font-size: 2em;
+  vertical-align: middle;
+  display: inline-block;
+  width: 0.75em;
+  margin-left: -1em;
+}
+  
+#purple-dot::before {
+  content: "•";
+  color: purple;
+  font-weight: bold;
+  font-size: 2em;
+  vertical-align: middle;
+  display: inline-block;
+  width: 0.75em;
+  margin-left: -1em;
+}
