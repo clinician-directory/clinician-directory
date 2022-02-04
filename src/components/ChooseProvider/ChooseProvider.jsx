@@ -19,6 +19,8 @@ import Select from '@mui/material/Select';
 import Box from '@mui/material/Box';
 import './ChooseProvider.css';
 import Navigation from '../Navigation/Navigation';
+import swal from 'sweetalert';
+
 
 
 
@@ -45,49 +47,18 @@ function ChooseProvider() {
   }, [])
 
   const handleSchedule = (e) => {
-    alert('Schedule Button works!')
+    swal({
+      title: "Good job!",
+      text: "You clicked the button!",
+      icon: "success",
+    });
   }
 
   return (
     <div>
-
     <form>
       <h3 className="providers">List of providers</h3>
-
-    {/* <Box sx={{ minWidth: 115 }} className="specialtyBox" >
-      <FormControl sx={{ minWidth: 155,  marginLeft: 60, marginBottom: -4, backgroundColor: "#fce4ec", marginTop: -7}}  >
-        <InputLabel sx={{ marginLeft: 2, marginTop: -0}} id="demo-simple-select-label" >Specialty </InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            sx={{height: 55}}
-            value={specialty}
-            label="Specialty"
-            onChange={(event) => setSpecialty(event.target.value)}>
-              <MenuItem value="PM&R">PM&R</MenuItem>
-              <MenuItem value="Orthopedics">Orthopedics</MenuItem>
-          </Select>
-      </FormControl>
-    </Box> */}
     </form>
-
-    {/* <Button
-    variant="outlined"
-     style={{
-      backgroundColor: "#4caf50",
-      height: 55,
-      color: "white",
-      marginLeft: 800,
-      marginTop: -80,
-      marginBottom: 35,
-      marginLeft: 677
-    }}
-
-    onClick={(event) => { onSelectProvider(event) }}>Select Provider/Button> */}
-
-
-
-
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650, fontSize: 10, backgroundColor:'##bd9dcc', marginBottom: 10 }} aria-label="simple table">
           <TableHead>
@@ -121,63 +92,14 @@ function ChooseProvider() {
                                 <TableCell align="center">{allProviders.state}</TableCell>
                                 <TableCell align="center">{allProviders.zip_code}</TableCell>
                                 <TableCell align="center"><button onClick={handleSchedule}>Schedule!</button></TableCell>
-
-                                {/* <TableCell>
-                                    <Stack direction="column"alignItems="flex-end" key={allProviders.id}>
-                                        <Chip
-                                          onDelete={() => { deleteProvider(allProviders.id) }}
-                                          deleteIcon={<DeleteIcon style={{ color: "#ba000d", marginRight: 30 }}  />}
-                                        />
-                                  </Stack>
-                              </TableCell> */}
-
-                              {/* <TableCell>
-                              <EditIcon onClick={() => onEdit(tasks) } style={{  marginLeft: 100 }}/>
-                              </TableCell> */}
-
                           </TableRow>
                       )})}
                   </TableBody>
           </Table>
         </TableContainer>
-
-
-
         <Navigation/>
-
     </div>
-
-
       )//end return
-
-  //   <div className="container">
-
-  //     <h2> These are providers available!</h2>
-  //     <p>Name</p>
-  //     <p>Specialty</p>
-  //     <p>address</p>
-  //     <div>
-  //       <ul>
-  //     {providers.map((allProviders) => {
-  //       return (
-  //         <div>
-  //         <p>
-  //           {allProviders.first_name} {allProviders.last_name}
-  //            {allProviders.specialty} {allProviders.telemedicine}
-  //            {allProviders.city} {allProviders.city} {allProviders.health_system}
-  //            {allProviders.address} {allProviders.state}{allProviders.zip_code}
-  //         </p>
-  //         </div>
-  //       )
-  //     })}
-
-  //     </ul>
-  //     </div>
-
-
-  //     <button onClick={handleSchedule}>Schedule Appointment!</button>
-  //   </div>
-  // );
 }
 
 export default ChooseProvider;
