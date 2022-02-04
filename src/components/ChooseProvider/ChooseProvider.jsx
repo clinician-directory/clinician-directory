@@ -49,7 +49,7 @@ function ChooseProvider() {
   // TO RUN ON PAGE LOAD
   useEffect(() => {
     dispatch({ type: 'FETCH_ALL_PROVIDERS' })
-  }, [])  
+  }, [])
 
 
   return (
@@ -57,7 +57,7 @@ function ChooseProvider() {
 
     <form>
       <h3 className="providers">List of providers</h3>
-    
+
     {/* <Box sx={{ minWidth: 115 }} className="specialtyBox" >
       <FormControl sx={{ minWidth: 155,  marginLeft: 60, marginBottom: -4, backgroundColor: "#fce4ec", marginTop: -7}}  >
         <InputLabel sx={{ marginLeft: 2, marginTop: -0}} id="demo-simple-select-label" >Specialty </InputLabel>
@@ -74,8 +74,8 @@ function ChooseProvider() {
       </FormControl>
     </Box> */}
     </form>
-    
-    {/* <Button 
+
+    {/* <Button
     variant="outlined"
      style={{
       backgroundColor: "#4caf50",
@@ -86,33 +86,34 @@ function ChooseProvider() {
       marginBottom: 35,
       marginLeft: 677
     }}
-            
+
     onClick={(event) => { onSelectProvider(event) }}>Select Provider/Button> */}
-    
-    
-    
-    
+
+
+
+
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650, fontSize: 10, backgroundColor:'##bd9dcc', marginBottom: 10 }} aria-label="simple table">
           <TableHead>
-    
+
             <TableRow>
               <TableCell align="left"> <Typography variant="h6" > FIRST NAME </Typography></TableCell>
               <TableCell align="right"> <Typography variant="h6"> LAST NAME </Typography> </TableCell>
               <TableCell align="right"> <Typography variant="h6"> SPECIALTY </Typography></TableCell>
-              <TableCell align="right"> <Typography variant="h6"> TELEMEDICINE </Typography></TableCell> 
-              <TableCell align="right"> <Typography variant="h6"> CITY </Typography></TableCell> 
-              <TableCell align="right"> <Typography variant="h6"> HEALTH SYSTEM </Typography></TableCell> 
-              <TableCell align="right"> <Typography variant="h6"> ADDRESS </Typography></TableCell> 
-              <TableCell align="right"> <Typography variant="h6"> STATE </Typography></TableCell> 
-              <TableCell align="right"> <Typography variant="h6"> ZIP CODE </Typography></TableCell> 
+              <TableCell align="right"> <Typography variant="h6"> TELEMEDICINE </Typography></TableCell>
+              <TableCell align="right"> <Typography variant="h6"> CITY </Typography></TableCell>
+              <TableCell align="right"> <Typography variant="h6"> HEALTH SYSTEM </Typography></TableCell>
+              <TableCell align="right"> <Typography variant="h6"> ADDRESS </Typography></TableCell>
+              <TableCell align="right"> <Typography variant="h6"> STATE </Typography></TableCell>
+              <TableCell align="right"> <Typography variant="h6"> ZIP CODE </Typography></TableCell>
+              <TableCell align="right"> <Typography variant="h6"></Typography></TableCell>
             </TableRow>
-    
+
           </TableHead>
             <TableBody>
               {providers.map((allProviders) => {
                 console.log('inside MAP', allProviders)
-                      return ( 
+                      return (
                           <TableRow key={allProviders.id}  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell align="left">{allProviders.first_name}</TableCell>
                                 <TableCell align="center">{allProviders.last_name}</TableCell>
@@ -123,7 +124,8 @@ function ChooseProvider() {
                                 <TableCell align="center">{allProviders.address}</TableCell>
                                 <TableCell align="center">{allProviders.state}</TableCell>
                                 <TableCell align="center">{allProviders.zip_code}</TableCell>
-    
+                                <TableCell align="center"><button>Schedule!</button></TableCell>
+
                                 {/* <TableCell>
                                     <Stack direction="column"alignItems="flex-end" key={allProviders.id}>
                                         <Chip
@@ -132,28 +134,28 @@ function ChooseProvider() {
                                         />
                                   </Stack>
                               </TableCell> */}
-    
+
                               {/* <TableCell>
                               <EditIcon onClick={() => onEdit(tasks) } style={{  marginLeft: 100 }}/>
                               </TableCell> */}
-    
+
                           </TableRow>
                       )})}
                   </TableBody>
           </Table>
         </TableContainer>
-     
-        
-    
+
+
+
         <Navigation/>
-    
+
     </div>
-    
-    
+
+
       )//end return
 
   //   <div className="container">
-    
+
   //     <h2> These are providers available!</h2>
   //     <p>Name</p>
   //     <p>Specialty</p>
@@ -175,8 +177,8 @@ function ChooseProvider() {
 
   //     </ul>
   //     </div>
-   
-      
+
+
   //     <button onClick={handleSchedule}>Schedule Appointment!</button>
   //   </div>
   // );
