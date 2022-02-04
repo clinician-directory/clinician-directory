@@ -30,7 +30,7 @@ function Navigation() {
                 break;
             case 2: history.push('/provider');
                 break;
-            default: 0
+            default:
                 break;
         }
     }
@@ -41,7 +41,8 @@ function Navigation() {
                 <BottomNavigation showLabels value={currentTab} onChange={(event, value) => { handleTabClick(value)}}>
                     <BottomNavigationAction label='Profile' icon={<PersonIcon />} />
                     <BottomNavigationAction label='Calendar' icon={<DateRangeIcon />} />
-                    <BottomNavigationAction label='Providers' icon={<LocalHospitalIcon />} />
+                    {/* NOT MVP */}
+                    {/* <BottomNavigationAction label='Providers' icon={<LocalHospitalIcon />} /> */}
                 </BottomNavigation>
             </Paper>
         </div>
