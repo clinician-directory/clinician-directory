@@ -28,7 +28,7 @@ function* editUser(action) {
   try {
     yield axios({
       method: 'PUT',
-      url: `/api/user/${action.payload}`,
+      url: `/api/user/${action.payload.id}`,
       data: action.payload
     })
     yield put({
