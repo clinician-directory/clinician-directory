@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -8,20 +9,24 @@ import Navigation from '../Navigation/Navigation';
 // import css file
 import './CalendarMonth.css';
 
-function CalendarMonth() {
 
+function CalendarMonth() {
   // Define dispatch
   const dispatch = useDispatch();
   // Define history in order to route to page
   const history = useHistory();
   // Grab reducers from the redux store via useSelector
   const userAppointments = useSelector((store) => store.appointmentsReducer);
-  const availabilities = useSelector(store => store.availabilitiesReducer);
+  const availabilities = useSelector((store) => store.availabilitiesReducer);
+  const clickedAvailability = useSelector((store) => store.clickedAvailability);
+
+  
 
   // on page load fetch provider availabilities and user appointments
   // useEffect allows us to dispatch a call with type and send the payload data for a particular submission
   // we want to use the GET route via our fetchAvailabilities and fetchUserAppointments sagas in availabilities.saga.js and appointments.saga.js
   useEffect(() => {
+
     dispatch({ type: 'FETCH_AVAILABILITIES' })
     dispatch({ type: 'FETCH_USER_APPOINTMENTS' });
   }, []);
@@ -60,9 +65,15 @@ function CalendarMonth() {
     console.log('in handleApptsAndAvailabilities', event);
     // send user to provider page if availability on calendar is clicked (color green)
     if (event.el.fcSeg.eventRange.ui.backgroundColor === 'green') {
-      history.push(`/provider`);
+      history.push('/day');
     }
+    dispatch({
+      type: 'LOAD_AVAILABILITIES',
+      payload: availabilities
+    })
   };
+
+ 
 
   // *Warren's google calendar click feature
 
@@ -145,15 +156,17 @@ function CalendarMonth() {
         slotMaxTime={'22:00:00'}
         // combine appt and availability arrays
         events={[...userApptsForCalendar, ...availabilitiesForCalendar]}
+
         dateClick={handleDateClick}
         // source https://fullcalendar.io/docs/eventClick
-        eventClick={handleApptsAndAvailabilities}
+        eventClick={(e) => handleApptsAndAvailabilities(availabilities)} //Selam testing grabbing availability by click 
+        //eventClick={handleApptsAndAvailabilities} // -- original call for click
       />
 
       {/* Calendar Key */}
       <div className="calendar-key">
-        <p>Key</p>
-        <ul>
+        <p className="key">Key</p>
+        <ul className="dot1">
           <li id="purple-dot">Your Appointments</li>
           <li id="green-dot">Available Appointments</li>
         </ul>
@@ -161,8 +174,8 @@ function CalendarMonth() {
 
       <Navigation />
 
-    </div>
 
+    </div>
   );
 }
 

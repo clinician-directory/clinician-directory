@@ -1,41 +1,80 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
-import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import React from "react";
+import { useHistory } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Navigation from "../Navigation/Navigation";
+import "./CalendarDay.css";
 
-import timeGridPlugin from '@fullcalendar/timegrid';
-import FullCalendar from '@fullcalendar/react';
+//MUI implementation:
+import { Button, Card, CardActionArea, CardMedia, Typography, CardContent } from "@material-ui/core";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+//SweetAlert implementation:
+import swal from 'sweetalert';
 
-import './CalendarDay.css';
+
 
 function CalendarDay() {
+  // Define dispatch
+  const dispatch = useDispatch();
+  // Define history in order to route to page
+  const history = useHistory();
+  // to access reducers in this component
+  // Grab reducers from the redux store via useSelector
+  const user = useSelector((store) => store.user);
+  //const userAppointments = useSelector((store) => store.appointmentsReducer);
+  const availabilities = useSelector((store) => store.availabilitiesReducer);
+  const availableProvider = useSelector((store) => store.oneProviderReducer);
+  const clickedAvailability = useSelector((store) => store.clickedAvailability);
+
+  
+
+  
+
+  const handleButton = () => {
+    //takes user to select providers
+    history.push("/provider");
+  };
+
+    // // TO RUN ON PAGE LOAD
+    // useEffect(() => {
+    //     dispatch({ 
+    //       type: 'FETCH_THIS_ONE_AVAILABILITY'
+    //     })
+    //   }, [])  
+
+
+
+
 
   return (
     <div>
+      <h1> {user.username}, Please confirm Date & time Selected </h1>
 
-        <Grid container>
-            <Grid item id='calendar-day'>
-                <FullCalendar
-                    plugins={[ timeGridPlugin ]}
-                    weekends={true}
-                    // initialView='dayGridWeek'
-                    events={[
-                        { title: 'event 1', date: '2019-04-01' },
-                        { title: 'event 2', date: '2019-04-02' }
-                    ]}
-                />
-            </Grid>
-        </Grid>
-
-       
-
-
+        {availabilities.map((showAvailabilities) => {
+            console.log('inside MAP', showAvailabilities)
+            return ( 
+            <ul key={showAvailabilities.id}>
+              {showAvailabilities.day}
+              {showAvailabilities.start_time}
+              {showAvailabilities.provider_id}
+            </ul>
+            )})}
+               
+      <h4>
+        Next, select a provider:
+        <button className="button" onClick={handleButton}> Select Provider</button>
+      </h4>
+      <Navigation />
     </div>
-  );
-}
+  ); //end return
+} //end CalendarDay function
+
 
 export default CalendarDay;
