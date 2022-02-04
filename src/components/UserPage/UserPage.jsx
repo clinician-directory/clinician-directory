@@ -55,7 +55,6 @@ function UserPage() {
 
   return (
     <div>
-
       <Grid container id='grid-container-text-fields' direction='column' spacing={2}>
         <Grid item>
           <TextField value={firstName} onChange={(event)=>setFirstName(event.target.value)} label='First Name' />
@@ -79,13 +78,12 @@ function UserPage() {
           <TextField value={zipCode} onChange={(event)=>setZipCode(event.target.value)} label='Zip Code' />
         </Grid>
         <Grid item>
-          <Button variant='outlined' onClick={handleSaveButton}>Save</Button>
+          <Button variant='outlined' onClick={handleSaveButton}>Save Changes</Button>
         </Grid>
         <Grid item>
           <Button variant='contained' onClick={()=>handleSchedule(1)}>Schedule an Appointment</Button>
         </Grid>
       </Grid>
-
       <Navigation/>
     </div>
   );
