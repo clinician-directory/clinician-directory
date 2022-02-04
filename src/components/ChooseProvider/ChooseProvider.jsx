@@ -21,14 +21,10 @@ import './ChooseProvider.css';
 import Navigation from '../Navigation/Navigation';
 import swal from 'sweetalert';
 
-
-
-
 function ChooseProvider() {
 
   const history = useHistory();
   const dispatch = useDispatch();
-
 
   //handles button to go to calendar view
   // const handleSchedule = () => {
@@ -46,14 +42,78 @@ function ChooseProvider() {
     dispatch({ type: 'FETCH_ALL_PROVIDERS' })
   }, [])
 
-  const handleSchedule = (e) => {
-    swal({
-      title: "Your appointment is scheduled!",
-      text: "See your gmail and calendar for more information",
-      icon: "success",
-    });
-  }
+      // *Warren's google calendar click feature
 
+      let gapi = window.gapi;
+      let CLIENT_ID = '1096656813980-v8ibiouk9dg649om7og02kr5kuied9fq.apps.googleusercontent.com';
+      let API_KEY = process.env.API_KEY;
+      // // Array of API discovery doc URLs for APIs used by the quickstart
+      let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+
+      // // Authorization scopes required by the API; multiple scopes can be
+      // // included, separated by spaces.
+      let SCOPES = "https://www.googleapis.com/auth/calendar";
+
+      let event = {
+        'summary': 'Clinician Directory Meet&Greet!',
+        'location': 'Somewhere Near You',
+        'description': 'I made this event from the google API. SPIKE COMPLETE',
+        'start': {
+          'dateTime': '2022-01-29T09:00:00-07:00',
+          'timeZone': 'US/Central'
+        },
+        'end': {
+          'dateTime': '2022-01-29T17:00:00-07:00',
+          'timeZone': 'US/Central'
+        },
+        'attendees': [
+          { 'email': 'justin.lewis.cummings@gmail.com' },
+          { 'email': 'yasir.uddin@icloud.com' },
+          { 'email': 'selamtalem@gmail.com' },
+          { 'email': 'kbrown55347@gmail.com' }
+        ],
+        'reminders': {
+          'useDefault': true
+        }
+      };
+  {/* <button onClick={handleGoogleClick}>New Google Calendar Event</button> */}
+
+  const handleSchedule = (e) => {
+
+      gapi.load('client:auth2', () => {
+        console.log('Loaded client');
+
+
+        gapi.client.init({
+          apiKey: API_KEY,
+          clientId: CLIENT_ID,
+          discoveryDocs: DISCOVERY_DOCS,
+          scope: SCOPES
+        })
+
+        gapi.client.load('calendar', 'v3', () => console.log('YAAAAAAAZZZZ'))
+
+        gapi.auth2.getAuthInstance().signIn()
+          .then(() => {
+
+            console.log('Success!');
+
+            var request = gapi.client.calendar.events.insert({
+              'calendarId': 'primary',
+              'resource': event
+            });
+
+            request.execute(event => {
+              console.log(event);
+            })
+
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+
+      })
+    };
   return (
     <div>
     <form>
@@ -62,7 +122,6 @@ function ChooseProvider() {
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650, fontSize: 10, backgroundColor:'##bd9dcc', marginBottom: 10 }} aria-label="simple table">
           <TableHead>
-
             <TableRow>
               <TableCell align="left"> <Typography variant="h6" > FIRST NAME </Typography></TableCell>
               <TableCell align="right"> <Typography variant="h6"> LAST NAME </Typography> </TableCell>
@@ -75,7 +134,6 @@ function ChooseProvider() {
               <TableCell align="right"> <Typography variant="h6"> ZIP CODE </Typography></TableCell>
               <TableCell align="right"> <Typography variant="h6"></Typography></TableCell>
             </TableRow>
-
           </TableHead>
             <TableBody>
               {providers.map((allProviders) => {
