@@ -48,10 +48,35 @@ router.post('/logout', (req, res) => {
 });
 
 router.put('/:id', rejectUnauthenticated, (req, res) => {
-  const id = req.params.id
+  console.log('req.body', req.body);
+  console.log('req.params.id', req.params.id);
+  
+  
+  const id = req.body.id
   const userObject =  req.body
-  const queryText = `UPDATE "user" SET first_name = $2, last_name =$3, phone= $4, address =$5, city = $6, state = $7, zip_code = $8 WHERE "id" = $1;`;
-  const queryValues = [ id, userObject.first_name, userObject.last_name, userObject.phone, userObject.address, userObject.city, userObject.state, userObject.zip_code];
+
+  const queryText = `
+    UPDATE "user" 
+    SET 
+      first_name = $2, 
+      last_name =$3, 
+      phone= $4, 
+      address =$5, 
+      city = $6, 
+      state = $7, 
+      zip_code = $8 
+    WHERE "id" = $1;
+  `;
+  const queryValues = [ 
+    id, 
+    userObject.first_name, 
+    userObject.last_name, 
+    userObject.phone, 
+    userObject.address, 
+    userObject.city, 
+    userObject.state, 
+    userObject.zip_code
+  ];
 
   pool.query(queryText, queryValues)
         .then((dbRes) => {
