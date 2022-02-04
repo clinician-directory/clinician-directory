@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import Navigation from '../Navigation/Navigation';
 // import css file
@@ -150,7 +150,7 @@ function CalendarMonth() {
     <div className="container">
       {/* <button onClick={handleGoogleClick}>New Google Calendar Event</button> */}
       <FullCalendar
-        plugins={[dayGridPlugin, interactionPlugin]}
+        plugins={[timeGridPlugin, interactionPlugin]}
         weekends={true}
         slotMinTime={'08:00:00'}
         slotMaxTime={'22:00:00'}
