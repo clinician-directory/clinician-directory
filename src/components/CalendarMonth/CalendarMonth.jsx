@@ -39,7 +39,7 @@ function CalendarMonth() {
   // function to add user appointments to array
   function addApptsToCalendar() {
     userAppointments.map(appointment => {
-      userApptsForCalendar.push({ id: appointment.id, title: 'Your Appt', start: appointment.start_time, color: 'purple' });
+      userApptsForCalendar.push({ id: appointment.id, title: 'Your Appt', start: appointment.start_time, color: 'blue' });
     });
     return userApptsForCalendar;
   };
@@ -61,12 +61,12 @@ function CalendarMonth() {
   };
 
   // function to handle click of event on calendar
-  function handleApptsAndAvailabilities(event) {
-    console.log('in handleApptsAndAvailabilities', event);
+  function handleCalendarEventClick(event) {
+    console.log('in handleCalendarEventClick', event);
     // send user to provider page if availability on calendar is clicked (color green)
-    if (event.el.fcSeg.eventRange.ui.backgroundColor === 'green') {
-      history.push('/day');
-    }
+    // if (event.el.fcSeg.eventRange.ui.backgroundColor === 'green') {
+    //   history.push('/day');
+    // }
     dispatch({
       type: 'LOAD_AVAILABILITIES',
       payload: availabilities
@@ -75,7 +75,6 @@ function CalendarMonth() {
 
   return (
     <div className="container">
-      {/* <button onClick={handleGoogleClick}>New Google Calendar Event</button> */}
       <FullCalendar
         plugins={[timeGridPlugin, interactionPlugin]}
         weekends={true}
@@ -86,15 +85,14 @@ function CalendarMonth() {
 
         dateClick={handleDateClick}
         // source https://fullcalendar.io/docs/eventClick
-        eventClick={(e) => handleApptsAndAvailabilities(availabilities)} //Selam testing grabbing availability by click 
-        //eventClick={handleApptsAndAvailabilities} // -- original call for click
+        eventClick={(event) => handleCalendarEventClick()}
       />
 
       {/* Calendar Key */}
       <div className="calendar-key">
         <p className="key">Key</p>
         <ul className="dot1">
-          <li id="purple-dot">Your Appointments</li>
+          <li id="blue-dot">Your Appointments</li>
           <li id="green-dot">Available Appointments</li>
         </ul>
       </div>
