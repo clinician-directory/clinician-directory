@@ -2,7 +2,6 @@ import React from 'react';
 import {useHistory} from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-
 import { Button, Card, CardActionArea, CardMedia, Typography, CardContent } from "@material-ui/core";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,34 +10,28 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-
-
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Box from '@mui/material/Box';
 import './ChooseProvider.css';
-
 import Navigation from '../Navigation/Navigation';
 
 
 
 function ChooseProvider() {
 
-
-
   const history = useHistory();
   const dispatch = useDispatch();
 
 
   //handles button to go to calendar view
-  const handleSchedule = () => {
-    history.push('/calendarmonth')
-  }
+  // const handleSchedule = () => {
+  //   history.push('/calendarmonth')
+  // }
 
   //Accessing Redux/Reducer
   const providers = useSelector(store => store.allProvidersReducer)
@@ -51,6 +44,9 @@ function ChooseProvider() {
     dispatch({ type: 'FETCH_ALL_PROVIDERS' })
   }, [])
 
+  const handleSchedule = (e) => {
+    alert('Schedule Button works!')
+  }
 
   return (
     <div>
@@ -124,7 +120,7 @@ function ChooseProvider() {
                                 <TableCell align="center">{allProviders.address}</TableCell>
                                 <TableCell align="center">{allProviders.state}</TableCell>
                                 <TableCell align="center">{allProviders.zip_code}</TableCell>
-                                <TableCell align="center"><button>Schedule!</button></TableCell>
+                                <TableCell align="center"><button onClick={handleSchedule}>Schedule!</button></TableCell>
 
                                 {/* <TableCell>
                                     <Stack direction="column"alignItems="flex-end" key={allProviders.id}>
