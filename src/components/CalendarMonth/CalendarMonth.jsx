@@ -162,6 +162,7 @@ function CalendarMonth() {
         eventClick={(e) => handleApptsAndAvailabilities(availabilities)} //Selam testing grabbing availability by click 
         //eventClick={handleApptsAndAvailabilities} // -- original call for click
       />
+       
 
       {/* Calendar Key */}
       <div className="calendar-key">
