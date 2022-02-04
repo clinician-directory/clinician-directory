@@ -52,6 +52,7 @@
   background-color: #36119f;
 } */
 .key:after {
+  
   width: 100px;
   height: 1.5px;
   display: block;
