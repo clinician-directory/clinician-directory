@@ -79,11 +79,12 @@ function UserPage() {
           <TextField value={zipCode} onChange={(event)=>setZipCode(event.target.value)} label='Zip Code' />
         </Grid>
         <Grid item>
-          <Button variant='contained' onClick={handleSaveButton}>Save</Button>
+          <Button variant='outlined' onClick={handleSaveButton}>Save</Button>
+        </Grid>
+        <Grid item>
+          <Button variant='contained' onClick={()=>handleSchedule(1)}>Schedule an Appointment</Button>
         </Grid>
       </Grid>
-
-      {/* <button onClick={()=>handleSchedule(1)}>Schedule an Appointment!</button> */}
 
       <Navigation/>
     </div>
