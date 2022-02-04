@@ -62,11 +62,10 @@ function CalendarMonth() {
 
   // function to handle click of event on calendar
   function handleCalendarEventClick(event) {
-    console.log('in handleCalendarEventClick', event);
     // send user to provider page if availability on calendar is clicked (color green)
-    // if (event.el.fcSeg.eventRange.ui.backgroundColor === 'green') {
-    //   history.push('/day');
-    // }
+    if (event.event._def.ui.backgroundColor === 'green') {
+      history.push('/provider');
+    }
     dispatch({
       type: 'LOAD_AVAILABILITIES',
       payload: availabilities
@@ -85,7 +84,7 @@ function CalendarMonth() {
 
         dateClick={handleDateClick}
         // source https://fullcalendar.io/docs/eventClick
-        eventClick={(event) => handleCalendarEventClick()}
+        eventClick={handleCalendarEventClick}
       />
 
       {/* Calendar Key */}
