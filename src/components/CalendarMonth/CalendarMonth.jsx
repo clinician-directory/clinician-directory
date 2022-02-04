@@ -152,8 +152,8 @@ function CalendarMonth() {
 
       {/* Calendar Key */}
       <div className="calendar-key">
-        <p>Key</p>
-        <ul>
+        <p className="key">Key</p>
+        <ul className="dot1">
           <li id="purple-dot">Your Appointments</li>
           <li id="green-dot">Available Appointments</li>
         </ul>
