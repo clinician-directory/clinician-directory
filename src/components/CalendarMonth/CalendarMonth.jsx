@@ -20,8 +20,6 @@ function CalendarMonth() {
   const availabilities = useSelector((store) => store.availabilitiesReducer);
   const clickedAvailability = useSelector((store) => store.clickedAvailability);
 
-  
-
   // on page load fetch provider availabilities and user appointments
   // useEffect allows us to dispatch a call with type and send the payload data for a particular submission
   // we want to use the GET route via our fetchAvailabilities and fetchUserAppointments sagas in availabilities.saga.js and appointments.saga.js
@@ -39,7 +37,7 @@ function CalendarMonth() {
   // function to add user appointments to array
   function addApptsToCalendar() {
     userAppointments.map(appointment => {
-      userApptsForCalendar.push({ id: appointment.id, title: 'Your Appt', start: appointment.start_time, color: 'purple' });
+      userApptsForCalendar.push({ id: appointment.id, title: 'Your Appointment', start: appointment.start_time, color: 'blue' });
     });
     return userApptsForCalendar;
   };
@@ -47,7 +45,7 @@ function CalendarMonth() {
   // function to add provider availabilities to array
   function addAvailabilitiesToCalendar() {
     availabilities.map(availability => {
-      availabilitiesForCalendar.push({ title: 'Providers Available', start: availability.start_time, color: 'green' });
+      availabilitiesForCalendar.push({ title: 'Available Appointment', start: availability.start_time, color: 'green' });
     });
     return availabilitiesForCalendar;
   };
@@ -61,11 +59,10 @@ function CalendarMonth() {
   };
 
   // function to handle click of event on calendar
-  function handleApptsAndAvailabilities(event) {
-    console.log('in handleApptsAndAvailabilities', event);
+  function handleCalendarEventClick(event) {
     // send user to provider page if availability on calendar is clicked (color green)
-    if (event.el.fcSeg.eventRange.ui.backgroundColor === 'green') {
-      history.push('/day');
+    if (event.event._def.ui.backgroundColor === 'green') {
+      history.push('/provider');
     }
     dispatch({
       type: 'LOAD_AVAILABILITIES',
@@ -73,82 +70,8 @@ function CalendarMonth() {
     })
   };
 
- 
-
-  // *Warren's google calendar click feature
-
-  // let gapi = window.gapi;
-  // let CLIENT_ID = '1096656813980-v8ibiouk9dg649om7og02kr5kuied9fq.apps.googleusercontent.com';
-  // let API_KEY = process.env.API_KEY;
-  // // Array of API discovery doc URLs for APIs used by the quickstart
-  // let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-
-  // // Authorization scopes required by the API; multiple scopes can be
-  // // included, separated by spaces.
-  // let SCOPES = "https://www.googleapis.com/auth/calendar";
-
-  // let event = {
-  //   'summary': 'Clinician Directory Meet&Greet!',
-  //   'location': 'Somewhere Near You',
-  //   'description': 'I made this event from the google API. SPIKE COMPLETE',
-  //   'start': {
-  //     'dateTime': '2022-01-29T09:00:00-07:00',
-  //     'timeZone': 'US/Central'
-  //   },
-  //   'end': {
-  //     'dateTime': '2022-01-29T17:00:00-07:00',
-  //     'timeZone': 'US/Central'
-  //   },
-  //   'attendees': [
-  //     { 'email': 'justin.lewis.cummings@gmail.com' },
-  //     { 'email': 'yasir.uddin@icloud.com' },
-  //     { 'email': 'selamtalem@gmail.com' },
-  //     { 'email': 'kbrown55347@gmail.com' }
-  //   ],
-  //   'reminders': {
-  //     'useDefault': true
-  //   }
-  // };
-
-  // function handleGoogleClick() {
-  //   gapi.load('client:auth2', () => {
-  //     console.log('Loaded client');
-
-
-  //     gapi.client.init({
-  //       apiKey: API_KEY,
-  //       clientId: CLIENT_ID,
-  //       discoveryDocs: DISCOVERY_DOCS,
-  //       scope: SCOPES
-  //     })
-
-  //     gapi.client.load('calendar', 'v3', () => console.log('YAAAAAAAZZZZ'))
-
-  //     gapi.auth2.getAuthInstance().signIn()
-  //       .then(() => {
-
-  //         console.log('Success!');
-
-  //         var request = gapi.client.calendar.events.insert({
-  //           'calendarId': 'primary',
-  //           'resource': event
-  //         });
-
-  //         request.execute(event => {
-  //           console.log(event);
-  //         })
-
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       })
-
-  //   })
-  // };
-
   return (
     <div className="container">
-      {/* <button onClick={handleGoogleClick}>New Google Calendar Event</button> */}
       <FullCalendar
         plugins={[timeGridPlugin, interactionPlugin]}
         weekends={true}
@@ -159,17 +82,15 @@ function CalendarMonth() {
 
         dateClick={handleDateClick}
         // source https://fullcalendar.io/docs/eventClick
-        eventClick={(e) => handleApptsAndAvailabilities(availabilities)} //Selam testing grabbing availability by click 
-        //eventClick={handleApptsAndAvailabilities} // -- original call for click
+        eventClick={handleCalendarEventClick}
       />
-       
 
       {/* Calendar Key */}
       <div className="calendar-key">
         <p className="key">Key</p>
         <ul className="dot1">
-          <li id="purple-dot">Your Appointments</li>
-          <li id="green-dot">Available Appointments</li>
+          <li id="blue-dot">Your Appointment</li>
+          <li id="green-dot">Available Appointment</li>
         </ul>
       </div>
 
