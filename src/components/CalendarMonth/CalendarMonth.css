@@ -1,0 +1,66 @@
+.calendar-key, ul {
+  list-style: none;
+  margin: 0.5em;
+}
+
+#green-dot::before {
+  content: "•";
+  color: green;
+  font-weight: bold;
+  font-size: 2em;
+  vertical-align: middle;
+  display: inline-block;
+  width: 0.75em;
+  margin-left: -1em;
+}
+  
+#blue-dot::before {
+  content: "•";
+  color: blue;
+  font-weight: bold;
+  font-size: 2em;
+  vertical-align: middle;
+  display: inline-block;
+  width: 0.75em;
+  margin-left: -1em;
+}
+
+.dot1 {
+  box-shadow: 
+  rgba(0, 0, 0, 0.07) 0px 1px 2px, 
+  rgba(0, 0, 0, 0.07) 0px 2px 4px, 
+  rgba(0, 0, 0, 0.07) 0px 4px 8px, 
+  rgba(0, 0, 0, 0.07) 0px 8px 16px, 
+  rgba(0, 0, 0, 0.07) 0px 16px 32px, 
+  rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+.key {
+  text-align: center;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+}
+/* .key:before {
+  width: 28px;
+  height: 5px;
+  display: block;
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  margin-left: -14px;
+  background-color: #36119f;
+} */
+.key:after {
+  
+  width: 100px;
+  height: 1.5px;
+  display: block;
+  content: "";
+  position: relative;
+  margin-top: 8px;
+  left: 50%;
+  margin-left: -50px;
+  background-color: blue;
+}
+

@@ -12,7 +12,9 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import UserPage from '../UserPage/UserPage';
 import CalendarMonth from '../CalendarMonth/CalendarMonth';
+import CalendarDay from '../CalendarDay/CalendarDay';
 import ChooseProvider from '../ChooseProvider/ChooseProvider';
+
 
 import LoginView from '../LoginView/LoginView';
 import RegisterView from '../RegisterView/RegisterView';
@@ -67,6 +69,16 @@ function App() {
             }
           </ProtectedRoute>
 
+
+               {/* CALENDAR DAY VIEW */}
+               <ProtectedRoute exact path='/day'>
+            {user.id ?
+              <CalendarDay />
+              :
+              <Redirect to='/login' />
+            }
+          </ProtectedRoute>
+
             {/* LOGIN VIEW */}
           <Route exact path='/login'>
             <LoginView />
@@ -75,6 +87,10 @@ function App() {
           {/* REGISTER VIEW */}
           <Route exact path='/register'>
             <RegisterView />
+          </Route>
+
+          <Route exact path='/test'>
+            <CalendarDay />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

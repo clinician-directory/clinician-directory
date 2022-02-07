@@ -118,6 +118,7 @@ function ChooseProvider() {
     <div>
     <form>
       <h3 className="providers">List of providers</h3>
+    
     </form>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650, fontSize: 10, backgroundColor:'##bd9dcc', marginBottom: 10 }} aria-label="simple table">
@@ -150,6 +151,7 @@ function ChooseProvider() {
                                 <TableCell align="center">{allProviders.state}</TableCell>
                                 <TableCell align="center">{allProviders.zip_code}</TableCell>
                                 <TableCell align="center"><button onClick={handleSchedule}>Schedule!</button></TableCell>
+
                           </TableRow>
                       )})}
                   </TableBody>
@@ -157,6 +159,7 @@ function ChooseProvider() {
         </TableContainer>
         <Navigation/>
     </div>
+
       )//end return
 }
 
