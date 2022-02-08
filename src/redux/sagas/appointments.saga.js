@@ -20,10 +20,24 @@ function* fetchUserAppointments() {
   }
 };
 
+// Saga function to GET appointment details for one appointment
+function* fetchAppointmentDetails(action) {
+  try {
+    const response = yield axios({
+      method: 'GET',
+      url: `/api/appointments/${action.payload}`
+    })
+    console.log('in fetchAppointmentDetails GET, response:', response.data);
+  } catch (err) {
+    console.error('fetchUserAppointments error', err);
+  }
+};
+
 
 // Saga function to intercept dispatches
 function* appointmentsSaga() {
   yield takeEvery('FETCH_USER_APPOINTMENTS', fetchUserAppointments);
+  yield takeEvery('FETCH_APPOINTMENT_DETAILS', fetchAppointmentDetails);
 };
 
 export default appointmentsSaga;

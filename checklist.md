@@ -9,7 +9,7 @@ On click of appt on calendar
   - [x] send user to appt details page with appt id
 When arrive on details page
   - [x] dispatch to FETCH appt details w/ payload of params.id
-  - [ ] create saga function to intercept dispatch and send get request to server
+  - [x] create saga function to intercept dispatch and send get request to server
   - [ ] create route on server side to get appt details by id
   - [ ] create reducer to hold user appt details
   - [ ] in saga function, update reducer to hold appt details
