@@ -4,9 +4,9 @@
 
 ### Appt Details View
 - [x] add appt dummy data to DB & seedData file
-- [ ] create appt details component & add path in app.jsx
+- [x] create appt details component & add path in app.jsx
 On click of appt on calendar
-  - [ ] send user to appt details page with appt id
+  - [x] send user to appt details page with appt id
 When arrive on details page
   - [ ] dispatch to FETCH trip details w/ payload of params.id
   - [ ] create saga function to intercept dispatch and send get request to server
