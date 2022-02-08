@@ -29,10 +29,10 @@ function* fetchAppointmentDetails(action) {
     // send DB response to appt details reducer
     yield put({
       type: 'LOAD_APPOINTMENT_DETAILS',
-      payload: response.data
+      payload: response.data[0]
     });
   } catch (err) {
-    console.error('fetchUserAppointments error', err);
+    console.error('fetchAppointmentDetails error', err);
   }
 };
 

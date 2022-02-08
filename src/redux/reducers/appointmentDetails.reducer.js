@@ -1,9 +1,9 @@
-const appointmentDetailsReducer = (state = [], action) => {
+const appointmentDetailsReducer = (state = {}, action) => {
   switch (action.type) {
     case 'LOAD_APPOINTMENT_DETAILS':
       return action.payload;
     case 'CLEAR_APPOINTMENT_DETAILS':
-      return [];
+      return {};
     default:
       return state;
   }
