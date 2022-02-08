@@ -8,7 +8,6 @@ function* fetchUserAppointments() {
       method: 'GET',
       url: '/api/appointments'
     })
-    // console.log('in fetchUserAppointments GET, response:', response.data);
     // populate appointments reducer w/ response from DB
     yield put({
       type: 'LOAD_APPOINTMENTS',
@@ -26,8 +25,12 @@ function* fetchAppointmentDetails(action) {
     const response = yield axios({
       method: 'GET',
       url: `/api/appointments/${action.payload}`
-    })
-    console.log('in fetchAppointmentDetails GET, response:', response.data);
+    });
+    // send DB response to appt details reducer
+    yield put({
+      type: 'LOAD_APPOINTMENT_DETAILS',
+      payload: response.data
+    });
   } catch (err) {
     console.error('fetchUserAppointments error', err);
   }
