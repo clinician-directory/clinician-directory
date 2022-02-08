@@ -33,7 +33,6 @@ function* fetchAppointmentDetails(action) {
   }
 };
 
-
 // Saga function to intercept dispatches
 function* appointmentsSaga() {
   yield takeEvery('FETCH_USER_APPOINTMENTS', fetchUserAppointments);
