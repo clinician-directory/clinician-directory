@@ -12,15 +12,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import Box from '@mui/material/Box';
 import './ChooseProvider.css';
 
 import Navigation from '../Navigation/Navigation';
@@ -133,6 +129,9 @@ function ChooseProvider() {
         <Navigation/>
     </div> //end div
     
+    
+
+
     
       )//end return
 
