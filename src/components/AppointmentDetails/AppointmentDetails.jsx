@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
+import Navigation from '../Navigation/Navigation';
 // import css page
 import './AppointmentDetails.css';
 
@@ -30,6 +31,7 @@ function AppointmentDetails() {
       <p>End: {appointmentDetails.end_time}</p>
       <p>Description: {appointmentDetails.description}</p>
 
+      <Navigation />
 
     </div>
   );
