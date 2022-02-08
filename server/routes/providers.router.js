@@ -5,7 +5,7 @@ const router = express.Router();
 /**
  * GET route to get ALL providers in our DB
  */
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     pool.query(`SELECT * FROM "providers"`)
     .then( result => {
       res.send(result.rows);
@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 });
 
 //Getting a provider by id:
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
     const selectedProvider = req.params.id;
     const sqlText = `
     SELECT * FROM "providers"
