@@ -37,7 +37,7 @@ function CalendarMonth() {
   // function to add user appointments to array
   function addApptsToCalendar() {
     userAppointments.map(appointment => {
-      userApptsForCalendar.push({ id: appointment.id, title: 'Your Appointment', start: appointment.start_time, color: 'blue' });
+      userApptsForCalendar.push({ id: appointment.id, title: 'Your Appointment', start: appointment.start_time, end: appointment.end_time, color: 'blue' });
     });
     return userApptsForCalendar;
   };
@@ -45,7 +45,7 @@ function CalendarMonth() {
   // function to add provider availabilities to array
   function addAvailabilitiesToCalendar() {
     availabilities.map(availability => {
-      availabilitiesForCalendar.push({ title: 'Available Appointment', start: availability.start_time, color: 'green' });
+      availabilitiesForCalendar.push({ id: availability.id, title: 'Available Appointment', start: availability.start_time, color: 'green' });
     });
     return availabilitiesForCalendar;
   };
@@ -60,9 +60,17 @@ function CalendarMonth() {
 
   // function to handle click of event on calendar
   function handleCalendarEventClick(event) {
-    // send user to provider page if availability on calendar is clicked (color green)
+    // console.log('in handleCalendarEventClick', event.event._def.publicId);
+    // declare variable and set equal to id of appt clicked
+    let apptId = event.event._def.publicId;
+    /* send user to provider page if availability 
+    on calendar is clicked (color green) */
     if (event.event._def.ui.backgroundColor === 'green') {
       history.push('/provider');
+    /* send user to appointment details page if user 
+    appointment n calendar is clicked (color blue) */
+    } else if (event.event._def.ui.backgroundColor === 'blue') {
+      history.push(`/appointment_details/${apptId}`);
     }
     dispatch({
       type: 'LOAD_AVAILABILITIES',

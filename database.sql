@@ -55,7 +55,7 @@ CREATE TABLE "availabilities" (
 
 INSERT INTO "public"."user"("id","username","password","role","first_name","last_name","phone","address","city","state","zip_code")
 VALUES
-(2,E'guest',E'$2a$10$Lh6S5wmg9MWi5fuMEyrBBOcLz1ukeDkZ2SN5nsZMcsNXmJB6er3/6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);  
+(1,E'guest',E'$2a$10$Lh6S5wmg9MWi5fuMEyrBBOcLz1ukeDkZ2SN5nsZMcsNXmJB6er3/6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);  
 -- Password 1234
 
 INSERT INTO "public"."providers"("id","first_name","last_name","specialty","telemedicine","city","health_system","address","state","zip_code")

@@ -24,7 +24,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 
 //Getting an availability by id:
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
     const selectedAvailability = req.params.id;
     const sqlText = `
     SELECT * FROM "availabilities"
