@@ -38,13 +38,21 @@ function AppointmentDetails() {
   return (
     <div>
       <div className="card">
-        <h1>Appointment Details</h1>
 
-        <p>Provider: {appointmentDetails.first_name} {appointmentDetails.last_name}</p>
-        <p>Location: {appointmentDetails.address}</p>
-        <p>Start: {appointmentDetails.start_time}</p>
-        <p>End: {appointmentDetails.end_time}</p>
-        <p>Description: {appointmentDetails.description}</p>
+          <h1>Appointment Details</h1>
+          <hr></hr>
+          <img src="doctor_photo.jpg" alt="Provider Image"></img>
+
+          <p id='provider'>Dr. {appointmentDetails.first_name} {appointmentDetails.last_name}</p>
+          <p id='specialty'>{appointmentDetails.specialty}</p>
+          <p className='gray-title'>Date</p>
+          <p className='gray-title'>Time</p>
+          <p className='appt-info'>Start: {appointmentDetails.start_time}</p>
+          <p className='appt-info'>End: {appointmentDetails.end_time}</p>
+          <p className='gray-title'>Location</p>
+          <p className='appt-info'>{appointmentDetails.address}</p>
+          <p className='gray-title'>Description</p>
+          <p className='appt-info'>{appointmentDetails.description}</p>
 
       </div>
 
