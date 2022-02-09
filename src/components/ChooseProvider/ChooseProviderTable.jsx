@@ -13,6 +13,8 @@ import Divider from '@mui/material/Divider';
 import InboxIcon from '@mui/icons-material/Inbox';
 import DraftsIcon from '@mui/icons-material/Drafts';
 import Avatar from '@mui/material/Avatar';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ImageIcon from '@mui/icons-material/Image';
 
 
 
@@ -23,18 +25,7 @@ import Navigation from '../Navigation/Navigation';
 //import favicon from '..../public/favicon.ico'
 
 
-
-function ChooseProviderTable() {
-
-      //Accessing Redux/Reducer
-  const providers = useSelector(store => store.allProvidersReducer)
-
-      //This is for MUI rendering
-      
-
-
-
-    return(
+        
     //{allProviders.first_name} 
     //{allProviders.last_name} 
     //{allProviders.specialty} 
@@ -49,89 +40,56 @@ function ChooseProviderTable() {
     // {providers.map((allProviders) => {
     //     return ( 
     //         {allProviders.first_name} 
-    //         )})} 
-      
+    //         )})}   
+    ///                                
+    //   {providers.map((allProviders) => {
+    //     console.log('inside MAP', allProviders)
+    //           return (  )})}
+
+
+
+function ChooseProviderTable() {
+
+      //Accessing Redux/Reducer
+  const providers = useSelector(store => store.allProvidersReducer)
+
+      //This is for MUI rendering
+
+{/* <Navigation/>  */}
+
+    return(
+
+        
+
         <div>
-            <h1> Providers Table</h1>
+           
+            <h1> Providers Table </h1>
 
 
+            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+  
 
-<Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-<List>
-{providers.map((allProviders) => (
-
+         <ListItem >
+            <ListItemAvatar>
+            <Avatar>
+              <ImageIcon />
+            </Avatar>
+          </ListItemAvatar>
+          {providers.map((allProviders) => {
+              console.log('Hello World!!!');
+        console.log('inside MAP', allProviders)
+              return ( <ListItemText primary={providers} secondary={providers.first_name, providers.last_name} />
+                )})}
+          
+  
+        </ListItem>
     
-            
-            <ListItem  key={allProviders.id}>
-                {allProviders.first_name}
-          </ListItem>
-         
-)) 
-   
-</List>
-</Box>
-
-
-
-
-      {/* <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Summer BBQ"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                to Scott, Alex, Jennifer
-              </Typography>
-              {" — Wish I could come, but I'm out of town this…"}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Oui Oui"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                Sandra Adams
-              </Typography>
-              {' — Do you have Paris recommendations? Have you ever…'}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-    </List> */}
-
+      </List>
+     
        
-            
-
-    
-       
-
-
-
-
       
-    <Navigation/> 
-    </div>
+    
+        </div>
 
   
                  
