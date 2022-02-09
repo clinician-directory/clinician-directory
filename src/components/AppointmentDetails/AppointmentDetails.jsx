@@ -22,7 +22,7 @@ function AppointmentDetails() {
   }, []);
 
   return (
-    <div>
+    <div className="card">
       <h1>Appointment Details</h1>
 
       <p>Provider: {appointmentDetails.first_name} {appointmentDetails.last_name}</p>
