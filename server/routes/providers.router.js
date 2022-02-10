@@ -6,7 +6,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 /**
  * GET route to get ALL providers in our DB
  */
-router.get('/all', rejectUnauthenticated, (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
   pool.query(`SELECT * FROM "providers"`)
     .then(result => {
       res.send(result.rows);
@@ -20,7 +20,7 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
 /**
  * GET route to get providers with specific start time availability
  */
-router.get('/', rejectUnauthenticated, (req, res) => {
+router.get('/by_availability', rejectUnauthenticated, (req, res) => {
   pool.query(`SELECT * FROM "providers"`)
     .then(result => {
       res.send(result.rows);

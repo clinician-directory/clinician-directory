@@ -63,15 +63,14 @@ function CalendarMonth() {
   function handleCalendarEventClick(event) {
     // declare variable and set equal to id of appt clicked
     let apptId = event.event._def.publicId;
-    
+    // declare variable and set equal to start time of availability clicked
     let availabilityStart = event.event._instance.range.start;
-    console.log('availabilityStart', availabilityStart);
     /* send user to provider page if availability 
     on calendar is clicked (color green) */
     if (event.event._def.ui.backgroundColor === 'green') {
       history.push(`/provider?appointment_start=${availabilityStart}`);
-    /* send user to appointment details page if user 
-    appointment n calendar is clicked (color blue) */
+      /* send user to appointment details page if user 
+      appointment n calendar is clicked (color blue) */
     } else if (event.event._def.ui.backgroundColor === 'blue') {
       history.push(`/appointment_details/${apptId}`);
     }
@@ -88,7 +87,7 @@ function CalendarMonth() {
         weekends={true}
         slotMinTime={'08:00:00'}
         slotMaxTime={'22:00:00'}
-        contentHeight={window.innerHeight*.50}
+        contentHeight={window.innerHeight * .50}
         // combine appt and availability arrays
         events={[...userApptsForCalendar, ...availabilitiesForCalendar]}
 
