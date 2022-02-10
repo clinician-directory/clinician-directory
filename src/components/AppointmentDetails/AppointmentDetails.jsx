@@ -40,11 +40,20 @@ function AppointmentDetails() {
   on if provider has telemedicine option */
   function determineTelemedicineAvailability() {
     if (appointmentDetails.telemedicine) {
-      return <p className='appt-info'>AVAILABLE</p>
+      return <p className='appt-info'>Available</p>
     } else {
-      return <p className='appt-info'>NOT AVAILABLE</p>
+      return <p className='appt-info'>Not Available</p>
     };
   };
+
+  // // function to reformat appt date
+  // function reformatApptDate() {
+  //   // reformat dates in order to send to db
+  //   const dateToSlice = appointmentDetails.start_time;
+  //   const dateToFormat = dateToSlice.slice(0,20);
+  //   const date = format(dateToFormat, 'yyyy/MM/dd');
+  //   return date;
+  // };
 
   return (
     <div>
@@ -56,16 +65,16 @@ function AppointmentDetails() {
 
         <p id='provider'>Dr. {appointmentDetails.first_name} {appointmentDetails.last_name}</p>
         <p id='specialty'>{appointmentDetails.specialty}</p>
-        <p className='gray-title'>Date</p>
-        <p className='appt-info'>{appointmentDetails.start_time}</p>
-        <p className='gray-title'>Time</p>
+        <p className='gray-title'>Date & Time</p>
         <p className='appt-info'>{appointmentDetails.start_time} to {appointmentDetails.end_time}</p>
-        <p className='gray-title'>Location</p>
-        <p className='appt-info'>{appointmentDetails.address}</p>
-        <p className='gray-title'>Telemedicine</p>
-        <p className='appt-info'>{determineTelemedicineAvailability()}</p>
         <p className='gray-title'>Description</p>
         <p className='appt-info'>{appointmentDetails.description}</p>
+        <p className='gray-title'>Health System</p>
+        <p className='appt-info'>{appointmentDetails.health_system}</p>
+        <p className='gray-title'>Location</p>
+        <p className='appt-info'>{appointmentDetails.address}, {appointmentDetails.state} {appointmentDetails.zip_code}</p>
+        <p className='gray-title'>Telemedicine</p>
+        {determineTelemedicineAvailability()}
 
       </div>
 
