@@ -88,11 +88,7 @@ function App() {
           <Route exact path='/register'>
             <RegisterView />
           </Route>
-
-
-          <Route exact path='/test'>
-            <CalendarDay />
-          </Route>
+          
 
           <Route exact path='/ptable'>
             <ChooseProviderTable />
