@@ -4,7 +4,8 @@ import { useParams, useHistory } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 // MUI imports
 import { Button, Grid } from '@mui/material';
-// import to reformat date
+// import to reformat date and time
+import { DateTime } from "luxon";
 import { format } from 'date-fns';
 // import css page
 import './AppointmentDetails.css';
@@ -55,8 +56,16 @@ function AppointmentDetails() {
   //   return date;
   // };
 
+
   // console.log('appointmentDetails.date', appointmentDetails.date);
-  // console.log('appointmentDetails.start_time', appointmentDetails.start_time);
+  // const startTimeToFormat = appointmentDetails.start_time;
+
+  // let startTime = DateTime.fromISO(appointmentDetails.start_time);
+  // // let startTime = startTimeToFormat.toLocaleString(DateTime.DATETIME_FULL);
+
+  // // let startTime = DateTime.fromFormat(`${startTimeToFormat}`, "MMMM d yyyy");
+  // // DateTime.fromISO(startTime).toFormat('yyyy LLL dd');
+  // console.log('appointmentDetails.start_time', startTime);
   // console.log('appointmentDetails.end_time', appointmentDetails.end_time);
 
   return (
@@ -65,8 +74,8 @@ function AppointmentDetails() {
 
         <h1>Appointment Details</h1>
         <hr></hr>
-        <img src="doctor_photo.jpg" alt="Provider Image"></img>
-
+        <img src="https://media.istockphoto.com/photos/confident-african-american-female-doctor-isolated-picture-id175399910?k=20&m=175399910&s=612x612&w=0&h=fLjDqCS348updNvF1z6wdiTnGkD-CLHxtiH6a5Lw4wg=" 
+        alt="Provider Image"></img>
         <p id='provider'>Dr. {appointmentDetails.first_name} {appointmentDetails.last_name}</p>
         <p id='specialty'>{appointmentDetails.specialty}</p>
         <p className='gray-title'>Date & Time</p>

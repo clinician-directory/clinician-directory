@@ -24,6 +24,7 @@
     "dotenv": "^8.6.0",
     "express": "^4.17.2",
     "fullcalendar": "^5.10.1",
+    "luxon": "^2.3.0",
     "mui": "^0.0.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
