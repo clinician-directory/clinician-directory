@@ -55,6 +55,10 @@ function AppointmentDetails() {
   //   return date;
   // };
 
+  // console.log('appointmentDetails.date', appointmentDetails.date);
+  // console.log('appointmentDetails.start_time', appointmentDetails.start_time);
+  // console.log('appointmentDetails.end_time', appointmentDetails.end_time);
+
   return (
     <div>
       <div className="card">
@@ -66,7 +70,7 @@ function AppointmentDetails() {
         <p id='provider'>Dr. {appointmentDetails.first_name} {appointmentDetails.last_name}</p>
         <p id='specialty'>{appointmentDetails.specialty}</p>
         <p className='gray-title'>Date & Time</p>
-        <p className='appt-info'>{appointmentDetails.start_time} to {appointmentDetails.end_time}</p>
+        <p className='appt-info'>{appointmentDetails.date} from {appointmentDetails.start_time} to {appointmentDetails.end_time}</p>
         <p className='gray-title'>Description</p>
         <p className='appt-info'>{appointmentDetails.description}</p>
         <p className='gray-title'>Health System</p>
