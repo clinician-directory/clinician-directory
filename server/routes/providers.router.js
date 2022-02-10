@@ -29,21 +29,24 @@ router.get('/by_availability', rejectUnauthenticated, (req, res) => {
   let start = new Date(startQuery).toISOString();
 
   const queryText = `
-  SELECT * FROM "providers"
-  JOIN "availabilities"
-  	ON "providers"."id" = "availabilities"."provider_id"
-  LEFT OUTER JOIN "appointments"
-  	ON "providers"."id" = "appointments"."provider_id"
-  	AND "availabilities"."start_time" = "appointments"."start_time"
-  WHERE
-  	"availabilities"."start_time" = $1
-  	AND "appointments"."id" IS NULL;
+  SELECT "providers"."id", "providers"."first_name", "providers"."last_name", 
+    "providers"."specialty", "providers"."telemedicine", "providers"."city", 
+    "providers"."health_system", "providers"."address", "providers"."state", 
+    "providers"."zip_code" FROM "providers"
+    JOIN "availabilities"
+  	  ON "providers"."id" = "availabilities"."provider_id"
+    LEFT OUTER JOIN "appointments"
+  	  ON "providers"."id" = "appointments"."provider_id"
+  	  AND "availabilities"."start_time" = "appointments"."start_time"
+    WHERE
+  	  "availabilities"."start_time" = $1
+  	  AND "appointments"."id" IS NULL;
   `
   queryValues = [start]
 
   pool.query(queryText, queryValues)
   .then((result) => {
-    console.log(result.rows)
+    console.log('result.rows', result.rows)
     res.send(result.rows);
   })
   .catch((err) => {
