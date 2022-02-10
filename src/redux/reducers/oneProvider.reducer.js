@@ -2,7 +2,7 @@
 const oneProviderReducer = (state = {}, action) => {
     switch (action.type) {
       case 'SET_ONE_PROVIDER':
-        return action.payload;
+        return action.payload
       default:
         return state;
     }
