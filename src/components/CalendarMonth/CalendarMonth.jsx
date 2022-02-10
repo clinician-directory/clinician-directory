@@ -18,13 +18,11 @@ function CalendarMonth() {
   // Grab reducers from the redux store via useSelector
   const userAppointments = useSelector((store) => store.appointmentsReducer);
   const availabilities = useSelector((store) => store.availabilitiesReducer);
-  const clickedAvailability = useSelector((store) => store.clickedAvailability);
 
   // on page load fetch provider availabilities and user appointments
   // useEffect allows us to dispatch a call with type and send the payload data for a particular submission
   // we want to use the GET route via our fetchAvailabilities and fetchUserAppointments sagas in availabilities.saga.js and appointments.saga.js
   useEffect(() => {
-
     dispatch({ type: 'FETCH_AVAILABILITIES' })
     dispatch({ type: 'FETCH_USER_APPOINTMENTS' });
   }, []);
@@ -37,7 +35,7 @@ function CalendarMonth() {
   // function to add user appointments to array
   function addApptsToCalendar() {
     userAppointments.map(appointment => {
-      userApptsForCalendar.push({ id: appointment.id, title: 'Your Appointment', start: appointment.start_time, end: appointment.end_time, color: 'blue' });
+      userApptsForCalendar.push({ id: appointment.id, title: '', start: appointment.start_time, end: appointment.end_time, color: 'blue' });
     });
     return userApptsForCalendar;
   };
@@ -45,7 +43,7 @@ function CalendarMonth() {
   // function to add provider availabilities to array
   function addAvailabilitiesToCalendar() {
     availabilities.map(availability => {
-      availabilitiesForCalendar.push({ title: 'Available Appointment', start: availability.start_time, end: availability.end_time, color: 'green' });
+      availabilitiesForCalendar.push({ title: '', start: availability.start_time, end: availability.end_time, display: 'background' });
     });
     // console.log('availabilitiesForCalendar', availabilitiesForCalendar);
     return availabilitiesForCalendar;
