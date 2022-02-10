@@ -12,8 +12,8 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import UserPage from '../UserPage/UserPage';
 import CalendarMonth from '../CalendarMonth/CalendarMonth';
-import CalendarDay from '../CalendarDay/CalendarDay';
 import ChooseProvider from '../ChooseProvider/ChooseProvider';
+import AppointmentDetails from '../AppointmentDetails/AppointmentDetails';
 
 
 import LoginView from '../LoginView/LoginView';
@@ -35,24 +35,24 @@ function App() {
   return (
     <Router>
       <div>
-        
-        <TopAppBar/>
+
+        <TopAppBar />
 
         <Switch>
 
           {/* If no path is provided, just try to navigate to /user */}
           <Redirect exact from='/' to='/user' />
 
-            {/* USER/PROFILE VIEW */}
+          {/* USER/PROFILE VIEW */}
           <ProtectedRoute exact path='/user'>
             {user.id ?
-              <UserPage/>
+              <UserPage />
               :
               <Redirect to='/login' />
             }
           </ProtectedRoute>
 
-            {/* CALENDAR VIEW - MONTH */}
+          {/* CALENDAR VIEW - MONTH */}
           <ProtectedRoute exact path='/calendar'>
             {user.id ?
               <CalendarMonth />
@@ -61,7 +61,7 @@ function App() {
             }
           </ProtectedRoute>
 
-            {/* PROVIDER VIEW */}
+          {/* PROVIDER VIEW */}
           <ProtectedRoute exact path='/provider'>
             {user.id ?
               <ChooseProvider />
@@ -70,17 +70,16 @@ function App() {
             }
           </ProtectedRoute>
 
-
-               {/* CALENDAR DAY VIEW */}
-               <ProtectedRoute exact path='/day'>
+          {/* APPOINTMENT DETAILS VIEW */}
+          <ProtectedRoute exact path='/appointment_details/:id'>
             {user.id ?
-              <CalendarDay />
+              <AppointmentDetails />
               :
               <Redirect to='/login' />
             }
           </ProtectedRoute>
 
-            {/* LOGIN VIEW */}
+          {/* LOGIN VIEW */}
           <Route exact path='/login'>
             <LoginView />
           </Route>
@@ -89,6 +88,7 @@ function App() {
           <Route exact path='/register'>
             <RegisterView />
           </Route>
+
 
           <Route exact path='/test'>
             <CalendarDay />

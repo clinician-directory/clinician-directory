@@ -14,9 +14,9 @@
   margin-left: -1em;
 }
   
-#purple-dot::before {
+#blue-dot::before {
   content: "•";
-  color: purple;
+  color: blue;
   font-weight: bold;
   font-size: 2em;
   vertical-align: middle;
@@ -61,6 +61,6 @@
   margin-top: 8px;
   left: 50%;
   margin-left: -50px;
-  background-color: #36119f;
+  background-color: blue;
 }
 
