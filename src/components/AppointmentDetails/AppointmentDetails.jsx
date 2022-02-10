@@ -4,6 +4,8 @@ import { useParams, useHistory } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 // MUI imports
 import { Button, Grid } from '@mui/material';
+// import to reformat date
+import { format } from 'date-fns';
 // import css page
 import './AppointmentDetails.css';
 
@@ -15,7 +17,6 @@ function AppointmentDetails() {
   const history = useHistory();
   // access appt details reducer
   const appointmentDetails = useSelector(store => store.appointmentDetailsReducer);
-  console.log('appointmentDetails', appointmentDetails);
   // on page load
   useEffect(() => {
     // send dispatch to saga function to get appt details
@@ -35,6 +36,16 @@ function AppointmentDetails() {
     });
   };
 
+  /* function to append YES or NO to DOM depending 
+  on if provider has telemedicine option */
+  function determineTelemedicineAvailability() {
+    if (appointmentDetails.telemedicine) {
+      return <p className='appt-info'>AVAILABLE</p>
+    } else {
+      return <p className='appt-info'>NOT AVAILABLE</p>
+    };
+  };
+
   return (
     <div>
       <div className="card">
@@ -46,10 +57,13 @@ function AppointmentDetails() {
         <p id='provider'>Dr. {appointmentDetails.first_name} {appointmentDetails.last_name}</p>
         <p id='specialty'>{appointmentDetails.specialty}</p>
         <p className='gray-title'>Date</p>
+        <p className='appt-info'>{appointmentDetails.start_time}</p>
         <p className='gray-title'>Time</p>
         <p className='appt-info'>{appointmentDetails.start_time} to {appointmentDetails.end_time}</p>
         <p className='gray-title'>Location</p>
         <p className='appt-info'>{appointmentDetails.address}</p>
+        <p className='gray-title'>Telemedicine</p>
+        <p className='appt-info'>{determineTelemedicineAvailability()}</p>
         <p className='gray-title'>Description</p>
         <p className='appt-info'>{appointmentDetails.description}</p>
 
