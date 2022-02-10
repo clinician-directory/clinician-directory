@@ -55,6 +55,7 @@ function ChooseProviderTable() {
 
       //This is for MUI rendering
 
+
 {/* <Navigation/>  */}
 
     return(
@@ -67,24 +68,24 @@ function ChooseProviderTable() {
 
 
             <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-  
-
-         <ListItem >
+      {providers.map((provider) => {
+          console.log('hellooooooo');
+         return ( 
+            <ListItem key={providers.id} >
             <ListItemAvatar>
             <Avatar>
               <ImageIcon />
             </Avatar>
           </ListItemAvatar>
-          {providers.map((allProviders) => {
-              console.log('Hello World!!!');
-        console.log('inside MAP', allProviders)
-              return ( <ListItemText primary={providers} secondary={providers.first_name, providers.last_name} />
-                )})}
+  
+          <ListItemText primary="Olivia Smith" secondary="PM&R - 1900 CentraCare Circle St. Cloud"/>
           
   
         </ListItem>
+            )})} 
+      
     
-      </List>
+         </List>
      
        
       
