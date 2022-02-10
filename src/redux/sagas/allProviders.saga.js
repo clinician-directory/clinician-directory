@@ -10,13 +10,27 @@ function* fetchAllProviders() {
   } catch (error) {
     console.log('Error in fetchAllProviders saga', error);
   }
-}
+};
 
+// Saga function to fetch all available providers at appt time selected
+function* fetchAllAvailableProviders(action) {
+  try {
+    const response = yield axios({
+      method: 'GET',
+      url: `/api/providers/by_availability?appointment_start=${action.payload}`
+    });
 
+    console.log('in fetchAllAvailableProviders', response.data);
 
+    // yield put({ type: 'SET_PROVIDERS', payload: providers.data });
+  } catch (error) {
+    console.log('Error in fetchAllAvailableProviders saga', error);
+  }
+};
 
 function* AllProvidersSaga() {
   yield takeEvery('FETCH_ALL_PROVIDERS', fetchAllProviders);
+  yield takeEvery('FETCH_ALL_AVAILABLE_PROVIDERS', fetchAllAvailableProviders);
 }
 
 export default AllProvidersSaga;

@@ -27,7 +27,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
       res.send(result.rows);
     })
     .catch((err) => {
-      console.log('ERROR: Get all availabilties', err);
+      console.log('ERROR: Get all availabilities', err);
       res.sendStatus(500)
     })
 });

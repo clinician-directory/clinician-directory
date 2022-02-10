@@ -43,8 +43,8 @@ function ChooseProvider() {
   // TO RUN ON PAGE LOAD
   useEffect(() => {
     // dispatch({ type: 'FETCH_ALL_PROVIDERS' })
-    // send dispatch with params to FETCH ALL AVAILABLE PROVIDERS
 
+    // send dispatch with appointment start query to FETCH ALL AVAILABLE PROVIDERS
     dispatch({ 
       type: 'FETCH_ALL_AVAILABLE_PROVIDERS',
       payload: appointmentStart
