@@ -15,7 +15,7 @@ import DraftsIcon from '@mui/icons-material/Drafts';
 import Avatar from '@mui/material/Avatar';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ImageIcon from '@mui/icons-material/Image';
-
+import Button from '@mui/material/Button';
 
 
 
@@ -67,22 +67,22 @@ function ChooseProviderTable() {
             <h1> Providers Table </h1>
 
 
-            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
       {providers.map((provider) => {
           console.log('hellooooooo');
          return ( 
-            <ListItem key={providers.id} >
+            <ListItem key={provider.id} >
             <ListItemAvatar>
             <Avatar>
               <ImageIcon />
             </Avatar>
           </ListItemAvatar>
   
-          <ListItemText primary="Olivia Smith" secondary="PM&R - 1900 CentraCare Circle St. Cloud"/>
-          
-  
-        </ListItem>
-            )})} 
+          <ListItemText primary={provider.first_name + " " + provider.last_name} secondary={provider.address + " " + provider.state + " " + provider.zip_code + " " + "Specialty:" + " " + provider.specialty}/>
+          <Button variant="outlined"> Schedule</Button>
+            </ListItem>
+            )})};
+            
       
     
          </List>
