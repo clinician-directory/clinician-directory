@@ -45,8 +45,9 @@ function CalendarMonth() {
   // function to add provider availabilities to array
   function addAvailabilitiesToCalendar() {
     availabilities.map(availability => {
-      availabilitiesForCalendar.push({ id: availability.id, title: 'Available Appointment', start: availability.start_time, end: availability.end_time, color: 'green' });
+      availabilitiesForCalendar.push({ title: 'Available Appointment', start: availability.start_time, end: availability.end_time, color: 'green' });
     });
+    // console.log('availabilitiesForCalendar', availabilitiesForCalendar);
     return availabilitiesForCalendar;
   };
 
@@ -60,13 +61,15 @@ function CalendarMonth() {
 
   // function to handle click of event on calendar
   function handleCalendarEventClick(event) {
-    // console.log('in handleCalendarEventClick', event.event._def.publicId);
     // declare variable and set equal to id of appt clicked
     let apptId = event.event._def.publicId;
+    
+    let availabilityStart = event.event._instance.range.start;
+    console.log('availabilityStart', availabilityStart);
     /* send user to provider page if availability 
     on calendar is clicked (color green) */
     if (event.event._def.ui.backgroundColor === 'green') {
-      history.push('/provider');
+      history.push(`/provider?appointment_start=${availabilityStart}`);
     /* send user to appointment details page if user 
     appointment n calendar is clicked (color blue) */
     } else if (event.event._def.ui.backgroundColor === 'blue') {
