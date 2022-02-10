@@ -21,6 +21,7 @@ import RegisterView from '../RegisterView/RegisterView';
 import TopAppBar from '../TopAppBar/TopAppBar';
 
 import './App.css';
+import ChooseProviderTable from '../ChooseProvider/ChooseProviderTable';
 
 function App() {
   const dispatch = useDispatch();
@@ -87,6 +88,15 @@ function App() {
           <Route exact path='/register'>
             <RegisterView />
           </Route>
+
+
+          <Route exact path='/test'>
+            <CalendarDay />
+          </Route>
+
+          <Route exact path='/ptable'>
+            <ChooseProviderTable />
+          </Route> 
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

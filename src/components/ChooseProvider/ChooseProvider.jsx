@@ -10,6 +10,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+
+
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import InputLabel from '@mui/material/InputLabel';
@@ -17,6 +25,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Box from '@mui/material/Box';
+
 import './ChooseProvider.css';
 import Navigation from '../Navigation/Navigation';
 import swal from 'sweetalert';
@@ -145,32 +154,63 @@ function ChooseProvider() {
               <TableCell align="right"> <Typography variant="h6"></Typography></TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
-            {providers.map((allProviders) => {
-              console.log('inside MAP', allProviders)
-              return (
-                <TableRow key={allProviders.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                  <TableCell align="left">{allProviders.first_name}</TableCell>
-                  <TableCell align="center">{allProviders.last_name}</TableCell>
-                  <TableCell align="center">{allProviders.specialty}</TableCell>
-                  <TableCell align="center">{allProviders.telemedicine}</TableCell>
-                  <TableCell align="center">{allProviders.city}</TableCell>
-                  <TableCell align="center">{allProviders.health_system}</TableCell>
-                  <TableCell align="center">{allProviders.address}</TableCell>
-                  <TableCell align="center">{allProviders.state}</TableCell>
-                  <TableCell align="center">{allProviders.zip_code}</TableCell>
-                  <TableCell align="center"><button onClick={handleSchedule}>Schedule!</button></TableCell>
+            <TableBody>
+              {providers.map((allProviders) => {
+                console.log('inside MAP', allProviders)
+                      return ( 
+                          <TableRow key={allProviders.id}  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                <TableCell align="left">{allProviders.first_name}</TableCell>
+                                <TableCell align="center">{allProviders.last_name}</TableCell>
+                                <TableCell align="center">{allProviders.specialty}</TableCell>
+                                <TableCell align="center">{allProviders.telemedicine}</TableCell>
+                                <TableCell align="center">{allProviders.city}</TableCell>
+                                <TableCell align="center">{allProviders.health_system}</TableCell>
+                                <TableCell align="center">{allProviders.address}</TableCell>
+                                <TableCell align="center">{allProviders.state}</TableCell>
+                                <TableCell align="center">{allProviders.zip_code}</TableCell>
+                          </TableRow>
+                      )})}
+                  </TableBody>
+          </Table>
+        </TableContainer>
+        <Navigation/>
+    </div> //end div
+    
+    
 
-                </TableRow>
-              )
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <Navigation />
-    </div>
 
-  )//end return
+    
+      )//end return
+
+  //   <div className="container">
+    
+  //     <h2> These are providers available!</h2>
+  //     <p>Name</p>
+  //     <p>Specialty</p>
+  //     <p>address</p>
+  //     <div>
+  //       <ul>
+  //     {providers.map((allProviders) => {
+  //       return (
+  //         <div>
+  //         <p>
+  //           {allProviders.first_name} {allProviders.last_name}
+  //            {allProviders.specialty} {allProviders.telemedicine}
+  //            {allProviders.city} {allProviders.city} {allProviders.health_system}
+  //            {allProviders.address} {allProviders.state}{allProviders.zip_code}
+  //         </p>
+  //         </div>
+  //       )
+  //     })}
+
+  //     </ul>
+  //     </div>
+   
+      
+  //     <button onClick={handleSchedule}>Schedule Appointment!</button>
+  //   </div>
+  // );
+
 }
 
 export default ChooseProvider;
