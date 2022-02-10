@@ -53,7 +53,10 @@ function ChooseProviderTable() {
       //Accessing Redux/Reducer
   const providers = useSelector(store => store.allProvidersReducer)
 
-      //This is for MUI rendering
+      //button
+      function handleButton(){
+          history.push('/')
+      }
 
 
 {/* <Navigation/>  */}
@@ -79,7 +82,7 @@ function ChooseProviderTable() {
           </ListItemAvatar>
   
           <ListItemText primary={provider.first_name + " " + provider.last_name} secondary={provider.address + " " + provider.state + " " + provider.zip_code + " " + "Specialty:" + " " + provider.specialty}/>
-          <Button variant="outlined"> Schedule</Button>
+          <Button variant="outlined" onClick={handleButton}> Schedule</Button>
             </ListItem>
             )})};
             
