@@ -19,10 +19,11 @@ function* fetchAllAvailableProviders(action) {
       method: 'GET',
       url: `/api/providers/by_availability?appointment_start=${action.payload}`
     });
-
-    console.log('in fetchAllAvailableProviders', response.data);
-
-    // yield put({ type: 'SET_PROVIDERS', payload: providers.data });
+    // console.log('in fetchAllAvailableProviders', response.data);
+    yield put({
+      type: 'SET_AVAILABLE_PROVIDERS',
+      payload: response.data
+    });
   } catch (error) {
     console.log('Error in fetchAllAvailableProviders saga', error);
   }
