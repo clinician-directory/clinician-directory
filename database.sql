@@ -41,12 +41,10 @@ CREATE TABLE "appointments" (
   "id" SERIAL PRIMARY KEY,
   "start_time" timestamp without time zone,
   "end_time" timestamp without time zone,
-  "provider_id"  INT REFERENCES "providers" (id) ON DELETE CASCADE NOT NULL
-  "user_id"  INT REFERENCES "users" (id) ON DELETE CASCADE NOT NULL
+  "provider_id"  INT REFERENCES "providers" (id) ON DELETE CASCADE NOT NULL,
+  "user_id"  INT REFERENCES "user" (id) ON DELETE CASCADE NOT NULL
 );
 
-INSERT INTO "public"."user"("id","username","password","role","first_name","last_name","phone","address","city","state","zip_code")
-VALUES
 INSERT INTO "public"."user"("id","username","password","role","first_name","last_name","phone","address","city","state","zip_code")
 VALUES
 (1,E'guest1',E'$2a$10$Lh6S5wmg9MWi5fuMEyrBBOcLz1ukeDkZ2SN5nsZMcsNXmJB6er3/6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
@@ -68,7 +66,7 @@ VALUES
 (7,E'Isabella',E'Miller',E'Orthopedics',TRUE,E'St.Cloud',E'CentraCare',E'1107 Hart Boulevard Monticello',E' MN',E'55362'),
 (8,E'Mia',E'Davis',E'Psychology',FALSE,E'Minneapolis',E'Fairview',E'Southdale Place 3400 W. 66th St. Edina',E' MN',E'55435'),
 (9,E'Luna',E'Rodriguez',E'Psychology',FALSE,E'St.Cloud',E'CentraCare',E'1107 Hart Boulevard Monticello',E' MN',E'55362'),
-(10,E'Harper',E'Martinez',E'Physical Therapy',FALSE,E'St.Cloud',E'CentraCare',E'1360 Elm Street East St. Joseph',E' MN',E'56374'),
+(10,E'Harper',E'Martinez',E'Physical Therapy',FALSE,E'St.Cloud',E'CentraCare',E'1360 Elm Street East St. Joseph',E' MN',E'56374');
 
 INSERT INTO "availabilities"
 	("provider_id", "start_time", "end_time")
