@@ -8,10 +8,6 @@ import interactionPlugin from '@fullcalendar/interaction';
 import Navigation from '../Navigation/Navigation';
 // import css file
 import './CalendarMonth.css';
-// import { Calendar } from '@fullcalendar/core';
-// import dayGridPlugin from '@fullcalendar/daygrid';
-// import Luxon to format dates
-import { DateTime } from "luxon";
 
 
 function CalendarMonth() {
@@ -19,9 +15,6 @@ function CalendarMonth() {
   const dispatch = useDispatch();
   // Define history in order to route to page
   const history = useHistory();
-  // Define luxon for date format
-const { DateTime } = require("luxon");
-const dt = DateTime.local(2017, 5, 15, 8, 30).toISO();
   // Grab reducers from the redux store via useSelector
   const userAppointments = useSelector((store) => store.appointmentsReducer);
   const availabilities = useSelector((store) => store.availabilitiesReducer);
@@ -71,6 +64,7 @@ const dt = DateTime.local(2017, 5, 15, 8, 30).toISO();
     // declare variable and set equal to id of appt clicked
     let apptId = event.event._def.publicId;
     // declare variable and set equal to start time of availability clicked
+    // this lets us create the dateTime format for the google calendar api to send off an event to personal calendar
     let availabilityStart = event.event._instance.range.start.toISOString().slice(0,-5)
     let availabilityEnd = event.event._instance.range.end.toISOString().slice(0,-5)
     console.log(availabilityStart)
@@ -87,6 +81,7 @@ const dt = DateTime.local(2017, 5, 15, 8, 30).toISO();
     // }
     // ?app_start=$[thing}&appt_end=${otherThing}
 
+    // We use the availability start and availability end time in our URL that we push to the provider page
     if (event.event._def.ui.backgroundColor === 'green') {
       history.push(`/provider?appointment_start=${availabilityStart}&appointment_end=${availabilityEnd}`);
       /* send user to appointment details page if user

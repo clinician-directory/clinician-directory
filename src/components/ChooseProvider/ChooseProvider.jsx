@@ -35,25 +35,14 @@ function ChooseProvider() {
   const history = useHistory();
   const dispatch = useDispatch();
   // access appointment start in query string and set equal to variable
+  // access appointment end in query string and set equal to variable
   const search = useLocation().search;
   const appointmentStart = new URLSearchParams(search).get('appointment_start');
   const appointmentEnd = new URLSearchParams(search).get('appointment_end');
   console.log(appointmentStart);
-  // let date_test = new Date(appointmentStart.replace(/-/g,"/"));
-  // console.log(date_test);
-  // let availabilityStart = event.event._instance.range.start;
-  // console.log(availabilityStart);
-  // let formattedAppointment = (appointmentStart.toISOString())
-  // console.log(formattedAppointment);
-  //handles button to go to calendar view
-  // const handleSchedule = () => {
-  //   history.push('/calendarmonth')
-  // }
 
   //Accessing Redux/Reducer
   const providers = useSelector(store => store.allProvidersReducer)
-  //const selectedProvider = useSelector(store => store.OneProviderReducer)
-
   //creating local states for clinicians to enter in new providers to add to the database
 
   // TO RUN ON PAGE LOAD
@@ -66,9 +55,6 @@ function ChooseProvider() {
       payload: appointmentStart
     });
   }, [])
-
-
-  // {/* <button onClick={handleGoogleClick}>New Google Calendar Event</button> */ }
 
   const handleSchedule = (provider) => {
   // google calendar click feature
@@ -185,42 +171,7 @@ function ChooseProvider() {
         </TableContainer>
         <Navigation/>
     </div> //end div
-
-
-
-
-
-      )//end return
-
-  //   <div className="container">
-
-  //     <h2> These are providers available!</h2>
-  //     <p>Name</p>
-  //     <p>Specialty</p>
-  //     <p>address</p>
-  //     <div>
-  //       <ul>
-  //     {providers.map((allProviders) => {
-  //       return (
-  //         <div>
-  //         <p>
-  //           {allProviders.first_name} {allProviders.last_name}
-  //            {allProviders.specialty} {allProviders.telemedicine}
-  //            {allProviders.city} {allProviders.city} {allProviders.health_system}
-  //            {allProviders.address} {allProviders.state}{allProviders.zip_code}
-  //         </p>
-  //         </div>
-  //       )
-  //     })}
-
-  //     </ul>
-  //     </div>
-
-
-  //     <button onClick={handleSchedule}>Schedule Appointment!</button>
-  //   </div>
-  // );
-
+  )//end return
 }
 
 export default ChooseProvider;
