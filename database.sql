@@ -5,16 +5,16 @@ DROP TABLE IF EXISTS "user";
 
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL,
-    "role" VARCHAR (200),
-    "first_name" VARCHAR (1000),
-    "last_name" VARCHAR (1000),
-    "phone" INTEGER,
-    "address" VARCHAR (1000),
-    "city" VARCHAR (1000),
-    "state" VARCHAR (4),
-    "zip_code" INTEGER 
+    "username" VARCHAR (100) UNIQUE NOT NULL,
+    "password" VARCHAR (100) NOT NULL,
+    "role" VARCHAR (100),
+    "first_name" VARCHAR (100),
+    "last_name" VARCHAR (100),
+    "phone" VARCHAR (100),
+    "address" VARCHAR (100),
+    "city" VARCHAR (100),
+    "state" VARCHAR (100),
+    "zip_code" VARCHAR (100)
 );
 
 CREATE TABLE "providers" (
@@ -45,14 +45,14 @@ CREATE TABLE "appointments" (
   "user_id"  INT REFERENCES "user" (id) ON DELETE CASCADE NOT NULL
 );
 
-INSERT INTO "public"."user"("id","username","password","role","first_name","last_name","phone","address","city","state","zip_code")
+INSERT INTO "public"."user"("username","password","role","first_name","last_name","phone","address","city","state","zip_code")
 VALUES
-(1,E'guest1',E'$2a$10$Lh6S5wmg9MWi5fuMEyrBBOcLz1ukeDkZ2SN5nsZMcsNXmJB6er3/6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
-(2,E'guest2',E'$2a$10$dY9WthVtO8412VHfgJFsIOhJDdtiel4NcWU63H4P7q05KzoIIzR8m',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
-(3,E'guest3',E'$2a$10$Vb396jQj1ZgweFk0XS7W2eOntKQs8GisPaXE20S0WzR9UEJKr0cee',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
-(4,E'guest4',E'$2a$10$X5D.lFoIYCnOSffu/4jEnulU0wmRa.gvrIUXOaDosZjCakcPI8Pc.',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
-(5,E'guest5',E'$2a$10$eRh5Me5j6ZtJFOoaWIRkqO0b7cOmWZha3xB4D4f2haElG2DqX9rwq',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
-(6,E'guest6',E'$2a$10$ekIWJ4S7kKdVqBnxS4YtbOETUWzWLhENWwm0/YjeMSF7aohuBddm.',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+(E'guest1',E'$2a$10$Lh6S5wmg9MWi5fuMEyrBBOcLz1ukeDkZ2SN5nsZMcsNXmJB6er3/6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(E'guest2',E'$2a$10$dY9WthVtO8412VHfgJFsIOhJDdtiel4NcWU63H4P7q05KzoIIzR8m',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(E'guest3',E'$2a$10$Vb396jQj1ZgweFk0XS7W2eOntKQs8GisPaXE20S0WzR9UEJKr0cee',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(E'guest4',E'$2a$10$X5D.lFoIYCnOSffu/4jEnulU0wmRa.gvrIUXOaDosZjCakcPI8Pc.',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(E'guest5',E'$2a$10$eRh5Me5j6ZtJFOoaWIRkqO0b7cOmWZha3xB4D4f2haElG2DqX9rwq',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(E'guest6',E'$2a$10$ekIWJ4S7kKdVqBnxS4YtbOETUWzWLhENWwm0/YjeMSF7aohuBddm.',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 -- Passwords are all 1234
 
 INSERT INTO "public"."providers"("id","first_name","last_name","specialty","telemedicine","city","health_system","address","state","zip_code")
