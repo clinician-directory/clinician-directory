@@ -4,10 +4,24 @@ import { useParams, useHistory } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 // MUI imports
 import { Button, Grid } from '@mui/material';
+// MUI imports for cancel appointment confirmation
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
 // import to reformat date and time
 import { DateTime } from "luxon";
 // import css page
 import './AppointmentDetails.css';
+
+
+// for MUI cancel appointment confirmation alert
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 
 function AppointmentDetails() {
   // params so we can access appointment by id on this page
@@ -26,15 +40,15 @@ function AppointmentDetails() {
     });
   }, []);
 
-  // handle click of back button
-  const handleBackClick = () => {
-    // send user back to calendar
-    history.push('/calendar');
-    // clear reducer
-    dispatch({
-      type: 'CLEAR_APPOINTMENT_DETAILS'
-    });
-  };
+  // // handle click of back button
+  // const handleBackClick = () => {
+  //   // send user back to calendar
+  //   history.push('/calendar');
+  //   // clear reducer
+  //   dispatch({
+  //     type: 'CLEAR_APPOINTMENT_DETAILS'
+  //   });
+  // };
 
   /* function to append available or not to DOM depending 
   on if provider has telemedicine option */
@@ -44,6 +58,16 @@ function AppointmentDetails() {
     } else {
       return <p className='appt-info'>Not Available</p>
     };
+  };
+
+
+  // for MUI cancel appointment confirmation alert
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
   };
 
   // reformat date, start and end times to display nicely on DOM
@@ -74,8 +98,43 @@ function AppointmentDetails() {
 
       </div>
 
+      {/* delete button and MUI delete confirmation alert */}
+      <Grid
+        container
+        direction="row"
+        justifyContent="space-evenly"
+        alignItems="center"
+      >
+        <Button
+          variant="contained"
+          size="large"
+          onClick={handleClickOpen}
+        >
+          CANCEL APPOINTMENT
+        </Button>
+        <Dialog
+          open={open}
+          TransitionComponent={Transition}
+          keepMounted
+          onClose={handleClose}
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <DialogTitle>{"Cancel this appointment?"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-slide-description">
+              Click YES CANCEL to confirm you wish to cancel your appointment. Click NO to keep
+              your appointment and return back to the appointment details page. 
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>NO</Button>
+            {/* <Button onClick={handleAlertDeleteClick}>Delete</Button> */}
+          </DialogActions>
+        </Dialog>
+      </Grid>
+
       {/* back button */}
-      <div>
+      {/* <div>
         <Grid
           container
           direction="row"
@@ -90,7 +149,7 @@ function AppointmentDetails() {
             Back To Calendar
           </Button>
         </Grid>
-      </div>
+      </div> */}
 
       <Navigation />
 
