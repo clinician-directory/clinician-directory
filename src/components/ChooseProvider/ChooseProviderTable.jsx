@@ -50,12 +50,21 @@ import Navigation from '../Navigation/Navigation';
 
 function ChooseProviderTable() {
 
+    const dispatch = useDispatch();
+    const history = useHistory();
+
       //Accessing Redux/Reducer
   const providers = useSelector(store => store.allProvidersReducer)
+  const provider = useSelector(store => store.oneProvidersReducer)
 
       //button
-      function handleButton(){
-          history.push('/')
+      function handleScheduleButton(provider){
+          console.log('inside schedule button, provider clicked is:', providers.id);
+          dispatch({
+              type: 'SET_ONE_PROVIDER',
+              payload: provider.id
+          })
+          history.push('/appointment_details/:id')
       }
 
 
@@ -82,17 +91,20 @@ function ChooseProviderTable() {
           </ListItemAvatar>
   
           <ListItemText primary={provider.first_name + " " + provider.last_name} secondary={provider.address + " " + provider.state + " " + provider.zip_code + " " + "Specialty:" + " " + provider.specialty}/>
-          <Button variant="outlined" onClick={handleButton}> Schedule</Button>
+          <Button variant="outlined" onClick={handleScheduleButton}> Schedule</Button>
             </ListItem>
             )})};
             
       
     
          </List>
+
+         <Navigation />
      
        
       
     
+
         </div>
 
   
