@@ -56,6 +56,25 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
+/* DELETE appointment from database, only if 
+user is logged in and user id matches */
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+
+  const queryText = `
+    DELETE FROM "appointments"
+    WHERE "id"=$1 AND "user_id"=$2;
+  `;
+  const queryValues = [req.params.id, req.user.id];
+  pool.query(queryText, queryValues)
+    .then((dbRes) => {
+      // send back success
+      res.sendStatus(201);
+    })
+    .catch((dbErr) => {
+      console.error('ERROR: DELETE appointment request failed:', dbErr);
+      res.sendStatus(500);
+    })
+});
 
 
 module.exports = router;
