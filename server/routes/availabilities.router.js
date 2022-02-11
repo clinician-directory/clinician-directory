@@ -16,11 +16,11 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 	    "availabilities"."start_time",
 	    "availabilities"."end_time"
     FROM "availabilities"
-	  LEFT OUTER JOIN "appointments"
-		ON "availabilities"."provider_id" = "appointments"."provider_id"
-		AND "availabilities"."start_time" = "appointments"."start_time"
-	  WHERE 
-		  "appointments"."id" IS NULL;
+	    LEFT OUTER JOIN "appointments"
+		    ON "availabilities"."provider_id" = "appointments"."provider_id"
+		    AND "availabilities"."start_time" = "appointments"."start_time"
+	    WHERE 
+		    "appointments"."id" IS NULL;
     `
   pool.query(query)
     .then((result) => {
@@ -31,6 +31,5 @@ router.get('/', rejectUnauthenticated, (req, res) => {
       res.sendStatus(500)
     })
 });
-
 
 module.exports = router;

@@ -74,7 +74,7 @@ function ChooseProvider() {
   // google calendar click feature
 
   let gapi = window.gapi;
-  let CLIENT_ID = '1096656813980-v8ibiouk9dg649om7og02kr5kuied9fq.apps.googleusercontent.com';
+  let CLIENT_ID = process.env.CLIENT_ID;
   let API_KEY = process.env.API_KEY;
   // // Array of API discovery doc URLs for APIs used by the quickstart
   let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
