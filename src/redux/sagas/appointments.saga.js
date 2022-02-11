@@ -43,17 +43,14 @@ function* deleteAppointment(action) {
       method: 'DELETE',
       url: `/api/appointments/${action.payload}`
     });
-    console.log('response.data', response.data);
-    // // send DB response to appt details reducer
-    // yield put({
-    //   type: 'LOAD_APPOINTMENT_DETAILS',
-    //   payload: response.data[0]
-    // });
+    // re-render availabilities and appointments
+    yield put({ type: 'FETCH_AVAILABILITIES' });
+    yield put({ type: 'FETCH_USER_APPOINTMENTS' });
+
   } catch (err) {
-    console.error('fetchAppointmentDetails error', err);
+    console.error('deleteAppointment error', err);
   }
 };
-
 
 // Saga function to intercept dispatches
 function* appointmentsSaga() {

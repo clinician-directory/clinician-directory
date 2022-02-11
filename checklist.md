@@ -9,8 +9,8 @@ on click of cancel button
   - [x] write saga function to intercept dispatch
   - [x] axios delete 
   - [x] setup delete route & SQL query
-  - [ ] in saga function, yield put to GET appts & details for calendar page
-  - [ ] reroute user back to calendar page
+  - [x] in saga function, yield put to GET appts & details for calendar page
+  - [x] reroute user back to calendar page
   - [ ] sweet alert confirmation
 
 - [ ] add logo

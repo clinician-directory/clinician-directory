@@ -89,12 +89,13 @@ function AppointmentDetails() {
     //   icon: "success",
     // });
 
-    // // clear reducer
-    // dispatch({
-    //   type: 'CLEAR_TRIP_DETAILS'
-    // });
-    // // send user to user page after trip is deleted
-    // history.push('/user')
+    // clear reducer
+    dispatch({
+      type: 'CLEAR_APPOINTMENT_DETAILS'
+    });
+    // send user to calendar view
+    history.push('/calendar');
+
   };
 
 
