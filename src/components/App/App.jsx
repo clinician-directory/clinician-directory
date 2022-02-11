@@ -89,10 +89,9 @@ function App() {
             <RegisterView />
           </Route>
 
-
           <Route exact path='/ptable'>
             <ChooseProviderTable />
-          </Route> 
+          </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
