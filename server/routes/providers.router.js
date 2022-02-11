@@ -49,7 +49,6 @@ router.get('/by_availability', rejectUnauthenticated, (req, res) => {
 
   pool.query(queryText, queryValues)
   .then((result) => {
-    console.log('result.rows', result.rows)
     res.send(result.rows);
   })
   .catch((err) => {

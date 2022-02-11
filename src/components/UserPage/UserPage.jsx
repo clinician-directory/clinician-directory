@@ -55,32 +55,32 @@ function UserPage() {
 
   return (
     <div>
-      <Grid container id='grid-container-text-fields' direction='column' spacing={2}>
-        <Grid item>
-          <TextField value={firstName} onChange={(event)=>setFirstName(event.target.value)} label='First Name' />
+      <Grid container id='grid-container-text-fields' direction='row' alignItems='stretch' spacing={2}>
+        <Grid item xs={10}>
+          <TextField fullWidth value={firstName} onChange={(event)=>setFirstName(event.target.value)} label='First Name' />
         </Grid>
-        <Grid item>
-          <TextField value={lastName} onChange={(event)=>setLastName(event.target.value)} label='Last Name' />
+        <Grid item xs={10}>
+          <TextField fullWidth value={lastName} onChange={(event)=>setLastName(event.target.value)} label='Last Name' />
         </Grid>
-        <Grid item>
-          <TextField value={phone} onChange={(event)=>setPhone(event.target.value)} label='Phone' />
+        <Grid item xs={10}>
+          <TextField fullWidth value={phone} onChange={(event)=>setPhone(event.target.value)} label='Phone' />
         </Grid>
-        <Grid item>
-          <TextField value={address} onChange={(event)=>setAddress(event.target.value)} label='Address' />
+        <Grid item xs={10}>
+          <TextField fullWidth value={address} onChange={(event)=>setAddress(event.target.value)} label='Address' />
         </Grid>
-        <Grid item>
-          <TextField value={city} onChange={(event)=>setCity(event.target.value)} label='City' />
+        <Grid item xs={10}>
+          <TextField fullWidth value={city} onChange={(event)=>setCity(event.target.value)} label='City' />
         </Grid>
-        <Grid item>
-          <TextField value={state} onChange={(event)=>setState(event.target.value)} label='State' />
+        <Grid item xs={10}>
+          <TextField fullWidth value={state} onChange={(event)=>setState(event.target.value)} label='State' />
         </Grid>
-        <Grid item>
-          <TextField value={zipCode} onChange={(event)=>setZipCode(event.target.value)} label='Zip Code' />
+        <Grid item xs={10}>
+          <TextField fullWidth value={zipCode} onChange={(event)=>setZipCode(event.target.value)} label='Zip Code' />
         </Grid>
-        <Grid item>
+        <Grid item xs={10}>
           <Button variant='outlined' onClick={handleSaveButton}>Save Changes</Button>
         </Grid>
-        <Grid item>
+        <Grid item xs={10}>
           <Button variant='contained' onClick={()=>handleSchedule(1)}>Schedule an Appointment</Button>
         </Grid>
       </Grid>

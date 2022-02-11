@@ -2,14 +2,22 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Card, CardActionArea, CardMedia, Typography, CardContent } from "@material-ui/core";
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import {Card, CardActionArea, CardMedia, Typography, CardContent } from "@material-ui/core";
+
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
+import InboxIcon from '@mui/icons-material/Inbox';
+import DraftsIcon from '@mui/icons-material/Drafts';
+import Avatar from '@mui/material/Avatar';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ImageIcon from '@mui/icons-material/Image';
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
+
 
 
 import Accordion from '@mui/material/Accordion';
@@ -26,6 +34,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Box from '@mui/material/Box';
 
+import doc1 from './doc1.jpeg'
 import './ChooseProvider.css';
 import Navigation from '../Navigation/Navigation';
 import swal from 'sweetalert';
@@ -43,6 +52,7 @@ function ChooseProvider() {
 
   //Accessing Redux/Reducer
   const providers = useSelector(store => store.allProvidersReducer)
+
   //creating local states for clinicians to enter in new providers to add to the database
 
   // TO RUN ON PAGE LOAD
@@ -60,7 +70,7 @@ function ChooseProvider() {
   // google calendar click feature
 
   let gapi = window.gapi;
-  let CLIENT_ID = '1096656813980-v8ibiouk9dg649om7og02kr5kuied9fq.apps.googleusercontent.com';
+  let CLIENT_ID = process.env.CLIENT_ID;
   let API_KEY = process.env.API_KEY;
   // // Array of API discovery doc URLs for APIs used by the quickstart
   let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
@@ -74,6 +84,7 @@ function ChooseProvider() {
     'location': `${provider.address}`,
     'description': `Appointment with ${provider.first_name} ${provider.last_name}`,
     'start': {
+
       // 'dateTime': '2022-01-29T09:00:00',
       'dateTime': appointmentStart,
       'timeZone': 'US/Central'
@@ -81,14 +92,9 @@ function ChooseProvider() {
     'end': {
       // 'dateTime': '2022-01-29T17:00:00',
       'dateTime': appointmentEnd,
+
       'timeZone': 'US/Central'
     },
-    'attendees': [
-      { 'email': 'justin.lewis.cummings@gmail.com' },
-      { 'email': 'yasir.uddin@icloud.com' },
-      { 'email': 'selamtalem@gmail.com' },
-      { 'email': 'kbrown55347@gmail.com' }
-    ],
     'reminders': {
       'useDefault': true
     }
@@ -127,12 +133,25 @@ function ChooseProvider() {
 
     })
   };
+
+     //button
+     function handleScheduleButton(provider){
+      console.log('inside schedule button, provider clicked is:', provider.id);
+      dispatch({
+          type: 'SET_ONE_PROVIDER',
+          payload: {provider}
+      })
+      history.push('/appointment_details/:id')
+  }
+
+
   return (
     <div>
       <form>
         <h3 className="providers">List of providers</h3>
 
       </form>
+
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650, fontSize: 10, backgroundColor: '##bd9dcc', marginBottom: 10 }} aria-label="simple table">
           <TableHead>
@@ -150,6 +169,7 @@ function ChooseProvider() {
             </TableRow>
           </TableHead>
             <TableBody>
+
               {providers.map((provider) => {
                 console.log('inside MAP', provider)
                       return (
@@ -164,14 +184,18 @@ function ChooseProvider() {
                                 <TableCell align="center">{provider.state}</TableCell>
                                 <TableCell align="center">{provider.zip_code}</TableCell>
                                 <TableCell align="center"><button onClick={ () => handleSchedule(provider)}>Schedule!</button></TableCell>
+
                           </TableRow>
                       )})}
                   </TableBody>
           </Table>
         </TableContainer>
+
         <Navigation/>
+
     </div> //end div
   )//end return
+
 }
 
 export default ChooseProvider;
