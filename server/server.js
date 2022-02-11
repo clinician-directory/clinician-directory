@@ -13,7 +13,7 @@ const userRouter = require('./routes/user.router');
 const availabilitiesRouter = require('./routes/availabilities.router');
 
 // require in appointments router
-const appointmentsRouter = require ('./routes/appointments.router');
+const appointmentsRouter = require('./routes/appointments.router');
 const providersRouter = require('./routes/providers.router');
 
 

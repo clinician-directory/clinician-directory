@@ -53,11 +53,28 @@ function* fetchAppointmentDetails(action) {
   }
 };
 
+// Saga function to DELETE appointment
+function* deleteAppointment(action) {
+  try {
+    const response = yield axios({
+      method: 'DELETE',
+      url: `/api/appointments/${action.payload}`
+    });
+    // re-render availabilities and appointments
+    yield put({ type: 'FETCH_AVAILABILITIES' });
+    yield put({ type: 'FETCH_USER_APPOINTMENTS' });
+
+  } catch (err) {
+    console.error('deleteAppointment error', err);
+  }
+};
+
 
 // Saga function to intercept dispatches
 function* appointmentsSaga() {
   yield takeEvery('FETCH_USER_APPOINTMENTS', fetchUserAppointments);
   yield takeEvery('FETCH_APPOINTMENT_DETAILS', fetchAppointmentDetails);
+  yield takeEvery('DELETE_APPOINTMENT', deleteAppointment);
 };
 
 export default appointmentsSaga;

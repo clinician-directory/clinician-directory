@@ -4,10 +4,26 @@ import { useParams, useHistory } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 // MUI imports
 import { Button, Grid } from '@mui/material';
+// MUI imports for cancel appointment dialog
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
 // import to reformat date and time
 import { DateTime } from "luxon";
+// sweet alert import
+import SweetAlert from 'sweetalert';
 // import css page
 import './AppointmentDetails.css';
+
+
+// for MUI cancel appointment dialog
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 
 function AppointmentDetails() {
   // params so we can access appointment by id on this page
@@ -26,16 +42,6 @@ function AppointmentDetails() {
     });
   }, []);
 
-  // handle click of back button
-  const handleBackClick = () => {
-    // send user back to calendar
-    history.push('/calendar');
-    // clear reducer
-    dispatch({
-      type: 'CLEAR_APPOINTMENT_DETAILS'
-    });
-  };
-
   /* function to append available or not to DOM depending 
   on if provider has telemedicine option */
   function determineTelemedicineAvailability() {
@@ -51,6 +57,37 @@ function AppointmentDetails() {
   let startTime = DateTime.fromISO(appointmentDetails.start_time).toFormat('h:mm a');
   let endTime = DateTime.fromISO(appointmentDetails.end_time).toFormat('h:mm a');
 
+
+  // for MUI cancel appointment dialog
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  // on click of YES CANCEL button in MUI cancel appointment dialog
+  const handleYesCancelClick = () => {
+    // dispatch to saga to delete appointment
+    dispatch({
+      type: 'DELETE_APPOINTMENT',
+      payload: params.id
+    });
+    // cancel appointment confirmation alert
+    SweetAlert({
+      title: 'Success! Your appointment has been cancelled.',
+      icon: 'success',
+    });
+    // clear reducer
+    dispatch({
+      type: 'CLEAR_APPOINTMENT_DETAILS'
+    });
+    // send user to calendar view
+    history.push('/calendar');
+  };
+
+
   return (
     <div>
       <div className="card">
@@ -65,8 +102,6 @@ function AppointmentDetails() {
         <p className='appt-info'>{date}</p>
         <p className='gray-title'>Time</p>
         <p className='appt-info'>{startTime} to {endTime}</p>
-        <p className='gray-title'>Description</p>
-        <p className='appt-info'>{appointmentDetails.description}</p>
         <p className='gray-title'>Health System</p>
         <p className='appt-info'>{appointmentDetails.health_system}</p>
         <p className='gray-title'>Location</p>
@@ -76,23 +111,40 @@ function AppointmentDetails() {
 
       </div>
 
-      {/* back button */}
-      <div>
-        <Grid
-          container
-          direction="row"
-          justifyContent="space-evenly"
-          alignItems="center"
+      {/* cancel appointment button and MUI dialog */}
+      <Grid
+        container
+        direction="row"
+        justifyContent="space-evenly"
+        alignItems="center"
+      >
+        <Button
+          variant="contained"
+          size="large"
+          onClick={handleClickOpen}
         >
-          <Button
-            variant="contained"
-            onClick={handleBackClick}
-            size="large"
-          >
-            Back To Calendar
-          </Button>
-        </Grid>
-      </div>
+          CANCEL APPOINTMENT
+        </Button>
+        <Dialog
+          open={open}
+          TransitionComponent={Transition}
+          keepMounted
+          onClose={handleClose}
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <DialogTitle>{"Cancel this appointment?"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-slide-description">
+              Click YES CANCEL to confirm you wish to cancel your appointment. Click NO to keep
+              your appointment and return back to the appointment details page.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleYesCancelClick}>YES CANCEL</Button>
+            <Button onClick={handleClose}>NO</Button>
+          </DialogActions>
+        </Dialog>
+      </Grid>
 
       <Navigation />
 

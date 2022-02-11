@@ -48,13 +48,13 @@ router.get('/by_availability', rejectUnauthenticated, (req, res) => {
   queryValues = [startQuery]
 
   pool.query(queryText, queryValues)
-  .then((result) => {
-    res.send(result.rows);
-  })
-  .catch((err) => {
-    console.log('ERROR: GET all providers by availability', err);
-    res.sendStatus(500)
-  });
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log('ERROR: GET all providers by availability', err);
+      res.sendStatus(500)
+    });
 });
 
 // Getting a provider by id:

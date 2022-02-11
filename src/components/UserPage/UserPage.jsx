@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
@@ -55,6 +55,7 @@ function UserPage() {
 
   return (
     <div>
+
       <Grid container id='grid-container-text-fields' direction='row' alignItems='stretch' spacing={2}>
         <Grid item xs={10}>
           <TextField fullWidth value={firstName} onChange={(event)=>setFirstName(event.target.value)} label='First Name' />
@@ -76,15 +77,18 @@ function UserPage() {
         </Grid>
         <Grid item xs={10}>
           <TextField fullWidth value={zipCode} onChange={(event)=>setZipCode(event.target.value)} label='Zip Code' />
+
         </Grid>
         <Grid item xs={10}>
           <Button variant='outlined' onClick={handleSaveButton}>Save Changes</Button>
         </Grid>
+
         <Grid item xs={10}>
           <Button variant='contained' onClick={()=>handleSchedule(1)}>Schedule an Appointment</Button>
+
         </Grid>
       </Grid>
-      <Navigation/>
+      <Navigation />
     </div>
   );
 }

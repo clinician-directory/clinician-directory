@@ -49,10 +49,10 @@ router.post('/logout', (req, res) => {
 router.put('/:id', rejectUnauthenticated, (req, res) => {
   console.log('req.body', req.body);
   console.log('req.params.id', req.params.id);
-  
-  
+
+
   const id = req.body.id
-  const userObject =  req.body
+  const userObject = req.body
 
   const queryText = `
     UPDATE "user" 
@@ -66,6 +66,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
       zip_code = $8 
     WHERE "id" = $1;
   `;
+
   const queryValues = [ 
     id, 
     userObject.first_name, 
@@ -75,15 +76,16 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
     userObject.city, 
     userObject.state, 
     Number(userObject.zip_code)
+
   ];
 
   pool.query(queryText, queryValues)
-        .then((dbRes) => {
-        res.sendStatus(200);
+    .then((dbRes) => {
+      res.sendStatus(200);
     })
     .catch((dbErr) => {
-        console.log('UPDATE database error', dbErr);
-        res.sendStatus(500);
+      console.log('UPDATE database error', dbErr);
+      res.sendStatus(500);
     });
 });
 
