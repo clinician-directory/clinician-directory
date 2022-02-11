@@ -2,12 +2,16 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import FullCalendar from '@fullcalendar/react';
+import FullCalendar, { diffDayAndTime } from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import Navigation from '../Navigation/Navigation';
 // import css file
 import './CalendarMonth.css';
+// import { Calendar } from '@fullcalendar/core';
+// import dayGridPlugin from '@fullcalendar/daygrid';
+// import Luxon to format dates
+import { DateTime } from "luxon";
 
 
 function CalendarMonth() {
@@ -15,6 +19,9 @@ function CalendarMonth() {
   const dispatch = useDispatch();
   // Define history in order to route to page
   const history = useHistory();
+  // Define luxon for date format
+const { DateTime } = require("luxon");
+const dt = DateTime.local(2017, 5, 15, 8, 30).toISO();
   // Grab reducers from the redux store via useSelector
   const userAppointments = useSelector((store) => store.appointmentsReducer);
   const availabilities = useSelector((store) => store.availabilitiesReducer);
@@ -64,12 +71,25 @@ function CalendarMonth() {
     // declare variable and set equal to id of appt clicked
     let apptId = event.event._def.publicId;
     // declare variable and set equal to start time of availability clicked
-    let availabilityStart = event.event._instance.range.start;
-    /* send user to provider page if availability 
+    let availabilityStart = event.event._instance.range.start.toISOString().slice(0,-5)
+    let availabilityEnd = event.event._instance.range.end.toISOString().slice(0,-5)
+    console.log(availabilityStart)
+    console.log(availabilityEnd);
+    console.log(event)
+    /* send user to provider page if availability
     on calendar is clicked (color green) */
+    // if (event.event._def.ui.backgroundColor === 'green') {
+    //   history.push(`/provider?appointment_start=${availabilityStart}`);
+    //   /* send user to appointment details page if user
+    //   appointment n calendar is clicked (color blue) */
+    // } else if (event.event._def.ui.backgroundColor === 'blue') {
+    //   history.push(`/appointment_details/${apptId}`);
+    // }
+    // ?app_start=$[thing}&appt_end=${otherThing}
+
     if (event.event._def.ui.backgroundColor === 'green') {
-      history.push(`/provider?appointment_start=${availabilityStart}`);
-      /* send user to appointment details page if user 
+      history.push(`/provider?appointment_start=${availabilityStart}&appointment_end=${availabilityEnd}`);
+      /* send user to appointment details page if user
       appointment n calendar is clicked (color blue) */
     } else if (event.event._def.ui.backgroundColor === 'blue') {
       history.push(`/appointment_details/${apptId}`);

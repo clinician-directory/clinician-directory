@@ -37,7 +37,14 @@ function ChooseProvider() {
   // access appointment start in query string and set equal to variable
   const search = useLocation().search;
   const appointmentStart = new URLSearchParams(search).get('appointment_start');
-
+  const appointmentEnd = new URLSearchParams(search).get('appointment_end');
+  console.log(appointmentStart);
+  // let date_test = new Date(appointmentStart.replace(/-/g,"/"));
+  // console.log(date_test);
+  // let availabilityStart = event.event._instance.range.start;
+  // console.log(availabilityStart);
+  // let formattedAppointment = (appointmentStart.toISOString())
+  // console.log(formattedAppointment);
   //handles button to go to calendar view
   // const handleSchedule = () => {
   //   history.push('/calendarmonth')
@@ -54,12 +61,16 @@ function ChooseProvider() {
     // dispatch({ type: 'FETCH_ALL_PROVIDERS' })
 
     // send dispatch with appointment start query to FETCH ALL AVAILABLE PROVIDERS
-    dispatch({ 
+    dispatch({
       type: 'FETCH_ALL_AVAILABLE_PROVIDERS',
       payload: appointmentStart
     });
   }, [])
 
+
+  // {/* <button onClick={handleGoogleClick}>New Google Calendar Event</button> */ }
+
+  const handleSchedule = (provider) => {
   // google calendar click feature
 
   let gapi = window.gapi;
@@ -73,15 +84,17 @@ function ChooseProvider() {
   let SCOPES = "https://www.googleapis.com/auth/calendar";
 
   let event = {
-    'summary': 'Clinician Directory Meet&Greet!',
-    'location': 'Somewhere Near You',
-    'description': 'I made this event from the google API. SPIKE COMPLETE',
+    'summary': 'You have an appointment!',
+    'location': `${provider.address}`,
+    'description': `Appointment with ${provider.first_name} ${provider.last_name}`,
     'start': {
-      'dateTime': '2022-01-29T09:00:00-07:00',
+      // 'dateTime': '2022-01-29T09:00:00',
+      'dateTime': appointmentStart,
       'timeZone': 'US/Central'
     },
     'end': {
-      'dateTime': '2022-01-29T17:00:00-07:00',
+      // 'dateTime': '2022-01-29T17:00:00',
+      'dateTime': appointmentEnd,
       'timeZone': 'US/Central'
     },
     'attendees': [
@@ -94,10 +107,6 @@ function ChooseProvider() {
       'useDefault': true
     }
   };
-  {/* <button onClick={handleGoogleClick}>New Google Calendar Event</button> */ }
-
-  const handleSchedule = (e) => {
-
     gapi.load('client:auth2', () => {
       console.log('Loaded client');
 
@@ -155,19 +164,20 @@ function ChooseProvider() {
             </TableRow>
           </TableHead>
             <TableBody>
-              {providers.map((allProviders) => {
-                console.log('inside MAP', allProviders)
-                      return ( 
-                          <TableRow key={allProviders.id}  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                <TableCell align="left">{allProviders.first_name}</TableCell>
-                                <TableCell align="center">{allProviders.last_name}</TableCell>
-                                <TableCell align="center">{allProviders.specialty}</TableCell>
-                                <TableCell align="center">{allProviders.telemedicine}</TableCell>
-                                <TableCell align="center">{allProviders.city}</TableCell>
-                                <TableCell align="center">{allProviders.health_system}</TableCell>
-                                <TableCell align="center">{allProviders.address}</TableCell>
-                                <TableCell align="center">{allProviders.state}</TableCell>
-                                <TableCell align="center">{allProviders.zip_code}</TableCell>
+              {providers.map((provider) => {
+                console.log('inside MAP', provider)
+                      return (
+                          <TableRow key={provider.id}  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                <TableCell align="left">{provider.first_name}</TableCell>
+                                <TableCell align="center">{provider.last_name}</TableCell>
+                                <TableCell align="center">{provider.specialty}</TableCell>
+                                <TableCell align="center">{provider.telemedicine}</TableCell>
+                                <TableCell align="center">{provider.city}</TableCell>
+                                <TableCell align="center">{provider.health_system}</TableCell>
+                                <TableCell align="center">{provider.address}</TableCell>
+                                <TableCell align="center">{provider.state}</TableCell>
+                                <TableCell align="center">{provider.zip_code}</TableCell>
+                                <TableCell align="center"><button onClick={ () => handleSchedule(provider)}>Schedule!</button></TableCell>
                           </TableRow>
                       )})}
                   </TableBody>
@@ -175,15 +185,15 @@ function ChooseProvider() {
         </TableContainer>
         <Navigation/>
     </div> //end div
-    
-    
 
 
-    
+
+
+
       )//end return
 
   //   <div className="container">
-    
+
   //     <h2> These are providers available!</h2>
   //     <p>Name</p>
   //     <p>Specialty</p>
@@ -205,8 +215,8 @@ function ChooseProvider() {
 
   //     </ul>
   //     </div>
-   
-      
+
+
   //     <button onClick={handleSchedule}>Schedule Appointment!</button>
   //   </div>
   // );
