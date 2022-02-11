@@ -3,7 +3,6 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
-
 // Handles the GET route
 // rejectUnauthenticated prevents anyone who is not logged in to use this
 // This uses a sql query and values to get the data from db on postico
@@ -24,7 +23,32 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     `
   pool.query(query)
     .then((result) => {
-      res.send(result.rows);
+      // console.log(result.rows);
+      
+      const availabilities = result.rows;
+      const appointQuery = `
+        SELECT * FROM "appointments"
+        WHERE "user_id"=$1
+      `
+      pool.query(appointQuery, [req.user.id])
+      .then((response)=>{
+        
+        const appointments = response.rows
+        const events = []
+
+        for (const availability of availabilities) {
+          if ( !appointments.find(( {start_time} ) => start_time.getTime() === availability.start_time.getTime() ) ) {
+            events.push(availability)
+            console.log('Conflict found');
+            console.log(availability);
+          }
+        }
+        
+        res.send(events);
+      })
+      .catch((error)=>{
+        console.log('ERROR:', error);
+      })
     })
     .catch((err) => {
       console.log('ERROR: Get all availabilities', err);
