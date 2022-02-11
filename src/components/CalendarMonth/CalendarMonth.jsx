@@ -43,7 +43,7 @@ function CalendarMonth() {
   // function to add provider availabilities to array
   function addAvailabilitiesToCalendar() {
     availabilities.map(availability => {
-      availabilitiesForCalendar.push({ title: '', start: availability.start_time, end: availability.end_time, display: 'background' });
+      availabilitiesForCalendar.push({ title: '', start: availability.start_time, end: availability.end_time, color: 'green'});
     });
     // console.log('availabilitiesForCalendar', availabilitiesForCalendar);
     return availabilitiesForCalendar;
