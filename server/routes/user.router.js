@@ -70,11 +70,11 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
     id, 
     userObject.first_name, 
     userObject.last_name, 
-    userObject.phone, 
+    Number(userObject.phone), 
     userObject.address, 
     userObject.city, 
     userObject.state, 
-    userObject.zip_code
+    Number(userObject.zip_code)
   ];
 
   pool.query(queryText, queryValues)
