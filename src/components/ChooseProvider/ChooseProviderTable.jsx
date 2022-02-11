@@ -66,9 +66,48 @@ function ChooseProviderTable() {
           })
           history.push('/appointment_details/:id')
       }
+    
+
+      //button
+      const handleSchedule = (e) => {
+
+        gapi.load('client:auth2', () => {
+          console.log('Loaded client');
+    
+    
+          gapi.client.init({
+            apiKey: API_KEY,
+            clientId: CLIENT_ID,
+            discoveryDocs: DISCOVERY_DOCS,
+            scope: SCOPES
+          })
+    
+          gapi.client.load('calendar', 'v3', () => console.log('YAAAAAAAZZZZ'))
+    
+          gapi.auth2.getAuthInstance().signIn()
+            .then(() => {
+    
+              console.log('Success!');
+    
+              var request = gapi.client.calendar.events.insert({
+                'calendarId': 'primary',
+                'resource': event
+              });
+    
+              request.execute(event => {
+                console.log(event);
+              })
+    
+            })
+            .catch((error) => {
+              console.log(error);
+            })
+    
+        })
+      };
 
 
-{/* <Navigation/>  */}
+
 
     return(
 
@@ -81,7 +120,6 @@ function ChooseProviderTable() {
 
             <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
       {providers.map((provider) => {
-          console.log('hellooooooo');
          return ( 
             <ListItem key={provider.id} >
             <ListItemAvatar>
@@ -91,7 +129,7 @@ function ChooseProviderTable() {
           </ListItemAvatar>
   
           <ListItemText primary={provider.first_name + " " + provider.last_name} secondary={provider.address + " " + provider.state + " " + provider.zip_code + " " + "Specialty:" + " " + provider.specialty}/>
-          <Button variant="outlined" onClick={handleScheduleButton}> Schedule</Button>
+          <Button variant="outlined" onClick={handleSchedule}>Schedule</Button>
             </ListItem>
             )})};
             
@@ -101,7 +139,7 @@ function ChooseProviderTable() {
 
          <Navigation />
      
-       
+         <Navigation/>
       
     
 
