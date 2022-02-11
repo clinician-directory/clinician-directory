@@ -90,9 +90,9 @@ function App() {
           </Route>
 
 
-          <Route exact path='/test'>
+          {/* <Route exact path='/test'>
             <CalendarDay />
-          </Route>
+          </Route> */}
 
           <Route exact path='/ptable'>
             <ChooseProviderTable />
