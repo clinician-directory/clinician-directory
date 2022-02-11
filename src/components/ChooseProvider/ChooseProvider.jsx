@@ -77,11 +77,11 @@ function ChooseProvider() {
     'location': 'Somewhere Near You',
     'description': 'I made this event from the google API. SPIKE COMPLETE',
     'start': {
-      'dateTime': '2022-01-29T09:00:00-07:00',
+      'dateTime': '2022-02-11T09:00:00-07:00',
       'timeZone': 'US/Central'
     },
     'end': {
-      'dateTime': '2022-01-29T17:00:00-07:00',
+      'dateTime': '2022-02-11T17:00:00-07:00',
       'timeZone': 'US/Central'
     },
     'attendees': [
@@ -168,6 +168,7 @@ function ChooseProvider() {
                                 <TableCell align="center">{allProviders.address}</TableCell>
                                 <TableCell align="center">{allProviders.state}</TableCell>
                                 <TableCell align="center">{allProviders.zip_code}</TableCell>
+                                <TableCell align="center"><button onClick={handleSchedule}>Schedule!</button></TableCell>
                           </TableRow>
                       )})}
                   </TableBody>

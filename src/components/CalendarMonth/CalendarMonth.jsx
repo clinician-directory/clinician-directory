@@ -66,7 +66,7 @@ function CalendarMonth() {
     /* send user to provider page if availability 
     on calendar is clicked (color green) */
     if (event.event._def.ui.backgroundColor === 'green') {
-      history.push(`/provider?appointment_start=${availabilityStart}`);
+      history.push(`/ptable?appointment_start=${availabilityStart}`);
       /* send user to appointment details page if user 
       appointment n calendar is clicked (color blue) */
     } else if (event.event._def.ui.backgroundColor === 'blue') {
