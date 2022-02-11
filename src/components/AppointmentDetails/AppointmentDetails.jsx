@@ -60,6 +60,11 @@ function AppointmentDetails() {
     };
   };
 
+  // reformat date, start and end times to display nicely on DOM
+  let date = DateTime.fromISO(appointmentDetails.start_time).toFormat('LLLL dd, yyyy');
+  let startTime = DateTime.fromISO(appointmentDetails.start_time).toFormat('h:mm a');
+  let endTime = DateTime.fromISO(appointmentDetails.end_time).toFormat('h:mm a');
+
 
   // for MUI cancel appointment confirmation alert
   const [open, setOpen] = React.useState(false);
@@ -70,10 +75,28 @@ function AppointmentDetails() {
     setOpen(false);
   };
 
-  // reformat date, start and end times to display nicely on DOM
-  let date = DateTime.fromISO(appointmentDetails.start_time).toFormat('LLLL dd, yyyy');
-  let startTime = DateTime.fromISO(appointmentDetails.start_time).toFormat('h:mm a');
-  let endTime = DateTime.fromISO(appointmentDetails.end_time).toFormat('h:mm a');
+  // on click of YES CANCEL button in MUI cancel appointment confirmation alert
+  const handleYesCancelClick = () => {
+    // dispatch to saga to delete appointment
+    dispatch({
+      type: 'DELETE_APPOINTMENT',
+      payload: params.id
+    });
+
+    // trip deleted confirmation alert
+    // swal({
+    //   text: "This trip has been removed from your account.",
+    //   icon: "success",
+    // });
+
+    // // clear reducer
+    // dispatch({
+    //   type: 'CLEAR_TRIP_DETAILS'
+    // });
+    // // send user to user page after trip is deleted
+    // history.push('/user')
+  };
+
 
   return (
     <div>
@@ -123,12 +146,12 @@ function AppointmentDetails() {
           <DialogContent>
             <DialogContentText id="alert-dialog-slide-description">
               Click YES CANCEL to confirm you wish to cancel your appointment. Click NO to keep
-              your appointment and return back to the appointment details page. 
+              your appointment and return back to the appointment details page.
             </DialogContentText>
           </DialogContent>
           <DialogActions>
+            <Button onClick={handleYesCancelClick}>YES CANCEL</Button>
             <Button onClick={handleClose}>NO</Button>
-            {/* <Button onClick={handleAlertDeleteClick}>Delete</Button> */}
           </DialogActions>
         </Dialog>
       </Grid>
