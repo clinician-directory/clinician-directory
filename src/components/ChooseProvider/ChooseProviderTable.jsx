@@ -50,16 +50,64 @@ import Navigation from '../Navigation/Navigation';
 
 function ChooseProviderTable() {
 
+    const dispatch = useDispatch();
+    const history = useHistory();
+
       //Accessing Redux/Reducer
   const providers = useSelector(store => store.allProvidersReducer)
+  const provider = useSelector(store => store.oneProvidersReducer)
 
       //button
-      function handleButton(){
-          history.push('/')
+      function handleScheduleButton(provider){
+          console.log('inside schedule button, provider clicked is:', providers.id);
+          dispatch({
+              type: 'SET_ONE_PROVIDER',
+              payload: provider.id
+          })
+          history.push('/appointment_details/:id')
       }
+    
+
+      //button
+      const handleSchedule = (e) => {
+
+        gapi.load('client:auth2', () => {
+          console.log('Loaded client');
+    
+    
+          gapi.client.init({
+            apiKey: API_KEY,
+            clientId: CLIENT_ID,
+            discoveryDocs: DISCOVERY_DOCS,
+            scope: SCOPES
+          })
+    
+          gapi.client.load('calendar', 'v3', () => console.log('YAAAAAAAZZZZ'))
+    
+          gapi.auth2.getAuthInstance().signIn()
+            .then(() => {
+    
+              console.log('Success!');
+    
+              var request = gapi.client.calendar.events.insert({
+                'calendarId': 'primary',
+                'resource': event
+              });
+    
+              request.execute(event => {
+                console.log(event);
+              })
+    
+            })
+            .catch((error) => {
+              console.log(error);
+            })
+    
+        })
+      };
 
 
-{/* <Navigation/>  */}
+
 
     return(
 
@@ -72,7 +120,6 @@ function ChooseProviderTable() {
 
             <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
       {providers.map((provider) => {
-          console.log('hellooooooo');
          return ( 
             <ListItem key={provider.id} >
             <ListItemAvatar>
@@ -82,17 +129,20 @@ function ChooseProviderTable() {
           </ListItemAvatar>
   
           <ListItemText primary={provider.first_name + " " + provider.last_name} secondary={provider.address + " " + provider.state + " " + provider.zip_code + " " + "Specialty:" + " " + provider.specialty}/>
-          <Button variant="outlined" onClick={handleButton}> Schedule</Button>
+          <Button variant="outlined" onClick={handleSchedule}>Schedule</Button>
             </ListItem>
             )})};
             
       
     
          </List>
+
+         <Navigation />
      
-       
+         <Navigation/>
       
     
+
         </div>
 
   

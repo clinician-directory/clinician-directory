@@ -19,6 +19,23 @@ function* fetchUserAppointments() {
   }
 };
 
+// Saga to post a scheduled appointment created
+function* scheduleAppointment(action) {
+  console.log(' THIS scheduleAppointment action:', action);
+  try {
+      axios({
+          method: 'POST',
+          url: '/api/appointments',
+          data: action.payload
+      })
+      yield put ({ type: 'FETCH_USER_APPOINTMENTS'})
+  } catch {
+      console.log('POST error');
+  }
+} 
+
+
+
 // Saga function to GET appointment details for one appointment
 function* fetchAppointmentDetails(action) {
   try {
@@ -51,6 +68,7 @@ function* deleteAppointment(action) {
     console.error('deleteAppointment error', err);
   }
 };
+
 
 // Saga function to intercept dispatches
 function* appointmentsSaga() {

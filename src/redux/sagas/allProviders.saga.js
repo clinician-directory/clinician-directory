@@ -15,6 +15,7 @@ function* fetchAllProviders() {
 // Saga function to fetch all available providers at appt time selected
 function* fetchAllAvailableProviders(action) {
   try {
+    console.log(action.payload)
     const response = yield axios({
       method: 'GET',
       url: `/api/providers/by_availability?appointment_start=${action.payload}`

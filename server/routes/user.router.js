@@ -66,15 +66,17 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
       zip_code = $8 
     WHERE "id" = $1;
   `;
-  const queryValues = [
-    id,
-    userObject.first_name,
-    userObject.last_name,
-    userObject.phone,
-    userObject.address,
-    userObject.city,
-    userObject.state,
-    userObject.zip_code
+
+  const queryValues = [ 
+    id, 
+    userObject.first_name, 
+    userObject.last_name, 
+    Number(userObject.phone), 
+    userObject.address, 
+    userObject.city, 
+    userObject.state, 
+    Number(userObject.zip_code)
+
   ];
 
   pool.query(queryText, queryValues)

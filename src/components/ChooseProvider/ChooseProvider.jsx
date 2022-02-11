@@ -2,14 +2,22 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Card, CardActionArea, CardMedia, Typography, CardContent } from "@material-ui/core";
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import {Card, CardActionArea, CardMedia, Typography, CardContent } from "@material-ui/core";
+
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
+import InboxIcon from '@mui/icons-material/Inbox';
+import DraftsIcon from '@mui/icons-material/Drafts';
+import Avatar from '@mui/material/Avatar';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ImageIcon from '@mui/icons-material/Image';
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
+
 
 
 import Accordion from '@mui/material/Accordion';
@@ -26,6 +34,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Box from '@mui/material/Box';
 
+import doc1 from './doc1.jpeg'
 import './ChooseProvider.css';
 import Navigation from '../Navigation/Navigation';
 import swal from 'sweetalert';
@@ -35,17 +44,14 @@ function ChooseProvider() {
   const history = useHistory();
   const dispatch = useDispatch();
   // access appointment start in query string and set equal to variable
+  // access appointment end in query string and set equal to variable
   const search = useLocation().search;
   const appointmentStart = new URLSearchParams(search).get('appointment_start');
-
-  //handles button to go to calendar view
-  // const handleSchedule = () => {
-  //   history.push('/calendarmonth')
-  // }
+  const appointmentEnd = new URLSearchParams(search).get('appointment_end');
+  console.log(appointmentStart);
 
   //Accessing Redux/Reducer
   const providers = useSelector(store => store.allProvidersReducer)
-  //const selectedProvider = useSelector(store => store.OneProviderReducer)
 
   //creating local states for clinicians to enter in new providers to add to the database
 
@@ -54,16 +60,17 @@ function ChooseProvider() {
     // dispatch({ type: 'FETCH_ALL_PROVIDERS' })
 
     // send dispatch with appointment start query to FETCH ALL AVAILABLE PROVIDERS
-    dispatch({ 
+    dispatch({
       type: 'FETCH_ALL_AVAILABLE_PROVIDERS',
       payload: appointmentStart
     });
   }, [])
 
+  const handleSchedule = (provider) => {
   // google calendar click feature
 
   let gapi = window.gapi;
-  let CLIENT_ID = '1096656813980-v8ibiouk9dg649om7og02kr5kuied9fq.apps.googleusercontent.com';
+  let CLIENT_ID = process.env.CLIENT_ID;
   let API_KEY = process.env.API_KEY;
   // // Array of API discovery doc URLs for APIs used by the quickstart
   let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
@@ -73,31 +80,25 @@ function ChooseProvider() {
   let SCOPES = "https://www.googleapis.com/auth/calendar";
 
   let event = {
-    'summary': 'Clinician Directory Meet&Greet!',
-    'location': 'Somewhere Near You',
-    'description': 'I made this event from the google API. SPIKE COMPLETE',
+    'summary': 'You have an appointment!',
+    'location': `${provider.address}`,
+    'description': `Appointment with ${provider.first_name} ${provider.last_name}`,
     'start': {
-      'dateTime': '2022-01-29T09:00:00-07:00',
+
+      // 'dateTime': '2022-01-29T09:00:00',
+      'dateTime': appointmentStart,
       'timeZone': 'US/Central'
     },
     'end': {
-      'dateTime': '2022-01-29T17:00:00-07:00',
+      // 'dateTime': '2022-01-29T17:00:00',
+      'dateTime': appointmentEnd,
+
       'timeZone': 'US/Central'
     },
-    'attendees': [
-      { 'email': 'justin.lewis.cummings@gmail.com' },
-      { 'email': 'yasir.uddin@icloud.com' },
-      { 'email': 'selamtalem@gmail.com' },
-      { 'email': 'kbrown55347@gmail.com' }
-    ],
     'reminders': {
       'useDefault': true
     }
   };
-  {/* <button onClick={handleGoogleClick}>New Google Calendar Event</button> */ }
-
-  const handleSchedule = (e) => {
-
     gapi.load('client:auth2', () => {
       console.log('Loaded client');
 
@@ -132,12 +133,25 @@ function ChooseProvider() {
 
     })
   };
+
+     //button
+     function handleScheduleButton(provider){
+      console.log('inside schedule button, provider clicked is:', provider.id);
+      dispatch({
+          type: 'SET_ONE_PROVIDER',
+          payload: {provider}
+      })
+      history.push('/appointment_details/:id')
+  }
+
+
   return (
     <div>
       <form>
         <h3 className="providers">List of providers</h3>
 
       </form>
+
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650, fontSize: 10, backgroundColor: '##bd9dcc', marginBottom: 10 }} aria-label="simple table">
           <TableHead>
@@ -155,61 +169,32 @@ function ChooseProvider() {
             </TableRow>
           </TableHead>
             <TableBody>
-              {providers.map((allProviders) => {
-                console.log('inside MAP', allProviders)
-                      return ( 
-                          <TableRow key={allProviders.id}  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                <TableCell align="left">{allProviders.first_name}</TableCell>
-                                <TableCell align="center">{allProviders.last_name}</TableCell>
-                                <TableCell align="center">{allProviders.specialty}</TableCell>
-                                <TableCell align="center">{allProviders.telemedicine}</TableCell>
-                                <TableCell align="center">{allProviders.city}</TableCell>
-                                <TableCell align="center">{allProviders.health_system}</TableCell>
-                                <TableCell align="center">{allProviders.address}</TableCell>
-                                <TableCell align="center">{allProviders.state}</TableCell>
-                                <TableCell align="center">{allProviders.zip_code}</TableCell>
+
+              {providers.map((provider) => {
+                console.log('inside MAP', provider)
+                      return (
+                          <TableRow key={provider.id}  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                <TableCell align="left">{provider.first_name}</TableCell>
+                                <TableCell align="center">{provider.last_name}</TableCell>
+                                <TableCell align="center">{provider.specialty}</TableCell>
+                                <TableCell align="center">{provider.telemedicine}</TableCell>
+                                <TableCell align="center">{provider.city}</TableCell>
+                                <TableCell align="center">{provider.health_system}</TableCell>
+                                <TableCell align="center">{provider.address}</TableCell>
+                                <TableCell align="center">{provider.state}</TableCell>
+                                <TableCell align="center">{provider.zip_code}</TableCell>
+                                <TableCell align="center"><button onClick={ () => handleSchedule(provider)}>Schedule!</button></TableCell>
+
                           </TableRow>
                       )})}
                   </TableBody>
           </Table>
         </TableContainer>
+
         <Navigation/>
+
     </div> //end div
-    
-    
-
-
-    
-      )//end return
-
-  //   <div className="container">
-    
-  //     <h2> These are providers available!</h2>
-  //     <p>Name</p>
-  //     <p>Specialty</p>
-  //     <p>address</p>
-  //     <div>
-  //       <ul>
-  //     {providers.map((allProviders) => {
-  //       return (
-  //         <div>
-  //         <p>
-  //           {allProviders.first_name} {allProviders.last_name}
-  //            {allProviders.specialty} {allProviders.telemedicine}
-  //            {allProviders.city} {allProviders.city} {allProviders.health_system}
-  //            {allProviders.address} {allProviders.state}{allProviders.zip_code}
-  //         </p>
-  //         </div>
-  //       )
-  //     })}
-
-  //     </ul>
-  //     </div>
-   
-      
-  //     <button onClick={handleSchedule}>Schedule Appointment!</button>
-  //   </div>
-  // );
+  )//end return
 
 }
 
