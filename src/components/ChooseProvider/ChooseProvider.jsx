@@ -2,14 +2,22 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Card, CardActionArea, CardMedia, Typography, CardContent } from "@material-ui/core";
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import {Card, CardActionArea, CardMedia, Typography, CardContent } from "@material-ui/core";
+
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
+import InboxIcon from '@mui/icons-material/Inbox';
+import DraftsIcon from '@mui/icons-material/Drafts';
+import Avatar from '@mui/material/Avatar';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ImageIcon from '@mui/icons-material/Image';
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
+
 
 
 import Accordion from '@mui/material/Accordion';
@@ -26,6 +34,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Box from '@mui/material/Box';
 
+import doc1 from './doc1.jpeg'
 import './ChooseProvider.css';
 import Navigation from '../Navigation/Navigation';
 import swal from 'sweetalert';
@@ -45,6 +54,8 @@ function ChooseProvider() {
 
   //Accessing Redux/Reducer
   const providers = useSelector(store => store.allProvidersReducer)
+  const provider = useSelector(store => store.oneProvidersReducer)
+
   //const selectedProvider = useSelector(store => store.OneProviderReducer)
 
   //creating local states for clinicians to enter in new providers to add to the database
@@ -132,6 +143,18 @@ function ChooseProvider() {
 
     })
   };
+
+     //button
+     function handleScheduleButton(providers){
+      console.log('inside schedule button, provider clicked is:', providers.id);
+      dispatch({
+          type: 'FETCH_THIS_ONE_PROVIDER',
+          payload: providers.id
+      })
+      history.push('/appointment_details/:id')
+  }
+
+
   return (
     <div>
       <form>
@@ -175,7 +198,7 @@ function ChooseProvider() {
           </Table>
         </TableContainer>
         <Navigation/>
-    </div> //end div
+      </div> //end div
     
     
 

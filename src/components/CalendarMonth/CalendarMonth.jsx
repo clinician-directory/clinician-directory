@@ -65,6 +65,7 @@ function CalendarMonth() {
     let availabilityStart = event.event._instance.range.start;
     /* send user to provider page if availability 
     on calendar is clicked (color green) */
+    
     if (event.event._def.ui.backgroundColor === 'green') {
       history.push(`/ptable?appointment_start=${availabilityStart}`);
       /* send user to appointment details page if user 
@@ -75,6 +76,14 @@ function CalendarMonth() {
     dispatch({
       type: 'LOAD_AVAILABILITIES',
       payload: availabilities
+    })
+
+    dispatch({
+      type: 'SET_ONE_AVAILABILITY',
+      payload: {
+        start_time: event.event._instance.range.start,
+        end_time: event.event._instance.range.end,
+      }
     })
   };
 

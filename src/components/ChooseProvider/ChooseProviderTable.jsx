@@ -50,43 +50,23 @@ import Navigation from '../Navigation/Navigation';
 
 function ChooseProviderTable() {
 
-      //Accessing Redux/Reducer
-    const providers = useSelector(store => store.allProvidersReducer)
-
+    const dispatch = useDispatch();
     const history = useHistory();
 
-    let gapi = window.gapi;
-    let CLIENT_ID = '1096656813980-v8ibiouk9dg649om7og02kr5kuied9fq.apps.googleusercontent.com'
-    let API_KEY = process.env.API_KEY;
-    // // Array of API discovery doc URLs for APIs used by the quickstart
-    let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-  
-    // // Authorization scopes required by the API; multiple scopes can be
-    // // included, separated by spaces.
-    let SCOPES = "https://www.googleapis.com/auth/calendar";
-  
-    let event = {
-      'summary': 'Clinician Directory Meet&Greet!',
-      'location': 'Somewhere Near You',
-      'description': 'I made this event from the google API. SPIKE COMPLETE',
-      'start': {
-        'dateTime': '2022-02-11T09:00:00-07:00',
-        'timeZone': 'US/Central'
-      },
-      'end': {
-        'dateTime': '2022-02-11T17:00:00-07:00',
-        'timeZone': 'US/Central'
-      },
-      'attendees': [
-        { 'email': 'justin.lewis.cummings@gmail.com' },
-        { 'email': 'yasir.uddin@icloud.com' },
-        { 'email': 'selamtalem@gmail.com' },
-        { 'email': 'kbrown55347@gmail.com' }
-      ],
-      'reminders': {
-        'useDefault': true
+      //Accessing Redux/Reducer
+  const providers = useSelector(store => store.allProvidersReducer)
+  const provider = useSelector(store => store.oneProvidersReducer)
+
+      //button
+      function handleScheduleButton(provider){
+          console.log('inside schedule button, provider clicked is:', providers.id);
+          dispatch({
+              type: 'SET_ONE_PROVIDER',
+              payload: provider.id
+          })
+          history.push('/appointment_details/:id')
       }
-    };
+    
 
       //button
       const handleSchedule = (e) => {
@@ -156,10 +136,13 @@ function ChooseProviderTable() {
       
     
          </List>
+
+         <Navigation />
      
          <Navigation/>
       
     
+
         </div>
 
   

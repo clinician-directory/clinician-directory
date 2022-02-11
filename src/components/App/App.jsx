@@ -89,6 +89,7 @@ function App() {
             <RegisterView />
           </Route>
 
+
           <Route exact path='/ptable'>
             <ChooseProviderTable />
           </Route> 

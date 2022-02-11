@@ -5,11 +5,11 @@ import axios from 'axios';
 // Get a specified provider
 function* fetchThisOneProvider(action) {
   try {
-      const response = yield axios.get(`/api/providers/${action.payload}`);
+      const clickedProvider = yield axios(`/api/providers/${action.payload}`);
       console.log('Inside fetch one provider saga:', action.payload);
       yield put({ 
         type: 'SET_ONE_PROVIDER', 
-        payload: response.data
+        payload: clickedProvider.data
       }); 
     } catch(error) { console.log('fetch This one provider saga error', error)}  
 
