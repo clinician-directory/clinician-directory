@@ -65,8 +65,6 @@ function AppointmentDetails() {
         <p className='appt-info'>{date}</p>
         <p className='gray-title'>Time</p>
         <p className='appt-info'>{startTime} to {endTime}</p>
-        <p className='gray-title'>Description</p>
-        <p className='appt-info'>{appointmentDetails.description}</p>
         <p className='gray-title'>Health System</p>
         <p className='appt-info'>{appointmentDetails.health_system}</p>
         <p className='gray-title'>Location</p>
