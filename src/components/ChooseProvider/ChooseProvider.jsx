@@ -55,6 +55,7 @@ function ChooseProvider() {
   //Accessing Redux/Reducer
   const providers = useSelector(store => store.allProvidersReducer)
   const provider = useSelector(store => store.oneProvidersReducer)
+  const availabilities = useSelector((store) => store.availabilitiesReducer);
 
   //const selectedProvider = useSelector(store => store.OneProviderReducer)
 
@@ -145,11 +146,11 @@ function ChooseProvider() {
   };
 
      //button
-     function handleScheduleButton(providers){
-      console.log('inside schedule button, provider clicked is:', providers.id);
+     function handleScheduleButton(provider){
+      console.log('inside schedule button, provider clicked is:', provider.id);
       dispatch({
-          type: 'FETCH_THIS_ONE_PROVIDER',
-          payload: providers.id
+          type: 'SET_ONE_PROVIDER',
+          payload: {provider}
       })
       history.push('/appointment_details/:id')
   }
@@ -173,7 +174,7 @@ function ChooseProvider() {
                 </ListItemAvatar>
       
               <ListItemText primary={provider.first_name + " " + provider.last_name} secondary={provider.address + " " + provider.state + " " + provider.zip_code + " " + "Specialty:" + " " + provider.specialty}/>
-                <Button variant="contained" color="success" onClick={handleScheduleButton} > Schedule </Button>
+                <Button variant="contained" color="success" key={provider.id} onClick={e => handleScheduleButton(provider)} > Schedule </Button>
               </ListItem>
             )})};
         </List>
