@@ -7,6 +7,7 @@ import { Button, Grid } from '@mui/material';
 // import css page
 import './AppointmentDetails.css';
 
+
 function AppointmentDetails() {
   // params so we can access appointment by id on this page
   const params = useParams();
@@ -39,7 +40,7 @@ function AppointmentDetails() {
     <div>
       <div className="card">
 
-        <h1>Appointment Details</h1>
+        <header>Appointment Details</header>
         <hr></hr>
         <img src="doctor_photo.jpg" alt="Provider Image"></img>
 
