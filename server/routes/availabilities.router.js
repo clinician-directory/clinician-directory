@@ -11,7 +11,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   // Query that returns availabilities minus appointments 
   // for ALL PROVIDERS, then filtered down to DISTINCT start_time / end_time pairs. 
   // (Events for calendar)
-    const query = `
+  const query = `
     SELECT DISTINCT
 	    "availabilities"."start_time",
 	    "availabilities"."end_time"

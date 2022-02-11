@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
@@ -57,34 +57,34 @@ function UserPage() {
     <div>
       <Grid container id='grid-container-text-fields' direction='column' spacing={2}>
         <Grid item>
-          <TextField value={firstName} onChange={(event)=>setFirstName(event.target.value)} label='First Name' />
+          <TextField value={firstName} onChange={(event) => setFirstName(event.target.value)} label='First Name' />
         </Grid>
         <Grid item>
-          <TextField value={lastName} onChange={(event)=>setLastName(event.target.value)} label='Last Name' />
+          <TextField value={lastName} onChange={(event) => setLastName(event.target.value)} label='Last Name' />
         </Grid>
         <Grid item>
-          <TextField value={phone} onChange={(event)=>setPhone(event.target.value)} label='Phone' />
+          <TextField value={phone} onChange={(event) => setPhone(event.target.value)} label='Phone' />
         </Grid>
         <Grid item>
-          <TextField value={address} onChange={(event)=>setAddress(event.target.value)} label='Address' />
+          <TextField value={address} onChange={(event) => setAddress(event.target.value)} label='Address' />
         </Grid>
         <Grid item>
-          <TextField value={city} onChange={(event)=>setCity(event.target.value)} label='City' />
+          <TextField value={city} onChange={(event) => setCity(event.target.value)} label='City' />
         </Grid>
         <Grid item>
-          <TextField value={state} onChange={(event)=>setState(event.target.value)} label='State' />
+          <TextField value={state} onChange={(event) => setState(event.target.value)} label='State' />
         </Grid>
         <Grid item>
-          <TextField value={zipCode} onChange={(event)=>setZipCode(event.target.value)} label='Zip Code' />
+          <TextField value={zipCode} onChange={(event) => setZipCode(event.target.value)} label='Zip Code' />
         </Grid>
         <Grid item>
           <Button variant='outlined' onClick={handleSaveButton}>Save Changes</Button>
         </Grid>
         <Grid item>
-          <Button variant='contained' onClick={()=>handleSchedule(1)}>Schedule an Appointment</Button>
+          <Button variant='contained' onClick={() => handleSchedule(1)}>Schedule an Appointment</Button>
         </Grid>
       </Grid>
-      <Navigation/>
+      <Navigation />
     </div>
   );
 }

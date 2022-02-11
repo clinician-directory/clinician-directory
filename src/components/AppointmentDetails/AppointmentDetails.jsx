@@ -4,7 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 // MUI imports
 import { Button, Grid } from '@mui/material';
-// MUI imports for cancel appointment confirmation
+// MUI imports for cancel appointment dialog
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -13,11 +13,13 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 // import to reformat date and time
 import { DateTime } from "luxon";
+// sweet alert import
+import SweetAlert from 'sweetalert';
 // import css page
 import './AppointmentDetails.css';
 
 
-// for MUI cancel appointment confirmation alert
+// for MUI cancel appointment dialog
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -40,16 +42,6 @@ function AppointmentDetails() {
     });
   }, []);
 
-  // // handle click of back button
-  // const handleBackClick = () => {
-  //   // send user back to calendar
-  //   history.push('/calendar');
-  //   // clear reducer
-  //   dispatch({
-  //     type: 'CLEAR_APPOINTMENT_DETAILS'
-  //   });
-  // };
-
   /* function to append available or not to DOM depending 
   on if provider has telemedicine option */
   function determineTelemedicineAvailability() {
@@ -66,7 +58,7 @@ function AppointmentDetails() {
   let endTime = DateTime.fromISO(appointmentDetails.end_time).toFormat('h:mm a');
 
 
-  // for MUI cancel appointment confirmation alert
+  // for MUI cancel appointment dialog
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -75,27 +67,24 @@ function AppointmentDetails() {
     setOpen(false);
   };
 
-  // on click of YES CANCEL button in MUI cancel appointment confirmation alert
+  // on click of YES CANCEL button in MUI cancel appointment dialog
   const handleYesCancelClick = () => {
     // dispatch to saga to delete appointment
     dispatch({
       type: 'DELETE_APPOINTMENT',
       payload: params.id
     });
-
-    // trip deleted confirmation alert
-    // swal({
-    //   text: "This trip has been removed from your account.",
-    //   icon: "success",
-    // });
-
+    // cancel appointment confirmation alert
+    SweetAlert({
+      title: 'Success! Your appointment has been cancelled.',
+      icon: 'success',
+    });
     // clear reducer
     dispatch({
       type: 'CLEAR_APPOINTMENT_DETAILS'
     });
     // send user to calendar view
     history.push('/calendar');
-
   };
 
 
@@ -122,7 +111,7 @@ function AppointmentDetails() {
 
       </div>
 
-      {/* delete button and MUI delete confirmation alert */}
+      {/* cancel appointment button and MUI dialog */}
       <Grid
         container
         direction="row"
@@ -156,24 +145,6 @@ function AppointmentDetails() {
           </DialogActions>
         </Dialog>
       </Grid>
-
-      {/* back button */}
-      {/* <div>
-        <Grid
-          container
-          direction="row"
-          justifyContent="space-evenly"
-          alignItems="center"
-        >
-          <Button
-            variant="contained"
-            onClick={handleBackClick}
-            size="large"
-          >
-            Back To Calendar
-          </Button>
-        </Grid>
-      </div> */}
 
       <Navigation />
 

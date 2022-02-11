@@ -11,6 +11,6 @@ on click of cancel button
   - [x] setup delete route & SQL query
   - [x] in saga function, yield put to GET appts & details for calendar page
   - [x] reroute user back to calendar page
-  - [ ] sweet alert confirmation
+  - [x] sweet alert confirmation
 
 - [ ] add logo
