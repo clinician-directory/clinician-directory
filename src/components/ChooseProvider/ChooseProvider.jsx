@@ -34,6 +34,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Box from '@mui/material/Box';
 
+import TableContainer from '@mui/material/TableContainer';
+
 import doc1 from './doc1.jpeg'
 import './ChooseProvider.css';
 import Navigation from '../Navigation/Navigation';
@@ -135,7 +137,7 @@ function ChooseProvider() {
   };
 
      //button
-     function handleScheduleButton(provider){
+  function handleScheduleButton(provider){
       console.log('inside schedule button, provider clicked is:', provider.id);
       dispatch({
           type: 'SET_ONE_PROVIDER',
