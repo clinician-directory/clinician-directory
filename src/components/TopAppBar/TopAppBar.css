@@ -1,6 +1,6 @@
 #app-bar {
     height: 80px;
-    background-color: #36119f;
+    background-color: #314A56;
     color: #FBFEFB;
 }
 
@@ -9,6 +9,6 @@
 }
 
 #log-out-button {
-    color: #ffc032;
-    border-color: #ffc032;
+    color: #E1A730;
+    border-color: #E1A730;
 }
