@@ -12,7 +12,6 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import UserPage from '../UserPage/UserPage';
 import CalendarMonth from '../CalendarMonth/CalendarMonth';
-import ChooseProvider from '../ChooseProvider/ChooseProvider';
 import AppointmentDetails from '../AppointmentDetails/AppointmentDetails';
 
 
@@ -64,7 +63,7 @@ function App() {
           {/* PROVIDER VIEW */}
           <ProtectedRoute exact path='/provider'>
             {user.id ?
-              <ChooseProvider />
+              <ChooseProviderTable />
               :
               <Redirect to='/login' />
             }
@@ -87,10 +86,6 @@ function App() {
           {/* REGISTER VIEW */}
           <Route exact path='/register'>
             <RegisterView />
-          </Route>
-
-          <Route exact path='/ptable'>
-            <ChooseProviderTable />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
