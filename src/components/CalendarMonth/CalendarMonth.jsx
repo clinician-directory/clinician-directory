@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import FullCalendar from '@fullcalendar/react';
+import FullCalendar, { diffDayAndTime } from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import Navigation from '../Navigation/Navigation';
@@ -19,13 +19,11 @@ function CalendarMonth() {
   // Grab reducers from the redux store via useSelector
   const userAppointments = useSelector((store) => store.appointmentsReducer);
   const availabilities = useSelector((store) => store.availabilitiesReducer);
-  const clickedAvailability = useSelector((store) => store.clickedAvailability);
 
   // on page load fetch provider availabilities and user appointments
   // useEffect allows us to dispatch a call with type and send the payload data for a particular submission
   // we want to use the GET route via our fetchAvailabilities and fetchUserAppointments sagas in availabilities.saga.js and appointments.saga.js
   useEffect(() => {
-
     dispatch({ type: 'FETCH_AVAILABILITIES' })
     dispatch({ type: 'FETCH_USER_APPOINTMENTS' });
   }, []);
@@ -38,7 +36,7 @@ function CalendarMonth() {
   // function to add user appointments to array
   function addApptsToCalendar() {
     userAppointments.map(appointment => {
-      userApptsForCalendar.push({ id: appointment.id, title: 'Your Appointment', start: appointment.start_time, end: appointment.end_time, color: 'blue' });
+      userApptsForCalendar.push({ id: appointment.id, title: '', start: appointment.start_time, end: appointment.end_time, color: 'blue' });
     });
     return userApptsForCalendar;
   };
@@ -46,7 +44,7 @@ function CalendarMonth() {
   // function to add provider availabilities to array
   function addAvailabilitiesToCalendar() {
     availabilities.map(availability => {
-      availabilitiesForCalendar.push({ title: 'Available Appointment', start: availability.start_time, end: availability.end_time, color: 'green' });
+      availabilitiesForCalendar.push({ title: '', start: availability.start_time, end: availability.end_time, color: 'green'});
     });
     // console.log('availabilitiesForCalendar', availabilitiesForCalendar);
     return availabilitiesForCalendar;
@@ -65,12 +63,29 @@ function CalendarMonth() {
     // declare variable and set equal to id of appt clicked
     let apptId = event.event._def.publicId;
     // declare variable and set equal to start time of availability clicked
-    let availabilityStart = event.event._instance.range.start;
-    /* send user to provider page if availability 
+    // this lets us create the dateTime format for the google calendar api to send off an event to personal calendar
+    let availabilityStart = event.event._instance.range.start.toISOString().slice(0,-5)
+    let availabilityEnd = event.event._instance.range.end.toISOString().slice(0,-5)
+    console.log(availabilityStart)
+    console.log(availabilityEnd);
+    console.log(event)
+    /* send user to provider page if availability
     on calendar is clicked (color green) */
+
+    // if (event.event._def.ui.backgroundColor === 'green') {
+    //   history.push(`/provider?appointment_start=${availabilityStart}`);
+    //   /* send user to appointment details page if user
+    //   appointment n calendar is clicked (color blue) */
+    // } else if (event.event._def.ui.backgroundColor === 'blue') {
+    //   history.push(`/appointment_details/${apptId}`);
+    // }
+    // ?app_start=$[thing}&appt_end=${otherThing}
+
+    // We use the availability start and availability end time in our URL that we push to the provider page
     if (event.event._def.ui.backgroundColor === 'green') {
-      history.push(`/provider?appointment_start=${availabilityStart}`);
-      /* send user to appointment details page if user 
+      history.push(`/provider?appointment_start=${availabilityStart}&appointment_end=${availabilityEnd}`);
+      /* send user to appointment details page if user
+
       appointment n calendar is clicked (color blue) */
     } else if (event.event._def.ui.backgroundColor === 'blue') {
       history.push(`/appointment_details/${apptId}`);
@@ -78,6 +93,14 @@ function CalendarMonth() {
     dispatch({
       type: 'LOAD_AVAILABILITIES',
       payload: availabilities
+    })
+
+    dispatch({
+      type: 'SET_ONE_AVAILABILITY',
+      payload: {
+        start_time: event.event._instance.range.start,
+        end_time: event.event._instance.range.end,
+      }
     })
   };
 

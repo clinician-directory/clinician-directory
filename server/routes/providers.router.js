@@ -26,12 +26,14 @@ router.get('/by_availability', rejectUnauthenticated, (req, res) => {
   /* declare start variable and set equal to start time availability but reformat
   to database friendly date and time */
   let startQuery = req.query.appointment_start;
-  let start = new Date(startQuery).toISOString();
+  console.log(startQuery);
+
+  // let start = new Date(startQuery).toISOString();
 
   const queryText = `
-  SELECT "providers"."id", "providers"."first_name", "providers"."last_name", 
-    "providers"."specialty", "providers"."telemedicine", "providers"."city", 
-    "providers"."health_system", "providers"."address", "providers"."state", 
+  SELECT "providers"."id", "providers"."first_name", "providers"."last_name",
+    "providers"."specialty", "providers"."telemedicine", "providers"."city",
+    "providers"."health_system", "providers"."address", "providers"."state",
     "providers"."zip_code" FROM "providers"
     JOIN "availabilities"
   	  ON "providers"."id" = "availabilities"."provider_id"
@@ -42,17 +44,17 @@ router.get('/by_availability', rejectUnauthenticated, (req, res) => {
   	  "availabilities"."start_time" = $1
   	  AND "appointments"."id" IS NULL;
   `
-  queryValues = [start]
+  // queryValues = [start]
+  queryValues = [startQuery]
 
   pool.query(queryText, queryValues)
-  .then((result) => {
-    console.log('result.rows', result.rows)
-    res.send(result.rows);
-  })
-  .catch((err) => {
-    console.log('ERROR: GET all providers by availability', err);
-    res.sendStatus(500)
-  });
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log('ERROR: GET all providers by availability', err);
+      res.sendStatus(500)
+    });
 });
 
 // Getting a provider by id:

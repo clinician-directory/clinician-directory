@@ -56,5 +56,54 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
+/* DELETE appointment from database, only if 
+user is logged in and user id matches */
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+
+  const queryText = `
+    DELETE FROM "appointments"
+    WHERE "id"=$1 AND "user_id"=$2;
+  `;
+  const queryValues = [req.params.id, req.user.id];
+  pool.query(queryText, queryValues)
+    .then((dbRes) => {
+      // send back success
+      res.sendStatus(201);
+    })
+    .catch((dbErr) => {
+      console.error('ERROR: DELETE appointment request failed:', dbErr);
+      res.sendStatus(500);
+    })
+});
+
+
+// POST an appointment from the logged in user to the db
+router.post('/', rejectUnauthenticated, (req, res) => {
+  console.log('INSIDE app POST route', req.body);
+  console.log('is authenticated?', req.isAuthenticated());
+  console.log('user', req.user);
+  const sqlText = `
+    INSERT INTO "appointments"
+      ("user_id", "start_time", "end_time", "provider_id", "description" )
+      VALUES
+      ($1, $2, $3, $4, $5);
+  `;
+  const sqlValues = [
+    req.body.user_id,
+    req.body.start_time,
+    req.body.end_time,
+    req.body.provider_id,
+    req.body.description
+  ];
+  pool.query(sqlText, sqlValues)
+    .then((dbRes) => {
+      res.sendStatus(201);
+    })
+    .catch((dbErr) => {
+      console.error(dbErr);
+      res.sendStatus(500);
+    });
+});
+
 
 module.exports = router;
