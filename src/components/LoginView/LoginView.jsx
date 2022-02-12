@@ -18,7 +18,7 @@ function LoginView() {
     // Define Local States
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-  
+
     // Login Button Function
     function handleLoginButton(event) {
         event.preventDefault();
@@ -38,47 +38,54 @@ function LoginView() {
     };
 
     // Register Button Function
-    function handleRegisterButton (){
+    function handleRegisterButton() {
         history.push('/register');
     }
 
-  return (
-    <div>
-        <form onSubmit={handleLoginButton}>
+    /* for presentation, on click of 'Welcome to 
+    Clinician Directory!' will fill email and password */
+    const handleWelcomeClick = () => {
+        setUsername('cliniciansdirectory@gmail.com');
+        setPassword('1234');
+    }; // end handleWelcomeClick
 
-            <Grid container id='grid-container-background' direction='column' justifyContent='flex-start' alignItems='center' spacing={2}>
+    return (
+        <div>
+            <form onSubmit={handleLoginButton}>
 
-                <Grid item> 
-                    <Typography variant='h6'>Welcome to Clinician Directory!</Typography>
-                </Grid>
-                <Grid item id='grid-item-inputs'>
-                    <Grid container direction='column' spacing={2}>
-                        <Grid item>
-                            <TextField required value={username} onChange={(event) => setUsername(event.target.value)} label='Email' />
+                <Grid container id='grid-container-background' direction='column' justifyContent='flex-start' alignItems='center' spacing={2}>
+
+                    <Grid item>
+                        <Typography variant='h6' onClick={handleWelcomeClick}>Welcome to Clinician Directory!</Typography>
+                    </Grid>
+                    <Grid item id='grid-item-inputs'>
+                        <Grid container direction='column' spacing={2}>
+                            <Grid item>
+                                <TextField required value={username} onChange={(event) => setUsername(event.target.value)} label='Email' />
+                            </Grid>
+                            <Grid item>
+                                <TextField required value={password} onChange={(event) => setPassword(event.target.value)} type='password' label='Password' />
+                            </Grid>
                         </Grid>
-                        <Grid item>
-                            <TextField required value={password} onChange={(event) => setPassword(event.target.value)} type='password' label='Password' />
+                    </Grid>
+
+                    <Grid item id='grid-item-buttons'>
+                        <Grid container direction='row' spacing={2}>
+                            <Grid item>
+                                <Button variant='outlined' onClick={handleRegisterButton}>Register</Button>
+                            </Grid>
+                            <Grid item>
+                                <Button variant='contained' onClick={handleLoginButton}>Log In</Button>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
 
-                <Grid item id='grid-item-buttons'>
-                    <Grid container direction='row' spacing={2}>
-                        <Grid item>
-                            <Button variant='outlined' onClick={handleRegisterButton}>Register</Button>
-                        </Grid>
-                        <Grid item>
-                            <Button variant='contained' onClick={handleLoginButton}>Log In</Button>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </Grid>
+                <input type='submit' hidden />
 
-            <input type='submit' hidden />
-
-        </form>
-    </div>
-  );
+            </form>
+        </div>
+    );
 }
 
 export default LoginView;

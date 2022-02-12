@@ -53,7 +53,9 @@ function UserPage() {
       title: 'Profile has been updated!',
       icon: 'success',
     });
-  }
+  };
+
+  
 
   return (
     <div>
