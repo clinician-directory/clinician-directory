@@ -17,6 +17,7 @@ import { DateTime } from "luxon";
 import SweetAlert from 'sweetalert';
 // import css page
 import './AppointmentDetails.css';
+import Header from '../Header/Header';
 
 
 // for MUI cancel appointment dialog
@@ -92,7 +93,7 @@ function AppointmentDetails() {
     <div>
       <div className="card">
 
-        <h1>Appointment Details</h1>
+        <header>Appointment Details</header>
         <hr></hr>
         <img src="https://media.istockphoto.com/photos/confident-african-american-female-doctor-isolated-picture-id175399910?k=20&m=175399910&s=612x612&w=0&h=fLjDqCS348updNvF1z6wdiTnGkD-CLHxtiH6a5Lw4wg="
           alt="Provider Image"></img>
