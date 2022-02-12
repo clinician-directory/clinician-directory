@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import {Card, CardActionArea, CardMedia, Typography, CardContent } from "@material-ui/core";
+import {Card, CardActionArea, CardMedia, Typography, Table, TableHead, TableRow, TableCell, TableBody, CardContent, TableContainer, Paper } from "@material-ui/core";
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
