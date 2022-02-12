@@ -39,8 +39,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
         for (const availability of availabilities) {
           if ( !appointments.find(( {start_time} ) => start_time.getTime() === availability.start_time.getTime() ) ) {
             events.push(availability)
-            console.log('Conflict found');
-            console.log(availability);
           }
         }
         

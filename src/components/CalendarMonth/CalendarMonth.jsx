@@ -82,7 +82,7 @@ function CalendarMonth() {
 
     // We use the availability start and availability end time in our URL that we push to the provider page
     if (event.event._def.ui.backgroundColor === 'green') {
-      history.push(`/provider?appointment_start=${availabilityStart}&appointment_end=${availabilityEnd}`);
+      history.push(`/ptable?appointment_start=${availabilityStart}&appointment_end=${availabilityEnd}`);
       /* send user to appointment details page if user
 
       appointment n calendar is clicked (color blue) */
@@ -94,13 +94,13 @@ function CalendarMonth() {
       payload: availabilities
     })
 
-    dispatch({
-      type: 'SET_ONE_AVAILABILITY',
-      payload: {
-        start_time: event.event._instance.range.start,
-        end_time: event.event._instance.range.end,
-      }
-    })
+    // dispatch({
+    //   type: 'SET_ONE_AVAILABILITY',
+    //   payload: {
+    //     start_time: event.event._instance.range.start,
+    //     end_time: event.event._instance.range.end,
+    //   }
+    // })
   };
 
   return (
