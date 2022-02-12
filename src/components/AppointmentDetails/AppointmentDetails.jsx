@@ -93,7 +93,7 @@ function AppointmentDetails() {
     <div>
       <div className="card">
 
-        <header>Appointment Details</header>
+        <Header label="Appointment Details" />
         <hr></hr>
         <img src="https://media.istockphoto.com/photos/confident-african-american-female-doctor-isolated-picture-id175399910?k=20&m=175399910&s=612x612&w=0&h=fLjDqCS348updNvF1z6wdiTnGkD-CLHxtiH6a5Lw4wg="
           alt="Provider Image"></img>
@@ -133,16 +133,15 @@ function AppointmentDetails() {
           onClose={handleClose}
           aria-describedby="alert-dialog-slide-description"
         >
-          <DialogTitle>{"Cancel this appointment?"}</DialogTitle>
+          <DialogTitle>{"Cancel your appointment?"}</DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-slide-description">
-              Click YES CANCEL to confirm you wish to cancel your appointment. Click NO to keep
-              your appointment and return back to the appointment details page.
+              Click CONFIRM to cancel your appointment.
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleYesCancelClick}>YES CANCEL</Button>
-            <Button onClick={handleClose}>NO</Button>
+            <Button onClick={handleClose}>BACK</Button>
+            <Button onClick={handleYesCancelClick}>CONFIRM</Button>
           </DialogActions>
         </Dialog>
       </Grid>
