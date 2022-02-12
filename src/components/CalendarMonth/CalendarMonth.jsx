@@ -8,6 +8,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import Navigation from '../Navigation/Navigation';
 // import css file
 import './CalendarMonth.css';
+import Header from '../Header/Header';
 
 
 function CalendarMonth() {
@@ -82,12 +83,13 @@ function CalendarMonth() {
 
   return (
     <div className="container">
+      <Header label=" Set an Appointment" />
       <FullCalendar
         plugins={[timeGridPlugin, interactionPlugin]}
         weekends={true}
         slotMinTime={'08:00:00'}
         slotMaxTime={'22:00:00'}
-        contentHeight={window.innerHeight * .50}
+        contentHeight={window.innerHeight * .45}
         // combine appt and availability arrays
         events={[...userApptsForCalendar, ...availabilitiesForCalendar]}
 

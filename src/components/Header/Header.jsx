@@ -1,10 +1,11 @@
 import React from "react";
-import '.Header.css';
+import './Header.css';
 
-function Header() {
+function Header({label}) {
     return (
     <div>
-        <h1>Header</h1>
+        <h1 className="header">{label}</h1>
     </div>
     );
 }
+export default Header;

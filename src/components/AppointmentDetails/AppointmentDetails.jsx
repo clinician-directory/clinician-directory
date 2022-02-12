@@ -6,7 +6,7 @@ import Navigation from '../Navigation/Navigation';
 import { Button, Grid } from '@mui/material';
 // import css page
 import './AppointmentDetails.css';
-
+import Header from '../Header/Header';
 
 function AppointmentDetails() {
   // params so we can access appointment by id on this page

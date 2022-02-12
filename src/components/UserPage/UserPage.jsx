@@ -11,6 +11,8 @@ import Navigation from '../Navigation/Navigation';
 import SweetAlert from 'sweetalert';
 
 import './UserPage.css';
+import Header from '../Header/Header';
+
 
 function UserPage() {
 
@@ -55,6 +57,7 @@ function UserPage() {
 
   return (
     <div>
+      <Header  label = "User Profile" />
       <Grid container id='grid-container-text-fields' direction='column' spacing={2}>
         <Grid item>
           <TextField value={firstName} onChange={(event)=>setFirstName(event.target.value)} label='First Name' />
