@@ -1,51 +1,18 @@
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom'
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-
-import Box from '@mui/material/Box';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+// sweet alert import
+import SweetAlert from 'sweetalert';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Divider from '@mui/material/Divider';
-import InboxIcon from '@mui/icons-material/Inbox';
-import DraftsIcon from '@mui/icons-material/Drafts';
 import Avatar from '@mui/material/Avatar';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ImageIcon from '@mui/icons-material/Image';
 import Button from '@mui/material/Button';
 
-
-
-
-// import './ChooseProviders.css';
 import Navigation from '../Navigation/Navigation';
-//import favicon from '..../public/favicon.ico'
-
-
-
-//{allProviders.first_name} 
-//{allProviders.last_name} 
-//{allProviders.specialty} 
-//{allProviders.telemedicine}
-//{allProviders.city}
-//{allProviders.health_system}
-//{allProviders.address}
-//{allProviders.state}
-//{allProviders.zip_code}
-
-//TO MAP THROUGH PROVIDERS FROM DB 
-// {providers.map((allProviders) => {
-//     return ( 
-//         {allProviders.first_name} 
-//         )})}   
-///                                
-//   {providers.map((allProviders) => {
-//     console.log('inside MAP', allProviders)
-//           return (  )})}
-
 
 
 function ChooseProviderTable() {
@@ -54,23 +21,11 @@ function ChooseProviderTable() {
   const history = useHistory();
 
   //Accessing Redux/Reducer
-  const providers = useSelector(store => store.allProvidersReducer)
-  const provider = useSelector(store => store.oneProvidersReducer)
-
+  const providers = useSelector(store => store.allProvidersReducer);
 
   const search = useLocation().search;
   const appointmentStart = new URLSearchParams(search).get('appointment_start');
   const appointmentEnd = new URLSearchParams(search).get('appointment_end');
-
-  //button
-  function handleScheduleButton(provider) {
-    console.log('inside schedule button, provider clicked is:', providers.id);
-    dispatch({
-      type: 'SET_ONE_PROVIDER',
-      payload: provider.id
-    })
-    history.push('/appointment_details/:id')
-  }
 
   // TO RUN ON PAGE LOAD
   useEffect(() => {
@@ -147,9 +102,23 @@ function ChooseProviderTable() {
         })
         .catch((error) => {
           console.log(error);
-        })
+        });
 
-    })
+      // bundle appointment info into object
+      const appointmentToBook = { appointmentStart: appointmentStart, appointmentEnd: appointmentEnd, providerId: provider.id };
+      // send object to saga function
+      dispatch({
+        type: 'APPOINTMENT_TO_BOOK',
+        payload: appointmentToBook
+      });
+      // book appt confirmation alert
+      SweetAlert({
+        title: 'Success! Your appointment has been booked.',
+        icon: 'success',
+      });
+      // send user to calendar view
+      history.push('/calendar');
+    });
   };
 
 

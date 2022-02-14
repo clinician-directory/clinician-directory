@@ -20,8 +20,8 @@ function* fetchUserAppointments() {
 };
 
 // Saga to post a scheduled appointment created
-function* scheduleAppointment(action) {
-  console.log(' THIS scheduleAppointment action:', action);
+function* bookAppointment(action) {
+  console.log(' THIS scheduleAppointment action:', action.payload);
   try {
       axios({
           method: 'POST',
@@ -31,8 +31,8 @@ function* scheduleAppointment(action) {
       yield put ({ type: 'FETCH_USER_APPOINTMENTS'})
   } catch {
       console.log('POST error');
-  }
-} 
+  };
+};
 
 
 
@@ -75,6 +75,7 @@ function* appointmentsSaga() {
   yield takeEvery('FETCH_USER_APPOINTMENTS', fetchUserAppointments);
   yield takeEvery('FETCH_APPOINTMENT_DETAILS', fetchAppointmentDetails);
   yield takeEvery('DELETE_APPOINTMENT', deleteAppointment);
+  yield takeEvery('APPOINTMENT_TO_BOOK', bookAppointment);
 };
 
 export default appointmentsSaga;
