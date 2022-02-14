@@ -11,8 +11,11 @@ import Avatar from '@mui/material/Avatar';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ImageIcon from '@mui/icons-material/Image';
 import Button from '@mui/material/Button';
+// import to reformat date and time
+import { DateTime } from "luxon";
 
 import Navigation from '../Navigation/Navigation';
+import Header from '../Header/Header';
 
 
 function ChooseProviderTable() {
@@ -41,7 +44,6 @@ function ChooseProviderTable() {
   const handleSchedule = (provider) => {
 
     // google calendar click feature
-
     let gapi = window.gapi;
     let CLIENT_ID = '1096656813980-v8ibiouk9dg649om7og02kr5kuied9fq.apps.googleusercontent.com';
     let API_KEY = process.env.API_KEY;
@@ -74,7 +76,6 @@ function ChooseProviderTable() {
     };
     gapi.load('client:auth2', () => {
       console.log('Loaded client');
-
 
       gapi.client.init({
         apiKey: API_KEY,
@@ -122,17 +123,16 @@ function ChooseProviderTable() {
     });
   };
 
-
+  // reformat date and start time to display nicely on DOM
+  let date = DateTime.fromISO(appointmentStart).toFormat('LLLL dd, yyyy');
+  let appointmentStartTime = DateTime.fromISO(appointmentStart).toFormat('h:mm a');
 
 
   return (
 
-
-
     <div>
 
-      <h1> Providers Table </h1>
-
+      <Header label={`Select Provider for ${date} at ${appointmentStartTime}`} />
 
       <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
         {providers.map((provider) => {
@@ -149,23 +149,12 @@ function ChooseProviderTable() {
             </ListItem>
           )
         })};
-
-
-
       </List>
 
       <Navigation />
 
-      <Navigation />
-
-
-
     </div>
-
-
-
-
   )
-}
+};
 
 export default ChooseProviderTable;
