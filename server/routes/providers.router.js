@@ -34,7 +34,7 @@ router.get('/by_availability', rejectUnauthenticated, (req, res) => {
   SELECT "providers"."id", "providers"."first_name", "providers"."last_name",
     "providers"."specialty", "providers"."telemedicine", "providers"."city",
     "providers"."health_system", "providers"."address", "providers"."state",
-    "providers"."zip_code" FROM "providers"
+    "providers"."zip_code", "providers"."image_url" FROM "providers"
     JOIN "availabilities"
   	  ON "providers"."id" = "availabilities"."provider_id"
     LEFT OUTER JOIN "appointments"

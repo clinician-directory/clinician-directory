@@ -27,7 +27,8 @@ CREATE TABLE "providers" (
     "health_system" VARCHAR (1000) NOT NULL,
     "address" VARCHAR (1000) NOT NULL,
     "state" VARCHAR (4) NOT NULL,
-    "zip_code" VARCHAR (1000) NOT NULL
+    "zip_code" VARCHAR (1000) NOT NULL,
+	"image_url" VARCHAR (1000) NOT NULL
 );
 
 CREATE TABLE "availabilities" (
@@ -55,18 +56,18 @@ VALUES
 (E'guest6',E'$2a$10$ekIWJ4S7kKdVqBnxS4YtbOETUWzWLhENWwm0/YjeMSF7aohuBddm.',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 -- Passwords are all 1234
 
-INSERT INTO "public"."providers"("id","first_name","last_name","specialty","telemedicine","city","health_system","address","state","zip_code")
+INSERT INTO "public"."providers"("id","first_name","last_name","specialty","telemedicine","city","health_system","address","state","zip_code", "image_url")
 VALUES
-(1,E'Olivia',E'Smith',E'PM&R',TRUE,E'St.Cloud',E'CentraCare',E'1900 CentraCare Circle St. Cloud',E' MN',E'56303'),
-(2,E'Emma',E'Johnson',E'Orthopedics',TRUE,E'St.Cloud',E'CentraCare',E'811 2nd Street Southeast Little Falls',E' MN',E'56345'),
-(3,E'Amelia',E'Williams',E'Physical Therapy',TRUE,E'St.Cloud',E'CentraCare',E'402 Red River Avenue North Cold Spring',E' MN',E'56320'),
-(4,E'Ava',E'Brown',E'Family Medicine',FALSE,E'St.Cloud',E'CentraCare',E'811 2nd Street Southeast Little Falls',E' MN',E'56345'),
-(5,E'Sophia',E'Jones',E'Family Medicine',FALSE,E'St.Cloud',E'CentraCare',E'1900 CentraCare Circle St. Cloud',E' MN',E'56303'),
-(6,E'Charlotte',E'Garcia',E'Psychology',FALSE,E'Minneapolis',E'Fairview',E'980 Rice St.',E' MN',E'55117'),
-(7,E'Isabella',E'Miller',E'Orthopedics',TRUE,E'St.Cloud',E'CentraCare',E'1107 Hart Boulevard Monticello',E' MN',E'55362'),
-(8,E'Mia',E'Davis',E'Psychology',FALSE,E'Minneapolis',E'Fairview',E'Southdale Place 3400 W. 66th St. Edina',E' MN',E'55435'),
-(9,E'Luna',E'Rodriguez',E'Psychology',FALSE,E'St.Cloud',E'CentraCare',E'1107 Hart Boulevard Monticello',E' MN',E'55362'),
-(10,E'Harper',E'Martinez',E'Physical Therapy',FALSE,E'St.Cloud',E'CentraCare',E'1360 Elm Street East St. Joseph',E' MN',E'56374');
+(1,E'Olivia',E'Smith',E'PM&R',TRUE,E'St.Cloud',E'CentraCare',E'1900 CentraCare Circle St. Cloud',E' MN',E'56303','https://images.theconversation.com/files/304957/original/file-20191203-66986-im7o5.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop'),
+(2,E'Emma',E'Johnson',E'Orthopedics',TRUE,E'St.Cloud',E'CentraCare',E'811 2nd Street Southeast Little Falls',E' MN',E'56345','https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q='),
+(3,E'Amelia',E'Williams',E'Physical Therapy',TRUE,E'St.Cloud',E'CentraCare',E'402 Red River Avenue North Cold Spring',E' MN',E'56320','https://www.regalmed.com/Regal-en-us/assets/Image/doctor-finder.jpg'),
+(4,E'Ava',E'Brown',E'Family Medicine',FALSE,E'St.Cloud',E'CentraCare',E'811 2nd Street Southeast Little Falls',E' MN',E'56345','https://epfamilydoctor.com/wp-content/uploads/2019/02/about.png'),
+(5,E'Sophia',E'Jones',E'Family Medicine',FALSE,E'St.Cloud',E'CentraCare',E'1900 CentraCare Circle St. Cloud',E' MN',E'56303','https://i.guim.co.uk/img/media/ce9c149506881191caa4b1f838575d0dbb07e520/734_381_6827_4098/master/6827.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=c38e5e77b9f3882e14b633932e18cea5'),
+(6,E'Charlotte',E'Garcia',E'Psychology',FALSE,E'Minneapolis',E'Fairview',E'980 Rice St.',E' MN',E'55117','https://media.bizj.us/view/img/12063323/gettyimages-1053401358*1200xx2121-1193-0-111.jpg'),
+(7,E'Isabella',E'Miller',E'Orthopedics',TRUE,E'St.Cloud',E'CentraCare',E'1107 Hart Boulevard Monticello',E' MN',E'55362','https://ddcorlando.com/wp-content/uploads/2020/01/beautiful-young-female-doctor-looking-camera-office_1301-7781.jpg'),
+(8,E'Mia',E'Davis',E'Psychology',FALSE,E'Minneapolis',E'Fairview',E'Southdale Place 3400 W. 66th St. Edina',E' MN',E'55435','https://previews.123rf.com/images/lenetssergey/lenetssergey1505/lenetssergey150500246/39718746-woman-doctor-standing-with-folder-at-hospital.jpg'),
+(9,E'Luna',E'Rodriguez',E'Psychology',FALSE,E'St.Cloud',E'CentraCare',E'1107 Hart Boulevard Monticello',E' MN',E'55362','https://thumbs.dreamstime.com/z/doctor-woman-smiling-medical-stethoscope-isolated-white-35580979.jpg'),
+(10,E'Harper',E'Martinez',E'Physical Therapy',FALSE,E'St.Cloud',E'CentraCare',E'1360 Elm Street East St. Joseph',E' MN',E'56374','https://www.cdc.gov/diabetes/images/library/spotlights/Male-doctor-smiling-portrait-close-up-Med-Res-72991363.jpg?_=40378');
 
 INSERT INTO "availabilities"
 	("provider_id", "start_time", "end_time")

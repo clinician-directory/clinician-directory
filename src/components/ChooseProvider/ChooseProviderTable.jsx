@@ -17,6 +17,7 @@ import { DateTime } from "luxon";
 import Navigation from '../Navigation/Navigation';
 import Header from '../Header/Header';
 
+import image1 from './doc1.jpeg';
 
 function ChooseProviderTable() {
 
@@ -131,24 +132,22 @@ function ChooseProviderTable() {
   return (
 
     <div>
-
       <Header label={`Select Provider for ${date} at ${appointmentStartTime}`} />
 
       <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
         {providers.map((provider) => {
           return (
             <ListItem key={provider.id} >
+
               <ListItemAvatar>
-                <Avatar>
-                  <ImageIcon />
-                </Avatar>
+                <Avatar src={provider.image_url}/>
               </ListItemAvatar>
 
               <ListItemText primary={provider.first_name + " " + provider.last_name} secondary={provider.address + " " + provider.state + " " + provider.zip_code + " " + "Specialty:" + " " + provider.specialty} />
               <Button variant="outlined" onClick={() => handleSchedule(provider)}>Schedule</Button>
             </ListItem>
           )
-        })};
+        })}
       </List>
 
       <Navigation />
