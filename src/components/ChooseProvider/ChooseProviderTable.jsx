@@ -113,7 +113,8 @@ function ChooseProviderTable() {
       });
       // book appt confirmation alert
       SweetAlert({
-        title: 'Success! Your appointment has been booked.',
+        title: 'Success!',
+        text: 'Your appointment has been booked. Sign into your Google account to create a Google Calendar event.',
         icon: 'success',
       });
       // send user to calendar view

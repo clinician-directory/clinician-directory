@@ -79,21 +79,19 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 
 // POST an appointment from the logged in user to the db
 router.post('/', rejectUnauthenticated, (req, res) => {
-  console.log('INSIDE app POST route', req.body);
-  console.log('is authenticated?', req.isAuthenticated());
-  console.log('user', req.user);
+  // console.log('INSIDE app POST route req.body:', req.body);
+  // console.log('user:', req.user);
   const sqlText = `
     INSERT INTO "appointments"
-      ("user_id", "start_time", "end_time", "provider_id", "description" )
+      ("user_id", "start_time", "end_time", "provider_id")
       VALUES
-      ($1, $2, $3, $4, $5);
+      ($1, $2, $3, $4);
   `;
   const sqlValues = [
-    req.body.user_id,
-    req.body.start_time,
-    req.body.end_time,
-    req.body.provider_id,
-    req.body.description
+    req.user.id,
+    req.body.appointmentStart,
+    req.body.appointmentEnd,
+    req.body.providerId
   ];
   pool.query(sqlText, sqlValues)
     .then((dbRes) => {
