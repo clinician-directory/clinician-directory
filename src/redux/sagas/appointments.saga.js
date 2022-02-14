@@ -21,7 +21,7 @@ function* fetchUserAppointments() {
 
 // Saga to post a scheduled appointment created
 function* scheduleAppointment(action) {
-  console.log(' THIS scheduleAppointment action:', action);
+  console.log(' THIS scheduleAppointment action:', action.payload);
   try {
       axios({
           method: 'POST',
@@ -58,6 +58,7 @@ function* fetchAppointmentDetails(action) {
 function* appointmentsSaga() {
   yield takeEvery('FETCH_USER_APPOINTMENTS', fetchUserAppointments);
   yield takeEvery('FETCH_APPOINTMENT_DETAILS', fetchAppointmentDetails);
+  yield takeEvery('POST_APPOINTMENT', scheduleAppointment);
 };
 
 export default appointmentsSaga;

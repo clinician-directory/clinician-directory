@@ -56,7 +56,16 @@ function ChooseProvider() {
   const providers = useSelector(store => store.allProvidersReducer)
   const provider = useSelector(store => store.oneProvidersReducer)
   const availabilities = useSelector((store) => store.availabilitiesReducer);
+  const appointmentDetails = useSelector(store => store.appointmentDetailsReducer);
+  const appointments = useSelector(store => store.appointmentsReducer);
 
+  
+
+
+  const [startTime] = useState('');
+  const [endTime] = useState('');
+  const [providerId] = useState('');
+  const [userId] = useState('');
   //const selectedProvider = useSelector(store => store.OneProviderReducer)
 
   //creating local states for clinicians to enter in new providers to add to the database
@@ -145,12 +154,19 @@ function ChooseProvider() {
     })
   };
 
+  
      //button
      function handleScheduleButton(provider){
       console.log('inside schedule button, provider clicked is:', provider.id);
+      console.log('inside schedule button, START  clicked is:', appointmentDetails.id);
+      
+      // dispatch({
+      //     type: 'SET_ONE_PROVIDER',
+      //     payload: {provider}
+      // })
       dispatch({
-          type: 'SET_ONE_PROVIDER',
-          payload: {provider}
+        type: 'POST_APPOINTMENT',
+        payload: {appointmentDetails}
       })
       history.push('/appointment_details/:id')
   }
@@ -162,7 +178,6 @@ function ChooseProvider() {
         <h3 className="providers">List of providers</h3>
 
       </form>
-<<<<<<< HEAD
         <List sx={{ width: '100%', maxWidth: 660, bgcolor: 'background.paper'}}>
           {providers.map((provider) => {
             console.log('hellooooooo');
@@ -179,44 +194,6 @@ function ChooseProvider() {
               </ListItem>
             )})};
         </List>
-=======
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650, fontSize: 10, backgroundColor: '##bd9dcc', marginBottom: 10 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="left"> <Typography variant="h6" > FIRST NAME </Typography></TableCell>
-              <TableCell align="right"> <Typography variant="h6"> LAST NAME </Typography> </TableCell>
-              <TableCell align="right"> <Typography variant="h6"> SPECIALTY </Typography></TableCell>
-              <TableCell align="right"> <Typography variant="h6"> TELEMEDICINE </Typography></TableCell>
-              <TableCell align="right"> <Typography variant="h6"> CITY </Typography></TableCell>
-              <TableCell align="right"> <Typography variant="h6"> HEALTH SYSTEM </Typography></TableCell>
-              <TableCell align="right"> <Typography variant="h6"> ADDRESS </Typography></TableCell>
-              <TableCell align="right"> <Typography variant="h6"> STATE </Typography></TableCell>
-              <TableCell align="right"> <Typography variant="h6"> ZIP CODE </Typography></TableCell>
-              <TableCell align="right"> <Typography variant="h6"></Typography></TableCell>
-            </TableRow>
-          </TableHead>
-            <TableBody>
-              {providers.map((allProviders) => {
-                console.log('inside MAP', allProviders)
-                      return ( 
-                          <TableRow key={allProviders.id}  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                <TableCell align="left">{allProviders.first_name}</TableCell>
-                                <TableCell align="center">{allProviders.last_name}</TableCell>
-                                <TableCell align="center">{allProviders.specialty}</TableCell>
-                                <TableCell align="center">{allProviders.telemedicine}</TableCell>
-                                <TableCell align="center">{allProviders.city}</TableCell>
-                                <TableCell align="center">{allProviders.health_system}</TableCell>
-                                <TableCell align="center">{allProviders.address}</TableCell>
-                                <TableCell align="center">{allProviders.state}</TableCell>
-                                <TableCell align="center">{allProviders.zip_code}</TableCell>
-                                <TableCell align="center"><button onClick={handleSchedule}>Schedule!</button></TableCell>
-                          </TableRow>
-                      )})}
-                  </TableBody>
-          </Table>
-        </TableContainer>
->>>>>>> 5c25f0f0ec31cb9b23f723c254b4f3b37b70ae4b
         <Navigation/>
       </div> //end div
     

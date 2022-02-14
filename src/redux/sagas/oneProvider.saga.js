@@ -15,12 +15,30 @@ function* fetchThisOneProvider(action) {
 
 }
 
+function* postAppointment(action) {
+  console.log('This postAppointment action:', action);
+
+  try{
+    axios({
+      method: 'POST',
+      url: '/api/appointments',
+      data: action.payload
+    })
+
+    yield put({ type: 'FETCH_USER_APPOINTMENTS'})
+  } catch {
+    console.log('POST error');
+  }
+  
+}
+
 
 
 
 function* oneProviderSaga() {
 
   yield takeEvery('FETCH_THIS_ONE_PROVIDER', fetchThisOneProvider);
+  yield takeEvery('POST_APPOINTMENT', postAppointment);
 
 }
 

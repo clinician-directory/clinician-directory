@@ -90,9 +90,9 @@ function App() {
           </Route>
 
 
-          <Route exact path='/ptable'>
+          {/* <Route exact path='/ptable'>
             <ChooseProviderTable />
-          </Route> 
+          </Route>  */}
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

@@ -65,16 +65,15 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('user', req.user);
   const sqlText = `
     INSERT INTO "appointments"
-      ("user_id", "start_time", "end_time", "provider_id", "description" )
+      ("user_id", "start_time", "end_time", "provider_id")
       VALUES
-      ($1, $2, $3, $4, $5);
+      ($1, $2, $3, $4);
   `;
   const sqlValues = [
     req.body.user_id,
     req.body.start_time,
     req.body.end_time,
-    req.body.provider_id,
-    req.body.description
+    req.body.provider_id
   ];
   pool.query(sqlText, sqlValues)
     .then((dbRes) => {
