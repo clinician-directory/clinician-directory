@@ -126,6 +126,7 @@ function ChooseProviderTable() {
   // reformat date and start time to display nicely on DOM
   let date = DateTime.fromISO(appointmentStart).toFormat('LLLL dd, yyyy');
   let appointmentStartTime = DateTime.fromISO(appointmentStart).toFormat('h:mm a');
+            
 
 
   return (
@@ -145,7 +146,8 @@ function ChooseProviderTable() {
               </ListItemAvatar>
 
               <ListItemText primary={provider.first_name + " " + provider.last_name} secondary={provider.address + " " + provider.state + " " + provider.zip_code + " " + "Specialty:" + " " + provider.specialty} />
-              <Button variant="outlined" onClick={() => handleSchedule(provider)}>Schedule</Button>
+              
+              <Button sx={{minWidth: '100px', marginLeft: '20px' }} variant="contained" color="success" onClick={() => handleSchedule(provider)}>Schedule</Button>
             </ListItem>
           )
         })};
