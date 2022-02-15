@@ -69,8 +69,7 @@ VALUES
 (9,E'Luna',E'Rodriguez',E'Psychology',FALSE,E'St.Cloud',E'CentraCare',E'1107 Hart Boulevard Monticello',E' MN',E'55362','https://thumbs.dreamstime.com/z/doctor-woman-smiling-medical-stethoscope-isolated-white-35580979.jpg'),
 (10,E'Harper',E'Martinez',E'Physical Therapy',FALSE,E'St.Cloud',E'CentraCare',E'1360 Elm Street East St. Joseph',E' MN',E'56374','https://www.cdc.gov/diabetes/images/library/spotlights/Male-doctor-smiling-portrait-close-up-Med-Res-72991363.jpg?_=40378');
 
-INSERT INTO "availabilities"
-	("provider_id", "start_time", "end_time")
+INSERT INTO "availabilities"("provider_id", "start_time", "end_time")
 VALUES
 	(1, '2022-01-31 08:00:00', '2022-01-31 08:29:59'),
 	(1, '2022-01-31 08:30:00', '2022-01-31 08:59:59'),
