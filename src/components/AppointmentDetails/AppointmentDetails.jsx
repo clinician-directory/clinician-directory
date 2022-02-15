@@ -95,8 +95,7 @@ function AppointmentDetails() {
 
         <Header label="Appointment Details" />
         <hr></hr>
-        <img src="https://media.istockphoto.com/photos/confident-african-american-female-doctor-isolated-picture-id175399910?k=20&m=175399910&s=612x612&w=0&h=fLjDqCS348updNvF1z6wdiTnGkD-CLHxtiH6a5Lw4wg="
-          alt="Provider Image"></img>
+        <img src={appointmentDetails.image_url}></img>
         <p id='provider'>Dr. {appointmentDetails.first_name} {appointmentDetails.last_name}</p>
         <p id='specialty'>{appointmentDetails.specialty}</p>
         <p className='gray-title'>Date</p>
