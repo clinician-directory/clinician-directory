@@ -7,15 +7,13 @@ function* fetchThisOneProvider(action) {
   try {
       const clickedProvider = yield axios(`/api/providers/${action.payload}`);
       console.log('Inside fetch one provider saga:', action.payload);
-      yield put({ 
-        type: 'SET_ONE_PROVIDER', 
+      yield put({
+        type: 'SET_ONE_PROVIDER',
         payload: clickedProvider.data
-      }); 
-    } catch(error) { console.log('fetch This one provider saga error', error)}  
+      });
+    } catch(error) { console.log('fetch This one provider saga error', error)}
 
 }
-
-
 
 
 function* oneProviderSaga() {

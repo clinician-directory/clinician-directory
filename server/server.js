@@ -16,7 +16,6 @@ const availabilitiesRouter = require('./routes/availabilities.router');
 const appointmentsRouter = require('./routes/appointments.router');
 const providersRouter = require('./routes/providers.router');
 
-
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -33,10 +32,10 @@ app.use('/api/user', userRouter);
 
 // created a new route for availabilities. Check out 'availablities.router.js' for more details.
 app.use('/api/availabilities', availabilitiesRouter);
-// appointments route
+// appointments route. Check out 'appointments.router.js' for more details.
 app.use('/api/appointments', appointmentsRouter);
+// providers route. Check out 'providers.router.js' for more details.
 app.use('/api/providers', providersRouter);
-
 
 // Serve static files
 app.use(express.static('build'));

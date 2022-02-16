@@ -10,7 +10,6 @@ import Navigation from '../Navigation/Navigation';
 import './CalendarMonth.css';
 import Header from '../Header/Header';
 
-
 function CalendarMonth() {
   // Define dispatch
   const dispatch = useDispatch();
@@ -19,7 +18,6 @@ function CalendarMonth() {
   // Grab reducers from the redux store via useSelector
   const userAppointments = useSelector((store) => store.appointmentsReducer);
   const availabilities = useSelector((store) => store.availabilitiesReducer);
-
   // on page load fetch provider availabilities and user appointments
   // useEffect allows us to dispatch a call with type and send the payload data for a particular submission
   // we want to use the GET route via our fetchAvailabilities and fetchUserAppointments sagas in availabilities.saga.js and appointments.saga.js
@@ -27,12 +25,10 @@ function CalendarMonth() {
     dispatch({ type: 'FETCH_AVAILABILITIES' })
     dispatch({ type: 'FETCH_USER_APPOINTMENTS' });
   }, []);
-
   // variable to hold user appts in array
   const userApptsForCalendar = [];
   // variable to hold availabilities in array
   const availabilitiesForCalendar = [];
-
   // function to add user appointments to array
   function addApptsToCalendar() {
     userAppointments.map(appointment => {
@@ -40,7 +36,6 @@ function CalendarMonth() {
     });
     return userApptsForCalendar;
   };
-
   // function to add provider availabilities to array
   function addAvailabilitiesToCalendar() {
     availabilities.map(availability => {
@@ -49,43 +44,27 @@ function CalendarMonth() {
     // console.log('availabilitiesForCalendar', availabilitiesForCalendar);
     return availabilitiesForCalendar;
   };
-
   // call functions to populate user appointments and provider availabilities arrays
   addApptsToCalendar();
   addAvailabilitiesToCalendar();
-
   function handleDateClick(value) {
     console.log('CLICK!', value.dateStr);
   };
-
   // function to handle click of event on calendar
   function handleCalendarEventClick(event) {
     // declare variable and set equal to id of appt clicked
     let apptId = event.event._def.publicId;
-    // declare variable and set equal to start time of availability clicked
+    // declare variable and set equal to start time of availability and end time of availability clicked
     // this lets us create the dateTime format for the google calendar api to send off an event to personal calendar
     let availabilityStart = event.event._instance.range.start.toISOString().slice(0,-5)
     let availabilityEnd = event.event._instance.range.end.toISOString().slice(0,-5)
     console.log(availabilityStart)
     console.log(availabilityEnd);
     console.log(event)
-    /* send user to provider page if availability
-    on calendar is clicked (color green) */
-
-    // if (event.event._def.ui.backgroundColor === 'green') {
-    //   history.push(`/provider?appointment_start=${availabilityStart}`);
-    //   /* send user to appointment details page if user
-    //   appointment n calendar is clicked (color blue) */
-    // } else if (event.event._def.ui.backgroundColor === 'blue') {
-    //   history.push(`/appointment_details/${apptId}`);
-    // }
-    // ?app_start=$[thing}&appt_end=${otherThing}
-
     // We use the availability start and availability end time in our URL that we push to the provider page
     if (event.event._def.ui.backgroundColor === 'green') {
       history.push(`/provider?appointment_start=${availabilityStart}&appointment_end=${availabilityEnd}`);
       /* send user to appointment details page if user
-
       appointment n calendar is clicked (color blue) */
     } else if (event.event._def.ui.backgroundColor === 'blue') {
       history.push(`/appointment_details/${apptId}`);
@@ -94,14 +73,6 @@ function CalendarMonth() {
       type: 'LOAD_AVAILABILITIES',
       payload: availabilities
     })
-
-    // dispatch({
-    //   type: 'SET_ONE_AVAILABILITY',
-    //   payload: {
-    //     start_time: event.event._instance.range.start,
-    //     end_time: event.event._instance.range.end,
-    //   }
-    // })
   };
 
   return (
@@ -115,12 +86,10 @@ function CalendarMonth() {
         contentHeight={window.innerHeight * .45}
         // combine appt and availability arrays
         events={[...userApptsForCalendar, ...availabilitiesForCalendar]}
-
         dateClick={handleDateClick}
         // source https://fullcalendar.io/docs/eventClick
         eventClick={handleCalendarEventClick}
       />
-
       {/* Calendar Key */}
       <div className="calendar-key">
         <p className="key">Key</p>
@@ -129,10 +98,7 @@ function CalendarMonth() {
           <li id="green-dot">Available Appointment</li>
         </ul>
       </div>
-
       <Navigation />
-
-
     </div>
   );
 }
