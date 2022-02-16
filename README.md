@@ -7,7 +7,7 @@ An application for coordinating ongoing care with health professionals related t
 
 <img width="184" alt="Screen Shot 2022-02-16 at 10 13 04 AM" src="https://user-images.githubusercontent.com/88270371/154307782-d4dfa020-f0bd-4e01-93a9-debb27f366eb.png">
 
-<img width="339" alt="Screen Shot 2022-02-16 at 10 14 19 AM" src="https://user-images.githubusercontent.com/88270371/154307972-cc40e734-4891-4f60-987f-ae335b65487e.png">
+
 
 <img width="588" alt="Screen Shot 2022-02-16 at 10 16 29 AM" src="https://user-images.githubusercontent.com/88270371/154308427-29bd42ea-9ab4-4895-b13e-bd157b30ff88.png">
 
