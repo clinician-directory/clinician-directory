@@ -71,11 +71,11 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
     id, 
     userObject.first_name, 
     userObject.last_name, 
-    Number(userObject.phone), 
+    userObject.phone, 
     userObject.address, 
     userObject.city, 
     userObject.state, 
-    Number(userObject.zip_code)
+    userObject.zip_code
 
   ];
 

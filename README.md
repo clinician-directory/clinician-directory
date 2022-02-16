@@ -19,13 +19,9 @@ Before you get started, make sure you have the following software installed on y
 
 ## Usage
 
-1.
-2.
-3.
-4.
-5.
-6.
+Please refer to this instructional video on application usage:
 
+[Clinician Directory Tutorial](https://youtu.be/Ogwb7gOS3kA)
 
 ## Built With
 
@@ -40,9 +36,11 @@ HTML, CSS, Node.js, Express.js, Passport, React, MUI, Redux, Google Calendar API
 - [Warren O'Brien](https://github.com/whoguy24)
 - [Yasir Uddin](https://github.com/YasirUddin123)
 
-
 ## Acknowledgment
 Thank you to [Prime Digital Academy](https://www.primeacademy.io/) and our instructor Matthew Black who helped us to make this application a reality. Thank you to Sam Nelson and MobileMSK for the opportunity to build Clinician Directory.
 
 ## Support
-If you have suggestions or issues, please email Kelsey Brown at kbrown55347@gmail.com.
+If you have suggestions or issues, feel free to email the following developers:
+
+Warren O'Brien at whoguy24@gmail.com
+Kelsey Brown at kbrown55347@gmail.com
