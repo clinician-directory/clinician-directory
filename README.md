@@ -2,8 +2,9 @@
 *Duration: 3 week sprint*
 An application for coordinating ongoing care with health professionals related to back pain. Users will be able to schedule appointments based on real-time provider availability. This is part of a broader project involving diagnostic telemedicine and remote provision of healthcare services to be able to deliver virtual therapies. 
 
-# Deployment Link:
-[Clinician Directory App] (https://peaceful-mesa-61685.herokuapp.com/#/user)
+
+## Deployment Link:
+- [Clinician Directory App](https://peaceful-mesa-61685.herokuapp.com/#/user)
 
 
 # Screen Shots from Clinician Directory:
