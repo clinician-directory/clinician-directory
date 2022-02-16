@@ -4,7 +4,7 @@ An application for coordinating ongoing care with health professionals related t
 
 
 ## Deployment Link:
-- [Clinician Directory App](https://peaceful-mesa-61685.herokuapp.com/#/user)
+- [Clinician Directory App](https://clinician-directory-app.herokuapp.com/#/user)
 
 
 # Screen Shots from Clinician Directory:
