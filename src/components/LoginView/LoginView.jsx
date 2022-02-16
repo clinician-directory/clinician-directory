@@ -40,14 +40,7 @@ function LoginView() {
     // Register Button Function
     function handleRegisterButton() {
         history.push('/register');
-    }
-
-    /* for presentation, on click of 'Welcome to 
-    Clinician Directory!' will fill email and password */
-    const handleWelcomeClick = () => {
-        setUsername('cliniciansdirectory@gmail.com');
-        setPassword('1234');
-    }; // end handleWelcomeClick
+    };
 
     return (
         <div>
@@ -56,7 +49,7 @@ function LoginView() {
                 <Grid container id='grid-container-background' direction='column' justifyContent='flex-start' alignItems='center' spacing={2}>
 
                     <Grid item>
-                        <Typography variant='h6' onClick={handleWelcomeClick}>Welcome to Clinician Directory!</Typography>
+                        <Typography variant='h6'>Welcome to Clinician Directory!</Typography>
                     </Grid>
                     <Grid item id='grid-item-inputs'>
                         <Grid container direction='column' spacing={2}>
